@@ -54,6 +54,12 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: :password_required?
   validates :password_confirmation, presence: true, if: :password_required?
 
+  def generate_temp_password
+    temp_password ||= SecureRandom.hex(10)
+    self.password = temp_password
+    self.password_confirmation = temp_password
+  end
+
   private
 
     def slug_name

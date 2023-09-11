@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :pages, only: %i[show]
   resources :board_members, only: %i[index]
   resources :applications
+  resources :subscribers, only: %i[create]
 
   namespace :admin do
     resources :pages

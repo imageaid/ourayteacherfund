@@ -22,7 +22,9 @@
             </div>
             <div class="space-y-10 lg:pl-16 xl:pl-24">
               <%= render partial: 'shared/donate_form' %>
-              <%= render partial: 'shared/join_form' %>
+              <div id="joinForm">
+                <%= render partial: 'shared/join_form', locals: { message: @message } %>
+              </div>
             </div>
           </div>
         </div>

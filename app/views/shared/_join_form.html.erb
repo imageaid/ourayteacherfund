@@ -1,15 +1,20 @@
-<form action="#" class="dark:border-zinc-700/40 rounded-2xl border border-zinc-100 p-6">
+<%= form_with model: User.new, url: subscribers_path, method: :post, class: "dark:border-zinc-700/40 rounded-2xl border border-zinc-100 p-6" do |f| %>
+  <%= f.hidden_field :role, value: 'subscriber' %>
   <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
     <%= heroicon 'envelope', variant: 'outline', options: { class: 'h-6 w-6 flex-none' } %>
     <span class="ml-3">Stay up to date</span>
   </h2>
   <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-    Get notified of upcoming events and awards and unsubscribe at any time.
+    <% if message.present? %>
+      <%= message %>
+    <% else %>
+      Get notified of upcoming events and awards and unsubscribe at any time.
+    <% end %>
   </p>
-  <div class="mt-6 flex">
-    <input placeholder="Email address" required="" type="email" class="min-w-0 flex-auto appearance-none rounded-md border bg-white px-3 shadow-md text-zinc-400 focus:border-orange-500 focus:outline-none focus:ring-4 dark:border-zinc-700 dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-orange-400 sm:text-sm border-zinc-900/10 py-[calc(theme(spacing.2)-1px)] shadow-zinc-800/5 focus:ring-orange-500/10 dark:bg-zinc-700/[0.15] dark:focus:ring-orange-400/10" aria-label="Email address"></input>
-    <button type="submit" class="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-800 font-semibold text-zinc-100 hover:bg-zinc-700 active:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 ml-4 flex-none active:text-zinc-100/70 dark:active:text-zinc-100/70">
-      Join
-    </button>
+  <div class="mt-6 flex" >
+    <%= f.email_field :email, class: "min-w-0 flex-auto appearance-none rounded-md border bg-white py-2 px-3 shadow-md text-zinc-400 focus:border-orange-500 focus:outline-none focus:ring-4 dark:border-zinc-700 dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-orange-400 sm:text-sm border-zinc-900/10 py-[calc(theme(spacing.2)-1px)] shadow-zinc-800/5 focus:ring-orange-500/10 dark:bg-zinc-700/[0.15] dark:focus:ring-orange-400/10", placeholder: 'Email address' %>
+    <div class="inline">
+      <%= f.submit 'Join', class: "inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-800 font-semibold text-zinc-100 hover:bg-zinc-700 active:bg-zinc-800 dark:bg-zinc-700 dark:hover:bg-zinc-600 dark:active:bg-zinc-700 ml-4 flex-none active:text-zinc-100/70 dark:active:text-zinc-100/70" %>
+    </div>
   </div>
-</form>
+<% end %>
