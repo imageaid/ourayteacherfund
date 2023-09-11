@@ -2,19 +2,20 @@
   <div class="sm:px-8">
     <div class="mx-auto max-w-7xl lg:px-8">
       <div class="dark:border-zinc-700/40 border-t border-zinc-100 pt-10 pb-16">
-        <div class="relative px-4 sm:px-8.lg:px-12">
+        <div class="relative px-4 sm:px-8 lg:px-12">
           <div class="mx-auto max-w-2xl lg:max-w-5xl">
             <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-              <div class="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200.-mt-12">
+              <div class="sm:flex-1 md:flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:-mt-8 md:-mt-12">
                 <% navigation_pages.each do |nav_page| %>
                   <% active_page = nav_page.slug == params[:id] %>
                   <%= link_to nav_page.link_label, page_path(nav_page), class: "relative block transition #{active_page ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <% end %>
                 <%= link_to 'Board', board_members_path, class: "relative block transition #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
+                <%= link_to 'Donors', donors_path, class: "relative block transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Apply', applications_path, class: "relative block transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
-                <%= link_to 'Donate', 'https://www.google.com/url?q=https%3A%2F%2Fdonate.stripe.com%2F7sI170gAdg6E60o9AA&sa=D&sntz=1&usg=AOvVaw3g8RGc6gGTXpKtUnwor9Tx', class: 'transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' %>
+                <%= link_to 'Donate', external_donation_url, class: 'transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' %>
               </div>
-              <p class="text-sm text-zinc-400 dark:text-zinc-500">
+              <p class="sm:flex-1 md:flex text-sm text-zinc-400 dark:text-zinc-500">
                 &copy;
                 <%= Time.zone.now.year %>
                 Ouray Teacher Fund.

@@ -39,7 +39,15 @@
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to board_members_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                      <%= link_to donors_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Donors
+                        <% if controller_name.casecmp?('donors') %>
+                          <%= render partial: 'shared/active_page_indicator' %>
+                        <% end %>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to applications_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
                         Apply
                         <% if controller_name.casecmp?('applications') %>
                           <%= render partial: 'shared/active_page_indicator' %>
@@ -47,7 +55,7 @@
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to 'https://www.google.com/url?q=https%3A%2F%2Fdonate.stripe.com%2F7sI170gAdg6E60o9AA&sa=D&sntz=1&usg=AOvVaw3g8RGc6gGTXpKtUnwor9Tx', class: 'relative block px-3 py-2 transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' do %>
+                      <%= link_to external_donation_url, class: 'relative block px-3 py-2 transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' do %>
                         Donate
                       <% end %>
                     </li>

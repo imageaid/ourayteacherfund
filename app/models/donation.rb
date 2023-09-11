@@ -20,4 +20,6 @@
 #
 class Donation < ApplicationRecord
   belongs_to :donor
+
+  scope :recents, -> (limit_total) { joins(:donor).where("donors.meta ->> 'credit' = 'true'").order(created_at: :desc).limit(limit_total) }
 end

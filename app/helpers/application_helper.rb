@@ -9,4 +9,8 @@ module ApplicationHelper
       notice: 'blue'
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
+
+  def external_donation_url
+    Rails.application.config.external_donation_url
+  end
 end
