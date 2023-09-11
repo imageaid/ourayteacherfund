@@ -10,7 +10,7 @@ Features include:
   * Collect emails for a mailing list
   * Link to an external donation system 
 * Light and dark themes on CMS and the website
-* Basic public facing website to promote grants, applications and resources for teachers
+* Basic public facing website to promote grants, applications, donors, board members, and resources for teachers
   * You can see it in action at: [https://www,ourayteacherfund.org](https://www,ourayteacherfund.org) 
   * Note that the home (welcome) page is hard coded. If you do decide to use this for your own non-profit, you'll want to change that up. 
 
