@@ -1,0 +1,42 @@
+<div id="<%= dom_id board_member %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">First name:</strong>
+    <%= board_member.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Last name:</strong>
+    <%= image_tag(board_member.avatar) %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= board_member.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Active:</strong>
+    <%= board_member.active %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Role:</strong>
+    <%= board_member.role %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Term Started:</strong>
+    <%= board_member.term_starts_on %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Term Ends:</strong>
+    <%= board_member.term_ends_on %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this board member", admin_board_member_path(board_member), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this board member', edit_admin_board_member_path(board_member), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

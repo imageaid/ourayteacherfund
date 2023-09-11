@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>OTF Administration</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport"/>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
+    <%= stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="flex h-full flex-col bg-zinc-50 dark:bg-zinc-900">
+    <div>
+      <div class="fixed inset-0 flex justify-center sm:px-8">
+        <div class="flex w-full max-w-7xl lg:px-8">
+          <div class="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20"></div>
+        </div>
+      </div>
+      <div class="relative">
+        <%= render partial: 'shared/admin_header', locals: { navigation_pages: @navigation_pages } %>
+        <main class="p-6 md:p-auto">
+          <%= yield %>
+        </main>
+        <%= render partial: 'shared/admin_footer' %>
+      </div>
+    </div>
+  </body>
+</html>

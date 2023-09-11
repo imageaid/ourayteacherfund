@@ -1,0 +1,10 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">
+    <%= @board_member.name.titleize %>
+  </h1>
+
+  <%= render @board_member %>
+
+  <%= link_to 'Edit', edit_admin_board_member_path(@board_member), class: "ml-2 rounded-lg py-3 px-5 text-white bg-blue-600 inline-block font-medium" %>
+  <%= link_to 'Back to board members', admin_board_members_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

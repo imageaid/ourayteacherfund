@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id         :bigint           not null, primary key
+#  active     :boolean
+#  question   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  question: MyString
+  active: false
+
+two:
+  question: MyString
+  active: false

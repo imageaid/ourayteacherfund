@@ -1,0 +1,67 @@
+<%= form_with(model: [:admin, board_member], class: "contents") do |form| %>
+  <% if board_member.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(board_member.errors.count, "error") %> prohibited this board_member from being saved:</h2>
+
+      <ul>
+        <% board_member.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.email_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :term_starts_on %>
+    <%= form.date_field :term_starts_on, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :active %>
+    <%= form.check_box :active, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 h-5 w-5 rounded focus:ring-blue-500" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :role %>
+    <%= form.select :role, [%w[Director director], %w[Secretary secretary], %w[Treasruer treasurer], %w[Vice\ President vice_president], %w[President president]], {}, { class: "block appearance-none w-full px-3 py-2 mt-2 bg-white border border-gray-200 hover:border-gray-500 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" } %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :bio %>
+    <%= form.rich_text_area :bio, class: "block appearance-none w-full px-3 py-2 mt-2 bg-white border border-gray-200 hover:border-gray-500 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

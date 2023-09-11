@@ -1,0 +1,66 @@
+<header class="pointer-events-none relative z-50 flex flex-col" style="height:var(--header-height); margin-bottom:var(--header-mb)">
+  <div class="top-0 z-10 h-16 pt-6" style="position:var(--header-position)">
+    <div class="top-[var(--header-top,theme(spacing.6))] sm:px-8 w-full" style="position:var(--header-inner-position)">
+      <div class="mx-auto max-w-7xl lg:px-8">
+        <div class="relative px-4 sm:px-8 lg:px-12">
+          <div class="mx-auto max-w-2xl lg:max-w-5xl">
+            <div class="relative flex gap-4">
+              <div class="flex flex-1">
+                <%= render partial: 'shared/header_logo' %>
+              </div>
+              <div class="flex flex-1 justify-end md:justify-center">
+                <div class="pointer-events-auto md:hidden">
+                  <button type="button" id="headlessui-popover-button-:Rb9cm:" class="group flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 backdrop-blur dark:text-zinc-200 bg-white/90 shadow-zinc-800/5 ring-zinc-900/5 dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20" aria-expanded="false">
+                    Menu
+                    <svg class="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" aria-hidden="true" viewBox="0 0 8 6">
+                      <path d="M1.75 1.75 4 4.25l2.25-2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                    </svg>
+                  </button>
+                </div>
+                <nav class="pointer-events-auto hidden md:block">
+                  <ul class="flex rounded-full px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 backdrop-blur dark:text-zinc-200 bg-white/90 shadow-zinc-800/5 ring-zinc-900/5 dark:bg-zinc-800/90 dark:ring-white/10">
+                    <% navigation_pages.each do |nav_page| %>
+                      <% active_page = nav_page.slug == params[:id] %>
+                      <li>
+                        <%= link_to page_path(nav_page), class: "relative block px-3 py-2 transition #{active_page ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                          <%= nav_page.link_label %>
+                          <% if active_page %>
+                            <%= render partial: 'shared/active_page_indicator' %>
+                          <% end %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                    <li>
+                      <%= link_to board_members_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Board
+                        <% if controller_name.casecmp?('board_members') %>
+                          <%= render partial: 'shared/active_page_indicator' %>
+                        <% end %>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to board_members_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Apply
+                        <% if controller_name.casecmp?('applications') %>
+                          <%= render partial: 'shared/active_page_indicator' %>
+                        <% end %>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to 'https://www.google.com/url?q=https%3A%2F%2Fdonate.stripe.com%2F7sI170gAdg6E60o9AA&sa=D&sntz=1&usg=AOvVaw3g8RGc6gGTXpKtUnwor9Tx', class: 'relative block px-3 py-2 transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' do %>
+                        Donate
+                      <% end %>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="flex justify-end md:flex-1">
+                <%= render partial: 'shared/dark_mode_toggler' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
