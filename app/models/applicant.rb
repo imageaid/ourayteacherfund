@@ -21,7 +21,7 @@
 #  reset_password_email_sent_at        :datetime
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
-#  role                                :integer          default("guest")
+#  role                                :integer          default("subscriber")
 #  salt                                :datetime
 #  slug                                :string           not null
 #  type                                :string           default("User"), not null

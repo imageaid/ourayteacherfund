@@ -19,7 +19,7 @@
 #  reset_password_email_sent_at        :datetime
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
-#  role                                :integer          default("guest")
+#  role                                :integer          default("subscriber")
 #  salt                                :datetime
 #  slug                                :string           not null
 #  type                                :string           default("User"), not null
@@ -37,7 +37,8 @@
 class Donor < User
   store_accessor :meta, :street_address, :city, :state, :postal, :website, :credit
 
-  has_many :donations, dependent: :nullify
+  has_many :donations, dependent: :nullify, foreign_key: :user_id, inverse_of: :donor
+  accepts_nested_attributes_for :donations
 
   validates :credit, presence: true
 

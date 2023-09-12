@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     resources :pages
     resources :users
     resources :donors
-    resources :donations
     resources :board_members
     resources :applicants
+    resources :questions
   end
 
   # Defines the root path route ("/")

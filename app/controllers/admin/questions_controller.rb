@@ -4,7 +4,9 @@ module Admin
   class QuestionsController < AdminController
     before_action :load_question, only: %i[show edit update destroy]
 
-    def index; end
+    def index
+      @questions = Question.where(ative: true)
+    end
 
     def show; end
 

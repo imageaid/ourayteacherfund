@@ -18,6 +18,9 @@
                 <%= link_to admin_applicants_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applicants') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
                   Applicants
                 <% end %>
+                <%= link_to admin_questions_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applicants') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                  Questions
+                <% end %>
                 <%= link_to admin_users_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('users') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
                   Users
                 <% end %>

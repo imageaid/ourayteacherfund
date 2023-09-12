@@ -2,13 +2,14 @@
 #
 # Table name: donations
 #
-#  id         :bigint           not null, primary key
-#  amount     :decimal(, )      default(0.0)
-#  recurring  :boolean          default(FALSE)
-#  thanked    :boolean          default(FALSE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id          :bigint           not null, primary key
+#  amount      :decimal(, )      default(0.0)
+#  received_on :date
+#  recurring   :boolean          default(FALSE)
+#  thanked     :boolean          default(FALSE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint           not null
 #
 # Indexes
 #
