@@ -1,15 +1,15 @@
-<div id="<%= dom_id question %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Question:</strong>
-    <%= question.question %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Active:</strong>
+<tr id="<%= dom_id question %>">
+  <td>
+    <%= truncate(question.question, length: 30) %>
+  </td>
+  <td>
     <%= question.active %>
-  </p>
-  <% if action_name != "show" %>
-    <%= link_to "Show this question", question, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this question', edit_question_path(question), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6"/>
-  <% end %>
-</div>
+  </td>
+  <td>
+    <%= question.position %>
+  </td>
+  <td>
+    <%= link_to "Show", admin_question_path(question), class: "text-indigo-500 hover:text-orange-500 mr-1" %>
+    <%= link_to 'Edit', edit_admin_question_path(question), class: "text-indigo-500 hover:text-orange-500" %>
+  </td>
+</tr>

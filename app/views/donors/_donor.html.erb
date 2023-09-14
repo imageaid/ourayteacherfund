@@ -1,43 +1,19 @@
-<div id="<%= dom_id donor %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">First name:</strong>
-    <%= donor.first_name %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Last name:</strong>
-    <%= donor.last_name %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Email:</strong>
-    <%= donor.email %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Street address:</strong>
-    <%= donor.street_address %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">City:</strong>
-    <%= donor.city %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">State:</strong>
-    <%= donor.state %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Postal:</strong>
-    <%= donor.postal %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Website:</strong>
-    <%= donor.website %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Credit:</strong>
-    <%= donor.credit %>
-  </p>
-  <% if action_name != "show" %>
-    <%= link_to "Show this donor", donor, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this donor', edit_donor_path(donor), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6"/>
-  <% end %>
+<div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow max-w-sm lg:max-w-md mb-6 mr-2" id="<%= dom_id donor %>">
+  <div class="px-4 py-5 sm:px-6">
+    <%= donor.name %>
+  </div>
+  <div class="px-4 py-5 sm:p-6">
+    <p class="mb-4">
+      <%= donor.street_address %>
+      <br/>
+      <%= "#{donor.city}, #{donor.state} #{donor.postal}" %>
+    </p>
+    <p class="mb-8">
+      Visit them on the web at:
+      <br/>
+      <%= link_to donor.website, class: "text-indigo-500 hover:text-orange-400" do %>
+        <%= donor.website %>
+      <% end %>
+    </p>
+  </div>
 </div>

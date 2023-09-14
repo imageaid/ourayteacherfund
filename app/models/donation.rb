@@ -20,7 +20,16 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Donation < ApplicationRecord
-  belongs_to :donor
+  belongs_to :donor, foreign_key: :user_id, inverse_of: :donations
 
-  scope :recents, -> (limit_total) { joins(:donor).where("donors.meta ->> 'credit' = 'true'").order(created_at: :desc).limit(limit_total) }
+  attr_accessor :donor_id
+
+  delegate :email, :name, to: :donor, prefix: true
+
+  scope :recent_donors, (lambda do |limit_total|
+    joins(:donor)
+      .where("(users.meta ->> 'credit' = '1' OR users.meta ->> 'credit' = 'true')")
+      .order(created_at: :desc)
+      .limit(limit_total)
+  end)
 end

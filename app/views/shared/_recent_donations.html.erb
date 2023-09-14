@@ -4,6 +4,10 @@
     <span class="ml-3">Recent Donations</span>
   </h2>
   <ol class="mt-6 space-y-4">
-    <li class="flex gap-4"></li>
+    <% donations.each do |donation| %>
+      <li class="flex gap-4">
+        <%= "#{donation.received_on.to_formatted_s(:standard)} - #{donation.donor_name} #{number_to_currency(donation.amount)}" %>
+      </li>
+    <% end %>
   </ol>
 </div>

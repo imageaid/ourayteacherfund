@@ -42,6 +42,14 @@ class Donor < User
 
   validates :credit, presence: true
 
+  def last_donation
+    donations.order('donations.created_at desc').first
+  end
+
+  def total_donated
+    donations.sum(:amount)
+  end
+
   def self.permitted_params
     %i[email first_name last_name role active street_address city state postal website credit]
   end

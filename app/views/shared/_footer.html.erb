@@ -12,7 +12,7 @@
                 <% end %>
                 <%= link_to 'Board', board_members_path, class: "relative block transition #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Donors', donors_path, class: "relative block transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
-                <%= link_to 'Apply', applications_path, class: "relative block transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
+                <%= link_to 'Apply', grant_requests_path, class: "relative block transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Donate', external_donation_url, class: 'transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' %>
               </div>
               <p class="sm:flex-1 md:flex text-sm text-zinc-400 dark:text-zinc-500">

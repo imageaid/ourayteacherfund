@@ -4,7 +4,7 @@ module Admin
     before_action :set_user, only: %i[show edit update destroy]
 
     def index
-      @users = User.all
+      @users = User.order(:last_name)
     end
 
     def show; end

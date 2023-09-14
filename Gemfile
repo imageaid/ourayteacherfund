@@ -5,6 +5,7 @@ ruby '3.2.2'
 
 # gem 'rails', '~> 7.1.0'
 
+gem 'acts_as_list'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'friendly_id'

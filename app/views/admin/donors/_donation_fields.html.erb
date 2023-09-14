@@ -1,21 +1,19 @@
-<%= f.fields_for :donation do |fields| %>
-  <fieldset class="mt-4 mb-8 flex flex-row justify-between">
-    <legend class="text-lg font-bold my-6">Enter Donation</legend>
-    <div class="flex">
-      <%= fields.label 'Donated $', class: 'mr-4 mt-1' %>
-      <%= fields.number_field :amount, class: 'shadow rounded-md border border-gray-200 outline-none' %>
+<%= form.fields_for :donation do |fields| %>
+  <fieldset class="mt-4 mb-8 grid gap-x-12 sm:grid-cols-1 md:grid-cols-2 justify-items-end">
+    <legend class="text-lg font-bold my-6">Enter New Donation</legend>
+    <div class="mb-4">
+      <%= fields.number_field :amount, class: 'shadow rounded-md border border-gray-200 outline-none', placeholder: 'Amount ($)' %>
     </div>
-    <div class="flex">
-      <%= f.label 'Received', class: 'mr-4 mt-1' %>
-      <%= f.date_field :received_on, class: "shadow rounded-md border border-gray-200 outline-none" %>
+    <div>
+      <%= fields.label :recurring, class: 'mr-4 mt-2' %>
+      <%= fields.check_box :recurring, class: 'shadow rounded-md border border-gray-200 outline-none mt-1' %>
     </div>
-    <div class="flex">
-      <%= fields.label :recurring, class: 'mr-4 mt-1' %>
-      <%= fields.check_box :recurring, class: 'shadow rounded-md border border-gray-200 outline-none mt-2' %>
+    <div>
+      <%= form.date_field :received_on, class: "shadow rounded-md border border-gray-200 outline-none" %>
     </div>
-    <div class="flex">
-      <%= fields.label :thanked, class: 'mr-4 mt-1' %>
-      <%= fields.check_box :thanked, class: 'shadow rounded-md border border-gray-200 outline-none mt-2' %>
+    <div>
+      <%= fields.label :thanked, class: 'mr-4 mt-2' %>
+      <%= fields.check_box :thanked, class: 'shadow rounded-md border border-gray-200 outline-none mt-1' %>
     </div>
   </fieldset>
 <% end %>

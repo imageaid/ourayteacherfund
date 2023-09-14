@@ -38,7 +38,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_name, use: :slugged
 
-  has_many :applications, dependent: :nullify
+  has_many :grant_requests, dependent: :nullify
   has_one_attached :avatar
 
   store_accessor :meta, :theme_preference

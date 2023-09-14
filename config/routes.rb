@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
-  resources :questions
-  resources :donors, only: %i[index show]
+  resources :donors, only: %i[index]
   resources :pages, only: %i[show]
   resources :board_members, only: %i[index]
-  resources :applications
+  resources :grant_requests, only: %i[show new create edit update destroy]
   resources :subscribers, only: %i[create]
 
   namespace :admin do
     resources :pages
     resources :users
     resources :donors
+    resources :donations, only: %i[create edit update]
     resources :board_members
     resources :applicants
+    resources :grants
+    resources :grant_requests, only: %i[index show destroy]
     resources :questions
   end
 

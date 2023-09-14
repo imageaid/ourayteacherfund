@@ -9,13 +9,60 @@
                 <%= render partial: 'shared/header_logo' %>
               </div>
               <div class="flex flex-1 justify-end md:justify-center">
-                <div class="pointer-events-auto md:hidden">
-                  <button type="button" id="headlessui-popover-button-:Rb9cm:" class="group flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 backdrop-blur dark:text-zinc-200 bg-white/90 shadow-zinc-800/5 ring-zinc-900/5 dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20" aria-expanded="false">
+                <div class="pointer-events-auto md:hidden" x-data="{ open: false }">
+                  <button type="button" @click="open = !open" id="headlessui-popover-button-:Rb9cm:" class="group flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 backdrop-blur dark:text-zinc-200 bg-white/90 shadow-zinc-800/5 ring-zinc-900/5 dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20" aria-expanded="false">
                     Menu
-                    <svg class="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" aria-hidden="true" viewBox="0 0 8 6">
-                      <path d="M1.75 1.75 4 4.25l2.25-2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                    </svg>
+                    <%= heroicon('chevron-down', variant: 'solid', options: { class: 'ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400' }) %>
                   </button>
+                  <div id="mobileNav" x-show="open" @click.outside="open = false">
+                    <div>
+                      <div x-show="open" class="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100" id="headlessui-popover-panel-:r1:">
+                        <div class="flex flex-row-reverse items-center justify-between">
+                          <button aria-label="Close menu" class="-m-1 p-1" type="button" @click="open = !open">
+                            <%= heroicon("x-mark", variant: "solid", options: { class: "h-6 w-6 text-zinc-500 dark:text-zinc-400" }) %>
+                          </button>
+                          <h2 class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Navigation</h2>
+                        </div>
+                        <nav class="mt-6">
+                          <ul class="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
+                            <% navigation_pages.each do |nav_page| %>
+                              <% active_page = nav_page.slug == params[:id] %>
+                              <li>
+                                <%= link_to page_path(nav_page), class: "block py-2 #{active_page ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                                  <%= nav_page.link_label %>
+                                <% end %>
+                              </li>
+                            <% end %>
+                            <li>
+                              <%= link_to board_members_path, class: "block py-2 #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                                Board
+                              <% end %>
+                            </li>
+                            <li>
+                              <%= link_to donors_path, class: "block py-2 #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                                Donors
+                              <% end %>
+                            </li>
+                            <li>
+                              <%= link_to grant_requests_path, class: "block py-2 #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                                Apply
+                              <% end %>
+                            </li>
+                            <li>
+                              <%= link_to external_donation_url, class: 'block py-2', target: '_blank' do %>
+                                Donate
+                              <% end %>
+                            </li>
+                            <li>
+                              <%= link_to root_path, class: 'block py-2' do %>
+                                Home
+                              <% end %>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <nav class="pointer-events-auto hidden md:block">
                   <ul class="flex rounded-full px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 backdrop-blur dark:text-zinc-200 bg-white/90 shadow-zinc-800/5 ring-zinc-900/5 dark:bg-zinc-800/90 dark:ring-white/10">
@@ -47,7 +94,7 @@
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to applications_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                      <%= link_to grant_requests_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
                         Apply
                         <% if controller_name.casecmp?('applications') %>
                           <%= render partial: 'shared/active_page_indicator' %>

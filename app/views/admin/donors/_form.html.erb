@@ -1,4 +1,5 @@
-<%= form_with(model: [:admin, donor], class: "contents") do |f| %>
+<%= form_with(model: [:admin, donor], class: "contents") do |form| %>
+  <%= form.hidden_field :role, value: 'donor' %>
   <% if donor.errors.any? %>
     <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
       <h2>
@@ -15,45 +16,46 @@
     </div>
   <% end %>
   <div class="my-5">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= f.label :street_address %>
-    <%= f.text_field :street_address, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :street_address %>
+    <%= form.text_field :street_address, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= f.label :city %>
-    <%= f.text_field :city, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :city %>
+    <%= form.text_field :city, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= f.label :state %>
-    <%= f.text_field :state, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :state %>
+    <%= form.select :state, us_states, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= f.label :postal %>
-    <%= f.text_field :postal, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :postal %>
+    <%= form.text_field :postal, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= f.label 'Web Address' %>
-    <%= f.text_field :website, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label 'Web Address' %>
+    <%= form.text_field :website, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5 flex">
-    <%= f.label 'Show Donor on Website', class: 'mr-4 mt-1' %>
-    <%= f.check_box :credit, class: "block mt-2 h-5 w-5" %>
+    <%= form.label 'Show Donor on Website', class: 'mr-4 mt-1' %>
+    <%= form.check_box :credit, class: "block mt-2 h-5 w-5" %>
+  </div>
+  <div class="my-5 flex">
+    <%= render partial: 'donation_fields', locals: { f: f } %>
   </div>
 
-  <%= render partial: 'donation_fields', locals: { f: f } %>
-
   <div class="inline">
-    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

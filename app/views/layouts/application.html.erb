@@ -21,7 +21,18 @@
         <%= render partial: 'shared/header', locals: { navigation_pages: @navigation_pages } %>
         <main>
           <%= render partial: 'shared/notices', locals: { flash: flash } %>
-          <%= yield %>
+          <div class="pt-4">
+            <div class="sm:px-8 mt-9">
+              <div class="mx-auto max-w-7xl lg:px-8">
+                <div class="relative px-4 sm:px-8 lg:px-24">
+                  <div class="mx-auto md:w-2/3 w-full">
+                    <%= render partial: 'shared/back_button' %>
+                    <%= yield %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
         <%= render partial: 'shared/footer', locals: { navigation_pages: @navigation_pages } %>
       </div>

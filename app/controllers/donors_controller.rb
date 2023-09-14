@@ -1,10 +1,7 @@
 class DonorsController < ApplicationController
 
   def index
-    @donors = Donor.where(credit: true).order(:last_name)
-  end
-
-  def show
-    @donor = Donor.friendly.find(params[:id])
+    @donors = Donor.where("(users.meta ->> 'credit' = '1' OR users.meta ->> 'credit' = 'true')")
+                   .order(:last_name, :first_name)
   end
 end

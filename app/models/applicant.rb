@@ -37,13 +37,24 @@
 #  index_users_on_slug                  (slug) UNIQUE
 #
 class Applicant < User
-  store_accessor :meta, :applied_on, :requested_for
+  store_accessor :meta, :applied_on, :requested_for, :status
 
-  has_many :applications, dependent: :nullify
+  has_many :grant_requests, dependent: :nullify
 
   validates :applied_on, :requested_for, presence: true
 
+  scope :current_requests, (lambda do
+    where("users.meta ->> 'requested_for' = '#{SchoolYears.new.current_school_year}'")
+  end)
+  scope :by_school_year, (lambda do |school_year|
+    where("users.meta ->> 'requested_for' = '#{school_year}'")
+  end)
+
+  def statuses
+    %w[pending accepted rejected]
+  end
+
   def self.permitted_params
-    %i[email password password_confirmation first_name last_name role active applied_on requested_for]
+    %i[email password password_confirmation first_name last_name role active applied_on requested_for status]
   end
 end

@@ -1,7 +1,5 @@
-<%= link_to 'javascript:window.history.back()' do %>
-  <button type="button" aria-label="Go back" class="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md ring-1 transition dark:border dark:bg-zinc-800 dark:ring-0 dark:hover:border-zinc-700 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:left-0 xl:mt-0">
-    <svg class="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" fill="none" viewBox="0 0 16 16" aria-hidden="true">
-      <path d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-    </svg>
+<%= link_to 'javascript:window.history.back();' do %>
+  <button type="button" aria-label="Go back" class="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md ring-1 transition dark:border dark:bg-zinc-800 dark:ring-0 dark:hover:border-zinc-700 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:left-5 xl:mt-0">
+    <%= heroicon("arrow-left", variant: "solid", options: { class: "h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" }) %>
   </button>
 <% end %>

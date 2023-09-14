@@ -2,21 +2,21 @@
 #
 # Table name: question_responses
 #
-#  id             :bigint           not null, primary key
-#  response       :text
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  application_id :bigint           not null
-#  question_id    :bigint           not null
+#  id               :bigint           not null, primary key
+#  response         :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  grant_request_id :bigint           not null
+#  question_id      :bigint           not null
 #
 # Indexes
 #
-#  index_question_responses_on_application_id  (application_id)
+#  index_question_responses_on_application_id  (grant_request_id)
 #  index_question_responses_on_question_id     (question_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (application_id => applications.id)
+#  fk_rails_...  (grant_request_id => grant_requests.id)
 #  fk_rails_...  (question_id => questions.id)
 #
 

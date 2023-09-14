@@ -1,0 +1,2 @@
+<%= turbo_stream.replace('new_donations', partial: 'admin/donations/new_donations', locals: { donor: @donor, donation: @donation }) %>
+<%= turbo_stream.replace('donation_history', partial: 'admin/donations/donation_history', locals: { donor: @donor }) %>

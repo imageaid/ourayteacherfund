@@ -3,3 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "trix"
 import "@rails/actiontext"
+
+import Alpine from 'alpinejs'
+window.Alpine = Alpine
+Alpine.start()

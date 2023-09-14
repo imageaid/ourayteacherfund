@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module Admin
-  class ApplicationsController < AdminController
-    before_action :load_application, only: %i[show edit update destroy]
+  class GrantsController < AdminController
 
     def index; end
 
@@ -20,8 +19,12 @@ module Admin
 
     private
 
-      def load_application
-        @application = Application.friendly.find(params[:id])
+      def load_grant
+        @grant = Grant.find(params[:id])
+      end
+
+      def grant_params
+        params.require(:grant).permit(%i[active dtails name])
       end
   end
 end

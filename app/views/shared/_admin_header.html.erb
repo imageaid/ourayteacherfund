@@ -44,8 +44,8 @@
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to '#', class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applicants') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
-                        Applicants
+                      <%= link_to admin_grant_requests_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('grant_requests') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Requests
                         <% if controller_name.casecmp?('applicants') %>
                           <%= render partial: 'shared/active_page_indicator' %>
                         <% end %>
