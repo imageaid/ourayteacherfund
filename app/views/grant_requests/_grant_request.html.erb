@@ -1,0 +1,19 @@
+<div id="<%= dom_id grant_request %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= grant_request.user_id %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">School year:</strong>
+    <%= grant_request.school_year %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Amount requested:</strong>
+    <%= grant_request.amount_requested %>
+  </p>
+  <% if action_name != "show" %>
+    <%= link_to "Show this grant_request", grant_request, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this grant_request', edit_grant_request_path(grant_request), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6"/>
+  <% end %>
+</div>

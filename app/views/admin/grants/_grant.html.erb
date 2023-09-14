@@ -1,0 +1,22 @@
+<div id="<%= dom_id grant %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= grant.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Details:</strong>
+    <%= grant.details %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Active:</strong>
+    <%= grant.active %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this grant", grant, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this grant', edit_grant_path(grant), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<div class="flex flex-wrap space-y-4 sm:space-y-0 justify-between items-center">
+  <h1 class="flex font-bold text-4xl">Obtaining a Grant</h1>
+  <%= link_to 'Grant Request Form', new_grant_request_path, class: "flex btn-primary" %>
+</div>
+<div class="min-w-full" id="applications">
+  <p class="my-4">
+    We consider applications on a rolling basis from October 1 through March 1 each academic year.
+    You may apply for any amount of funding between $500 and $5000 in a given year.
+    It can cover expenses ranging from tuition to travel.
+    This application is the beginning of a conversation: we will contact you to discuss your plans.
+  </p>
+  <p class="my-4">
+    Grants in any given year will be conditioned by the volume of applications and available funds.
+  </p>
+  <p>
+    <span class="font-bold">Reminder:</span>
+    Our grants are exclusively for Ouray School teachers and staff. For more details, please see the
+    <%= link_to page_path(@teachers_page), class: "text-indigo-500 hover:text-orange-600" do %>
+      Teachers
+    <% end %>
+    page.
+  </p>
+</div>

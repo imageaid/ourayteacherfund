@@ -1,0 +1,19 @@
+<div id="donation_history">
+  <h2 class="text-lg font-bold">Donation History</h2>
+  <p class="mb-4">All time: <%= number_to_currency(donor.total_donated) %></p>
+  <ul>
+    <% donor.donations.order(created_at: :desc).each do |donation| %>
+      <li>
+        <%= link_to edit_admin_donation_path(donation), class: "transition hover:text-orange-500 dark:hover:text-orange-400", data: { turbo_frame: "new_donations" } do %>
+          <%= number_to_currency(donation.amount) %>
+          on
+          <%= donation.received_on.to_formatted_s(:standard) %>
+        <% end %>
+        <% if donation.thanked %>
+          &mdash;
+          <span class="text-sm text-green-500">thanked</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

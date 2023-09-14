@@ -1,0 +1,13 @@
+<div class="sm:flex sm:items-center">
+  <div class="sm:flex-auto">
+    <h1 class="text-base font-semibold leading-6 text-gray-900">Applications</h1>
+    <p class="mt-2 text-sm text-gray-700">Following are the pending applications in our system. To see past year's applicants [insert
+      details later 😁].</p>
+  </div>
+  <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+    <%= link_to 'New Grant Request', new_admin_grant_request_path, class: "btn-primary" %>
+  </div>
+</div>
+<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8" id="applications">
+  <%= render @grant_requests %>
+</div>
