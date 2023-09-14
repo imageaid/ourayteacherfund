@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_09_14_172428) do
+ActiveRecord::Schema[7.1].define(version: 2023_04_16_206943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,7 +59,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_14_172428) do
     t.boolean "thanked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "received_on"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
@@ -74,12 +73,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_14_172428) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "grant_requests", id: :bigint, default: -> { "nextval('applications_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "grant_requests", force: :cascade do |t|
+    t.bigint "grant_id", null: false
     t.bigint "user_id", null: false
     t.string "school_year"
     t.decimal "amount_requested"
+    t.jsonb "responses", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["grant_id"], name: "index_grant_requests_on_grant_id"
     t.index ["user_id"], name: "index_grant_requests_on_user_id"
   end
 
@@ -87,6 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_14_172428) do
     t.string "name"
     t.text "details"
     t.boolean "active", default: true
+    t.jsonb "questions", default: []
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,24 +107,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_14_172428) do
     t.index ["link_label"], name: "index_pages_on_link_label", unique: true
     t.index ["slug"], name: "index_pages_on_slug", unique: true
     t.index ["title"], name: "index_pages_on_title", unique: true
-  end
-
-  create_table "question_responses", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.bigint "grant_request_id", null: false
-    t.text "response"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["grant_request_id"], name: "index_question_responses_on_application_id"
-    t.index ["question_id"], name: "index_question_responses_on_question_id"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string "question"
-    t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "position", default: 1
   end
 
   create_table "users", force: :cascade do |t|
@@ -157,7 +142,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_14_172428) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "donations", "users"
+  add_foreign_key "grant_requests", "grants"
   add_foreign_key "grant_requests", "users"
-  add_foreign_key "question_responses", "grant_requests"
-  add_foreign_key "question_responses", "questions"
 end

@@ -4,11 +4,16 @@ module Admin
   class GrantRequestsController < AdminController
     before_action :load_grant_request, only: %i[show destroy]
 
-    def index; end
+    def index
+      @grant_requests = GrantRequest.all
+    end
 
     def show; end
 
-    def destroy; end
+    def destroy
+      @grant_request.destroy
+      redirect_to admin_grant_requests_path, notice: 'Grant Request was successfully destroyed.'
+    end
 
     private
 

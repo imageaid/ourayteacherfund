@@ -13,7 +13,6 @@ class GrantRequestsController < ApplicationController
   # GET /grant_requests/new
   def new
     @grant_request = GrantRequest.new
-    @questions = Question.for_grant_requests
   end
 
   # GET /grant_requests/1/edit

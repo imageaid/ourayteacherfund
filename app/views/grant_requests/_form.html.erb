@@ -37,10 +37,6 @@
     <%= form.label :amount_requested %>
     <%= form.number_field :amount_requested, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-  <%= fields_for :question_responses do |fields| %>
-    <% @questions.each do |question| %>
-    <% end %>
-  <% end %>
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>

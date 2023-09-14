@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :donors, only: %i[index]
   resources :pages, only: %i[show]
   resources :board_members, only: %i[index]
-  resources :grant_requests, only: %i[show new create edit update destroy]
+  resources :grant_requests
   resources :subscribers, only: %i[create]
 
   namespace :admin do
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     resources :applicants
     resources :grants
     resources :grant_requests, only: %i[index show destroy]
-    resources :questions
   end
 
   # Defines the root path route ("/")

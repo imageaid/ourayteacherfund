@@ -8,6 +8,15 @@
 #  question   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  grant_id   :bigint           not null
+#
+# Indexes
+#
+#  index_questions_on_grant_id  (grant_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (grant_id => grants.id)
 #
 
 one:
