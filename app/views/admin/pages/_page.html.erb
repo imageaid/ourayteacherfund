@@ -12,6 +12,15 @@
     <%= page.welcome_content %>
   </td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+    <% if !page.welcome_content %>
+      <%= link_to page_path(page), class: 'text-indigo-600 hover:text-indigo-900 mr-2', target: '_blank' do %>
+        Live
+      <% end %>
+    <% else %>
+      <%= link_to root_path, class: 'text-indigo-600 hover:text-indigo-900 mr-2', target: '_blank' do %>
+        Home
+      <% end %>
+    <% end %>
     <%= link_to edit_admin_page_path(page), class: 'text-indigo-600 hover:text-indigo-900' do %>
       Edit
     <% end %>

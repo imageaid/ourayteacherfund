@@ -1,9 +1,10 @@
-<h1 class="font-bold text-4xl">Edit <%= @donor.name %></h1>
+<h1 class="font-bold text-4xl">
+  Edit
+  <%= link_to @donor.name, admin_donor_path(@donor), class: "inline-link" %>
+</h1>
 <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-12">
   <div class="md:col-span-2">
     <%= render "form", donor: @donor %>
-    <%= link_to "Show this donor", admin_donor_path(@donor), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to donors", admin_donors_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
   <div>
     <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8">

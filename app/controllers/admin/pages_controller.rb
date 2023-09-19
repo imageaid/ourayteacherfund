@@ -3,7 +3,7 @@
 module Admin
   # managing pages
   class PagesController < AdminController
-    before_action :set_page, only: %i[ show edit update destroy ]
+    before_action :set_page, only: %i[show edit update destroy]
 
     def index
       @pages = Page.all
@@ -20,36 +20,25 @@ module Admin
     def create
       @page = Page.new(page_params)
 
-      respond_to do |format|
-        if @page.save
-          format.html { redirect_to admin_page_url(@page), notice: 'Page was successfully created.' }
-          format.json { render :show, status: :created, location: @page }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @page.errors, status: :unprocessable_entity }
-        end
+      if @page.save
+        redirect_to admin_page_url(@page), notice: 'Page was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
       end
     end
 
     def update
-      respond_to do |format|
-        if @page.update(page_params)
-          format.html { redirect_to admin_page_url(@page), notice: 'Page was successfully updated.' }
-          format.json { render :show, status: :ok, location: @page }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @page.errors, status: :unprocessable_entity }
-        end
+      if @page.update(page_params)
+        redirect_to admin_page_url(@page), notice: 'Page was successfully updated.'
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       @page.destroy
 
-      respond_to do |format|
-        format.html { redirect_to admin_pages_url, notice: 'Page was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to admin_pages_url, notice: 'Page was successfully destroyed.'
     end
 
     private

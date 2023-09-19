@@ -4,9 +4,11 @@ class CreateGrants < ActiveRecord::Migration[7.1]
       t.string :name
       t.text :details
       t.boolean :active, default: true
-      t.jsonb :questions, default: []
+      t.text :questions, array: true, default: []
 
       t.timestamps
     end
+
+    add_index :grants, :questions, using: :gin
   end
 end

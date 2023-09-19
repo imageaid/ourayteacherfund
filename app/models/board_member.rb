@@ -49,6 +49,10 @@ class BoardMember < User
   private
 
     def set_term_ends_on
-      update_column(:term_ends_on, term_starts_on + 3.years) if saved_change_to_term_starts_on?
+      term_start_as_date = Date.parse(term_starts_on)
+      return nil unless saved_change_to_term_starts_on?
+
+      self.term_ends_on = term_start_as_date + 3.years
+      save
     end
 end

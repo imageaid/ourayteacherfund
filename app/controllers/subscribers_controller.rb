@@ -16,9 +16,7 @@ class SubscribersController < ApplicationController
                  end
     end
 
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace('joinForm', partial: 'shared/join_form', locals: { message: @message }) }
-    end
+    render turbo_stream: turbo_stream.replace('joinForm', partial: 'shared/join_form', locals: { message: @message })
   end
 
   private

@@ -1,10 +1,5 @@
 <div class="flex mx-auto md:mt-auto mt-12">
   <div class="w-1/2 p-4">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice">
-        <%= notice %>
-      </p>
-    <% end %>
     <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow sm:max-w-2xl md:max-w-xl">
       <div class="px-4 py-5 sm:px-6">
         <%= @donor.name %>
@@ -23,7 +18,7 @@
     <%= render partial: 'admin/donations/new_donations', locals: { donor: @donor, donation: Donation.new(donor: @donor) } %>
   </div>
 </div>
-<div>
-  <%= link_to 'Edit this donor', edit_admin_donor_path(@donor), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to 'Back to donors', admin_donors_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<div class="flex flex-row">
+  <%= link_to 'Edit this donor', edit_admin_donor_path(@donor), class: "btn-primary mr-2" %>
+  <%= link_to "Back", admin_donors_path, class: "btn-default" %>
 </div>

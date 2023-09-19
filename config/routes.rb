@@ -12,8 +12,16 @@ Rails.application.routes.draw do
     resources :donations, only: %i[create edit update]
     resources :board_members
     resources :applicants
-    resources :grants
+    resources :grants do
+      collection do
+        get :question_field
+      end
+    end
     resources :grant_requests, only: %i[index show destroy]
+    resources :sessions, only: %i[new create destroy]
+
+    get 'sign_in', to: 'sessions#new', as: 'sign_in'
+    delete 'sign_out', to: 'sessions#destroy', as: 'sign_out'
   end
 
   # Defines the root path route ("/")

@@ -1,15 +1,32 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<div>
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold">Grant: <%= @grant.name %></h1>
+    <div class="mt-4 text-sm sm:text-lg text-zinc-800"><%= @grant.details %></div>
+    <h2 class="mt-8 text-xl font-bold">
+      Questions
+    </h2>
+    <% @grant.questions.each_with_index do |question, index| %>
+      <p class="text-lg text-gray-800">
+        <span class="font-bold">
+          <%= index + 1 %>.
+        </span>
+        <%= question %>
+      </p>
     <% end %>
+    <h2 class="mt-8 text-xl font-bold">
+      Requests
+    </h2>
+    <p class="mt-4">
+      There have been
+      <%= @grant.grant_requests.size %>
+      <%= link_to 'requests', admin_grant_requests_path(grant_id: @grant.id), class: "inline-link" %>
+      for this grant.
 
-    <%= render @grant %>
-
-    <%= link_to 'Edit this grant', edit_admin_grant_path(@grant), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this grant', admin_grant_path(@grant), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to grants', admin_grants_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    </p>
+  </div>
+  <div class="mt-8 flex flex-row">
+    <%= link_to 'Edit', edit_admin_grant_path(@grant), class: "btn-primary mr-2" %>
+    <%= button_to 'Destroy', admin_grant_path(@grant), method: :delete, class: "btn-danger mr-2" %>
+    <%= link_to "Back", admin_grants_path, class: "btn-default" %>
   </div>
 </div>

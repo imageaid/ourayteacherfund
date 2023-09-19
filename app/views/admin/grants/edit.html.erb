@@ -1,8 +1,7 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing grant</h1>
-
+  <h1 class="font-bold text-4xl">
+    Editing
+    <%= link_to @grant.name, admin_grant_path(@grant), class: "inline-link" %>
+  </h1>
   <%= render "form", grant: @grant %>
-
-  <%= link_to "Show this grant", @grant, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to grants", admin_grants_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

@@ -38,12 +38,14 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_name, use: :slugged
 
+  authenticates_with_sorcery!
+
   has_many :grant_requests, dependent: :nullify
   has_one_attached :avatar
 
-  store_accessor :meta, :theme_preference
+  # before_save :encrypt_password
 
-  authenticates_with_sorcery!
+  store_accessor :meta, :theme_preference
 
   enum role: { subscriber: 0, applicant: 1, donor: 2, director: 3, secretary: 4, treasurer: 5, vice_president: 6, president: 7 }
 
@@ -60,6 +62,10 @@ class User < ApplicationRecord
     self.password_confirmation = temp_password
   end
 
+  def board_member?
+    %w[director secretary treasurer vice_president president].include?(role)
+  end
+
   private
 
     def slug_name
@@ -73,4 +79,12 @@ class User < ApplicationRecord
     def password_required?
       new_record? || password.present? || password_confirmation.present?
     end
+
+    # def encrypt_password
+    #   return if password.blank?
+    #
+    #   self.salt = Sorcery::Model::TemporaryToken.generate_random_token
+    #   p "SALT: #{salt}"
+    #   self.crypted_password = Sorcery::CryptoProviders::BCrypt.encrypt(password, salt)
+    # end
 end

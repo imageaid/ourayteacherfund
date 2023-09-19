@@ -26,7 +26,28 @@
     <%= form.check_box :active, class: "block mt-2 h-5 w-5" %>
   </div>
 
+  <% if grant.questions.empty? %>
+    <div class="my-5">
+      <p class="mb-8">There are no questions for this grant. Add some with the link, below.</p>
+    </div>
+  <% end %>
+
+  <div id="grant-questions">
+    <% grant.questions.each do |question| %>
+      <%= render partial: "admin/grants/question", locals: { question: question } %>
+    <% end %>
+  </div>
+
+  <div class="my-5">
+    <div>
+      <%= link_to 'Add question', question_field_admin_grants_path, class: 'inline-link', data: { turbo_stream: true } %>
+    </div>
+  </div>
+
   <div class="inline">
-    <%= form.submit class: "btn-primary" %>
+    <div class="flex flex-row">
+      <%= form.submit 'Save', class: "btn-primary mr-2" %>
+      <%= link_to "Back", admin_grants_path, class: "btn-default" %>
+    </div>
   </div>
 <% end %>

@@ -1,6 +1,5 @@
-<h1 class="font-bold text-4xl">Editing Board Member</h1>
-
+<h1 class="font-bold text-4xl">
+  Editing
+  <%= link_to @board_member.name, admin_board_member_path(@board_member), class: "inline-link" %>
+</h1>
 <%= render "form", board_member: @board_member %>
-
-<%= link_to "Show this board member", admin_board_member_path(@board_member), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-<%= link_to "Back to board members", admin_board_members_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

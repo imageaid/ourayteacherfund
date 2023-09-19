@@ -24,6 +24,11 @@
                 <%= link_to admin_users_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('users') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
                   Users
                 <% end %>
+                <% if logged_in? %>
+                  <%= link_to admin_sign_out_path, class: "relative block px-3 py-2 transition", data: { turbo_method: :delete } do %>
+                    Logout
+                  <% end %>
+                <% end %>
               </div>
               <p class="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy;

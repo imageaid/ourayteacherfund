@@ -1,15 +1,6 @@
-<tr id="<%= dom_id question %>">
-  <td>
-    <%= truncate(question.question, length: 30) %>
-  </td>
-  <td>
-    <%= question.active %>
-  </td>
-  <td>
-    <%= question.position %>
-  </td>
-  <td>
-    <%= link_to "Show", admin_question_path(question), class: "text-indigo-500 hover:text-orange-500 mr-1" %>
-    <%= link_to 'Edit', edit_admin_question_path(question), class: "text-indigo-500 hover:text-orange-500" %>
-  </td>
-</tr>
+<div class="my-5">
+  <%= fields_for "grant[questions][#{Time.zone.now.to_i}]" do |fields| %>
+    <%= fields.label 'Question:', class: "font-bold" %>
+    <%= fields.text_area :question, rows: 2, cols: 60, value: question.to_s, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <% end %>
+</div>

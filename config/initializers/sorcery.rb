@@ -257,7 +257,7 @@ Rails.application.config.sorcery.configure do |config|
     # Downcase the username before trying to authenticate, default is false
     # Default: `false`
     #
-    # user.downcase_username_before_authenticating =
+    user.downcase_username_before_authenticating = true
 
     # Change default email attribute.
     # Default: `:email`
@@ -563,5 +563,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "User"
+  config.user_class = 'User'
 end

@@ -5,6 +5,7 @@ class CreateDonations < ActiveRecord::Migration[7.0]
       t.decimal :amount, default: 0.00
       t.boolean :recurring, default: false
       t.boolean :thanked, default: false
+      t.date :received_on
 
       t.timestamps
     end

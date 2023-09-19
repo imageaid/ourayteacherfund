@@ -1,15 +1,7 @@
-<tr id="<%= dom_id question %>">
-  <td>
-    <%= truncate(question.question, length: 30) %>
-  </td>
-  <td>
-    <%= question.active %>
-  </td>
-  <td>
-    <%= question.position %>
-  </td>
-  <td>
-    <%= link_to "Show", admin_question_path(question), class: "text-indigo-500 hover:text-orange-500 mr-1" %>
-    <%= link_to 'Edit', edit_admin_question_path(question), class: "text-indigo-500 hover:text-orange-500" %>
-  </td>
-</tr>
+<div class="my-5">
+  <%= fields_for "grant_request[questions][#{SecureRandom.urlsafe_base64(20)}]" do |fields| %>
+    <%= fields.hidden_field :question, value: question.to_s %>
+    <%= fields.label question.to_s.titleize, class: "font-bold" %>
+    <%= fields.text_area :response, rows: 4, cols: 60, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <% end %>
+</div>

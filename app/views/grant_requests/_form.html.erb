@@ -1,4 +1,5 @@
 <%= form_with(model: grant_request, class: "contents") do |form| %>
+  <%= form.hidden_field :grant_id, value: grant.id %>
   <% if grant_request.errors.any? %>
     <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
       <h2>
@@ -14,8 +15,10 @@
       </ul>
     </div>
   <% end %>
-  <%= form.fields_for :applicant, Applicant.new do |fields| %>
+  <%= form.fields_for :applicant, grant_request.applicant do |fields| %>
     <%= fields.hidden_field :role, value: "applicant" %>
+    <%= fields.hidden_field :status, value: "pending" %>
+    <%= fields.hidden_field :applied_on, value: Time.zone.now %>
     <div class="my-5">
       <%= fields.label :first_name %>
       <%= fields.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
@@ -37,7 +40,13 @@
     <%= form.label :amount_requested %>
     <%= form.number_field :amount_requested, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+  <% grant.questions.to_a.each do |question| %>
+    <%= render partial: "grant_requests/question", locals: { question: question } %>
+  <% end %>
   <div class="inline">
-    <%= form.submit class: "btn-primary" %>
+    <div class="flex flex-row">
+      <%= form.submit 'Apply', class: "btn-primary mr-2" %>
+      <%= link_to 'Back', grant_requests_path, class: "btn-default ml-4" %>
+    </div>
   </div>
 <% end %>

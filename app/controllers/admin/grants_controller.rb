@@ -2,6 +2,8 @@
 
 module Admin
   class GrantsController < AdminController
+    include Admin::Questionable
+
     before_action :load_grant, only: %i[show edit update destroy]
 
     def index
@@ -16,6 +18,7 @@ module Admin
 
     def create
       @grant = Grant.new(grant_params)
+      format_grant_questions
 
       if @grant.save
         redirect_to admin_grant_path(@grant), notice: 'Grant was successfully created.'
@@ -27,7 +30,10 @@ module Admin
     def edit; end
 
     def update
-      if @grant.update(grant_params)
+      @grant.assign_attributes(grant_params)
+      format_grant_questions
+
+      if @grant.save
         redirect_to admin_grant_path(@grant), notice: 'Grant was successfully updated.'
       else
         render :edit, status: :unprocessable_entity
@@ -39,6 +45,8 @@ module Admin
       redirect_to admin_grants_path, notice: 'Grant was successfully destroyed.'
     end
 
+    def question_field; end
+
     private
 
       def load_grant
@@ -46,7 +54,12 @@ module Admin
       end
 
       def grant_params
-        params.require(:grant).permit(%i[active dtails name])
+        params.require(:grant)
+              .permit([
+                :active, :details, :name,
+                { questions: [:question] }
+              ]
+                     )
       end
   end
 end

@@ -38,7 +38,7 @@ class Donor < User
   store_accessor :meta, :street_address, :city, :state, :postal, :website, :credit
 
   has_many :donations, dependent: :nullify, foreign_key: :user_id, inverse_of: :donor
-  accepts_nested_attributes_for :donations
+  accepts_nested_attributes_for :donations, reject_if: :all_blank, allow_destroy: true
 
   validates :credit, presence: true
 

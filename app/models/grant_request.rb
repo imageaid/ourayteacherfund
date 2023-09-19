@@ -25,5 +25,9 @@ class GrantRequest < ApplicationRecord
   belongs_to :applicant, foreign_key: :user_id, inverse_of: :grant_requests
   belongs_to :grant
 
+  attr_accessor :questions
+
   accepts_nested_attributes_for :applicant, allow_destroy: false
+
+  delegate :name, :email, to: :applicant, prefix: true
 end

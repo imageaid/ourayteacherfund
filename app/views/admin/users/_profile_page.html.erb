@@ -1,0 +1,27 @@
+<div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow max-w-sm lg:max-w-md mb-6 mr-2" id="<%= dom_id user %>">
+  <div class="px-4 py-5 sm:px-6">
+    <%= user.name.titleize %>
+  </div>
+  <div class="px-4 py-5 sm:p-6">
+    <p class="mb-4">
+      <%= user.role.titleize %>
+    </p>
+    <p class="mb-4">
+      <%= user.email %>
+    </p>
+    <% if user.is_a?(Donor) %>
+      <p class="mb-4">
+        <%= user.street_address %>
+        <br/>
+        <%= "#{user.city}, #{user.state} #{user.postal}" %>
+      </p>
+      <p class="mb-8">
+        Visit them on the web at:
+        <br/>
+        <%= link_to user.website, class: "text-indigo-500 hover:text-orange-400" do %>
+          <%= user.website %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>

@@ -50,10 +50,7 @@ module Admin
     def destroy
       @donor.destroy
 
-      respond_to do |format|
-        format.html { redirect_to admin_donors_url, notice: 'Donor was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to admin_donors_url, notice: 'Donor was successfully destroyed.'
     end
 
     private
@@ -64,7 +61,7 @@ module Admin
 
       def donor_params
         params.require(:donor).permit(
-          :first_name, :last_name, :email, :street_address, :city, :state, :postal, :website, :credit,
+          :first_name, :last_name, :email, :street_address, :city, :state, :postal, :website, :credit, :role,
           donations_attributes: %i[id amount received_on recurring thanked _destroy]
         )
       end

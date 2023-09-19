@@ -1,5 +1,4 @@
-<div class="md:w-2/3 mx-auto w-full">
-  <h1 class="font-bold text-4xl">New application</h1>
-  <%= render partial: "form", locals: { grant_request: @grant_request } %>
-  <%= link_to 'Back', grant_requests_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+<h1 class="font-bold text-4xl mb-4">Grant Request Application</h1>
+<p>Complete and submit the form below to be consider for a grant.</p>
+<p class="mt-4">Upon submission, you will receive an email from us (ourayteacherfund@gmail.com) confirming receipt and detailing next steps.</p>
+<%= render partial: "form", locals: { grant_request: @grant_request, grant: @grant } %>

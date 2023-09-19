@@ -1,10 +1,33 @@
 <div class="sm:flex sm:items-center">
   <div class="sm:flex-auto">
-    <h1 class="text-base font-semibold leading-6 text-gray-900">Applications</h1>
-    <p class="mt-2 text-sm text-gray-700">Following are the pending applications in our system. To see past year's applicants [insert
-      details later 😁].</p>
+    <h1 class="text-base font-semibold leading-6 text-gray-900">Grant Request Applications</h1>
+    <p class="mt-2 text-sm text-gray-700">
+      Following are the pending applications in our system. To see past year's applicants [insert
+      review details later 😁].
+    </p>
+  </div>
+  <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+    <%= link_to 'New grant', new_admin_grant_path, class: "btn-primary" %>
   </div>
 </div>
-<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8" id="applications">
-  <%= render @grant_requests %>
+<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <div class="min-w-full" id="pages">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead>
+        <tr>
+          <th class="pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 py-3.5" scope="col">Name</th>
+          <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900" scope="col">School Year</th>
+          <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900" scope="col">Amount</th>
+          <th class="relative pl-3 pr-4 sm:pr-0 py-3.5" scope="col">
+            <span class="sr-only">Show</span>
+          </th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+        <%= render @grant_requests %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

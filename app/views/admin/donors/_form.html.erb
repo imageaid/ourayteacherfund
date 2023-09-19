@@ -51,11 +51,17 @@
     <%= form.label 'Show Donor on Website', class: 'mr-4 mt-1' %>
     <%= form.check_box :credit, class: "block mt-2 h-5 w-5" %>
   </div>
-  <div class="my-5 flex">
-    <%= render partial: 'donation_fields', locals: { f: f } %>
-  </div>
-
+  <% if action_name.casecmp?('new') %>
+    <div class="my-5 flex">
+      <%= form.fields_for :donations do |fields| %>
+        <%= render partial: 'donation_fields', locals: { fields: fields } %>
+      <% end %>
+    </div>
+  <% end %>
   <div class="inline">
-    <%= form.submit class: "btn-primary" %>
+    <div class="flex flex-row">
+      <%= form.submit 'Save', class: "btn-primary mr-2" %>
+      <%= link_to "Back", admin_donors_path, class: "btn-default" %>
+    </div>
   </div>
 <% end %>

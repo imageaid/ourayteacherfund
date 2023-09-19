@@ -1,8 +1,6 @@
-<div class="mx-auto">
-  <%= render @grant_request %>
-  <%= link_to 'Edit this application', edit_admin_grant_request_path(@grant_request), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <div class="inline-block ml-2">
-    <%= button_to 'Destroy this application', admin_grant_request_path(@grant_request), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-  </div>
-  <%= link_to 'Back to applications', admin_grant_requests_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<%= render partial: "grant_requests/grant_request", locals: { grant_request: @grant_request } %>
+<div class="flex ml-2">
+  <%= button_to 'Destroy', admin_grant_request_path(@grant_request), method: :delete, class: "btn-primary mr-2", form: { 'data-turbo-confirm': "Are you sure? There is no turning back." } %>
+  <%= link_to "Back", admin_grant_requests_path, class: "btn-default" %>
 </div>
+

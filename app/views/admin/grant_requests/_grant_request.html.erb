@@ -1,27 +1,14 @@
-<div id="<%= dom_id grant_request %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= grant_request.user_id %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">School year:</strong>
+<tr id="<%= dom_id grant_request %>">
+  <td class="pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 py-3.5">
+    <%= grant_request.applicant_name %>
+  </td>
+  <td class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
     <%= grant_request.school_year %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Amount requested:</strong>
-    <%= grant_request.amount_requested %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Purpose:</strong>
-    <%= grant_request.purpose %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Other purpose:</strong>
-    <%= grant_request.other_purpose %>
-  </p>
-  <% if action_name != "show" %>
-    <%= link_to "Show this application", admin_grant_request_path(grant_request), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this application', edit_admin_grant_request_path(grant_request), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6"/>
-  <% end %>
-</div>
+  </td>
+  <td class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+    <%= number_to_currency(grant_request.amount_requested) %>
+  </td>
+  <td class="relative pl-3 pr-4 sm:pr-0 py-3.5">
+    <%= link_to 'Show', admin_grant_request_path(grant_request), class: "inline-link mr-2" %>
+  </td>
+</tr>

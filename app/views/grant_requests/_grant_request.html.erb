@@ -1,18 +1,25 @@
 <div id="<%= dom_id grant_request %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= grant_request.user_id %>
+    <strong class="block font-medium mb-1">Applicant Details:</strong>
+    <%= grant_request.applicant_name %>
+    <br />
+    <%= grant_request.applicant_email %>
   </p>
   <p class="my-5">
-    <strong class="block font-medium mb-1">School year:</strong>
+    <strong class="block font-medium mb-1">Application for School Year:</strong>
     <%= grant_request.school_year %>
   </p>
   <p class="my-5">
-    <strong class="block font-medium mb-1">Amount requested:</strong>
-    <%= grant_request.amount_requested %>
+    <strong class="block font-medium mb-1">Amount requested ($):</strong>
+    <%= number_to_currency(grant_request.amount_requested) %>
   </p>
+  <% grant_request.responses.each do |response| %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1"><%= response[0] %></strong>
+      <%= response[1] %>
+    </p>
+  <% end %>
   <% if action_name != "show" %>
-    <%= link_to "Show this grant_request", grant_request, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this grant_request', edit_grant_request_path(grant_request), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6"/>
   <% end %>
