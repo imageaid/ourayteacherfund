@@ -16,18 +16,18 @@ gem 'jbuilder'
 gem 'kredis'
 gem 'pagy'
 gem 'pg', '~> 1.4.5'
+gem 'propshaft', '~> 0.7.0'
 gem 'puma', '~> 6.0'
 gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'redis', '~> 5.0'
 gem 'sorcery'
-gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'tailwindcss-rails'
 gem 'turbo-rails'
-gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'hotwire-livereload'
   gem 'rubocop'
   gem 'rubocop-performance'
