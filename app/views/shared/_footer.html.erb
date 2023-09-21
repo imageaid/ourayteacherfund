@@ -10,18 +10,18 @@
                   <% active_page = nav_page.slug == params[:id] %>
                   <%= link_to nav_page.link_label, page_path(nav_page), class: "relative block transition #{active_page ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <% end %>
+                <%= link_to 'Supporters', donors_path, class: "relative block transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Board', board_members_path, class: "relative block transition #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
-                <%= link_to 'Donors', donors_path, class: "relative block transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Apply', grant_requests_path, class: "relative block transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Admins', admin_sign_in_path, class: "relative block transition hover:text-orange-500 dark:hover:text-orange-400" %>
-                <%= link_to 'Donate', external_donation_url, class: 'transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' %>
+                <%#= link_to 'Donate', external_donation_url, class: 'transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' %>
               </div>
               <p class="sm:flex-1 md:flex text-sm text-zinc-400 dark:text-zinc-500">
                 &copy;
                 <%= Time.zone.now.year %>
-                Ouray Teacher Fund.
+                Ouray Teacher Fund
                 <br/>
-                (a) PO Box 1351; Ouray, CO 81427 (p) 970-325-3501
+                PO Box 1351; Ouray, CO 81427 970-325-3501
                 <br/>
                 EIN: 88-2960777 (all contributions are fully tax-deductible)
               </p>

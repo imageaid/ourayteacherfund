@@ -15,4 +15,11 @@
       <%= page.body %>
     </div>
   </div>
+  <% if page.link_label.casecmp?('Donate') %>
+    <div class="mt-8 prose dark:prose-invert">
+      <div>
+        <%= link_to 'Donate', external_donation_url, class: 'ml-2 rounded-lg py-3 px-5 bg-orange-600 text-white inline-block font-medium', target: '_blank' %>
+      </div>
+    </div>
+  <% end %>
 </article>

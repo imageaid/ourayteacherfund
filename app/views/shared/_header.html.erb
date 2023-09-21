@@ -34,13 +34,13 @@
                               </li>
                             <% end %>
                             <li>
-                              <%= link_to board_members_path, class: "block py-2 #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
-                                Board
+                              <%= link_to donors_path, class: "block py-2 #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                                Supporters
                               <% end %>
                             </li>
                             <li>
-                              <%= link_to donors_path, class: "block py-2 #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
-                                Donors
+                              <%= link_to board_members_path, class: "block py-2 #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                                Board
                               <% end %>
                             </li>
                             <li>
@@ -48,11 +48,11 @@
                                 Apply
                               <% end %>
                             </li>
-                            <li>
-                              <%= link_to external_donation_url, class: 'block py-2', target: '_blank' do %>
-                                Donate
-                              <% end %>
-                            </li>
+<!--                            <li>-->
+                              <%#= link_to external_donation_url, class: 'block py-2', target: '_blank' do %>
+<!--                                Donate-->
+                              <%# end %>
+<!--                            </li>-->
                             <li>
                               <%= link_to root_path, class: 'block py-2' do %>
                                 Home
@@ -78,17 +78,17 @@
                       </li>
                     <% end %>
                     <li>
-                      <%= link_to board_members_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
-                        Board
-                        <% if controller_name.casecmp?('board_members') %>
+                      <%= link_to donors_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Supporters
+                        <% if controller_name.casecmp?('donors') %>
                           <%= render partial: 'shared/active_page_indicator' %>
                         <% end %>
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to donors_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
-                        Donors
-                        <% if controller_name.casecmp?('donors') %>
+                      <%= link_to board_members_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Board
+                        <% if controller_name.casecmp?('board_members') %>
                           <%= render partial: 'shared/active_page_indicator' %>
                         <% end %>
                       <% end %>
@@ -101,11 +101,11 @@
                         <% end %>
                       <% end %>
                     </li>
-                    <li>
-                      <%= link_to external_donation_url, class: 'relative block px-3 py-2 transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' do %>
-                        Donate
-                      <% end %>
-                    </li>
+<!--                    <li>-->
+                      <%#= link_to external_donation_url, class: 'relative block px-3 py-2 transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' do %>
+<!--                        Donate-->
+                      <%# end %>
+<!--                    </li>-->
                   </ul>
                 </nav>
               </div>

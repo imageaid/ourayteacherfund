@@ -46,7 +46,7 @@ Rails.application.config.sorcery.configure do |config|
   # Use the last action as the beginning of session timeout.
   # Default: `false`
   #
-  # config.session_timeout_from_last_action =
+  config.session_timeout_from_last_action = 1_209_600
 
   # Invalidate active sessions. Requires an `invalidate_sessions_before` timestamp column
   # Default: `false`
