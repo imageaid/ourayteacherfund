@@ -5,8 +5,8 @@ module ApplicationHelper
     {
       success: 'green',
       error: 'red',
-      alert: 'orange',
-      notice: 'blue'
+      alert: 'red',
+      notice: 'indigo'
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
 
