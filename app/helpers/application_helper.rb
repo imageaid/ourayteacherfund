@@ -74,4 +74,11 @@ module ApplicationHelper
   def current_school_year
     SchoolYears.new.current_school_year
   end
+
+  def applications_open?
+    right_now = Time.zone.now
+    apps_starts = Date.new(right_now.year, 9, 1)
+    apps_ends = Date.new(right_now.year + 1, 5, 1)
+    right_now.between?(apps_starts, apps_ends)
+  end
 end
