@@ -22,7 +22,7 @@
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
 #  role                                :integer          default("subscriber")
-#  salt                                :datetime
+#  salt                                :string
 #  slug                                :string           not null
 #  type                                :string           default("User"), not null
 #  created_at                          :datetime         not null

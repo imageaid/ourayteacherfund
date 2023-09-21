@@ -70,4 +70,8 @@ module ApplicationHelper
       %w[Wyoming WY]
     ]
   end
+
+  def current_school_year
+    SchoolYears.new.current_school_year
+  end
 end

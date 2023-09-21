@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  amount_requested :decimal(, )
+#  purpose          :integer          default(0)
 #  responses        :jsonb
 #  school_year      :string
 #  created_at       :datetime         not null
@@ -28,6 +29,8 @@ class GrantRequest < ApplicationRecord
   attr_accessor :questions
 
   accepts_nested_attributes_for :applicant, allow_destroy: false
+
+  enum purpose: { tuition: 0, travel: 1, other: 2 }
 
   delegate :name, :email, to: :applicant, prefix: true
 end

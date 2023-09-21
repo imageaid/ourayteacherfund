@@ -5,7 +5,7 @@ module Admin
     before_action :load_grant_request, only: %i[show destroy]
 
     def index
-      @grant_requests = GrantRequest.where(school_year: SchoolYears.new.current_school_year)
+      @grant_requests = GrantRequest.where(school_year: current_school_year)
     end
 
     def show; end

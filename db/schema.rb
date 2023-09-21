@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_04_16_206943) do
+ActiveRecord::Schema[7.1].define(version: 2023_09_21_024657) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_04_16_206943) do
     t.boolean "thanked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "received_on"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
@@ -81,6 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_04_16_206943) do
     t.jsonb "responses", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "purpose", default: 0
     t.index ["grant_id"], name: "index_grant_requests_on_grant_id"
     t.index ["user_id"], name: "index_grant_requests_on_user_id"
   end
@@ -122,7 +124,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_04_16_206943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "crypted_password"
-    t.datetime "salt"
+    t.string "salt"
     t.string "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string "reset_password_token"

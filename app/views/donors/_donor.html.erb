@@ -1,12 +1,7 @@
 <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow max-w-sm lg:max-w-md mb-6 mr-2" id="<%= dom_id donor %>">
-  <div class="px-4 py-5 sm:px-6">
-    <%= donor.name %>
-  </div>
   <div class="px-4 py-5 sm:p-6">
-    <p class="mb-4">
-      <%= donor.street_address %>
-      <br/>
-      <%= "#{donor.city}, #{donor.state} #{donor.postal}" %>
+    <p class="mb-8 text-lg font-semibold">
+      <%= donor.name %>
     </p>
     <p class="mb-8">
       Visit them on the web at:

@@ -4,6 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  amount_requested :decimal(, )
+#  purpose          :integer          default(0)
 #  responses        :jsonb
 #  school_year      :string
 #  created_at       :datetime         not null
