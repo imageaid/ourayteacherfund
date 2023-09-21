@@ -50,6 +50,25 @@ class Donor < User
     donations.sum(:amount)
   end
 
+  def supporter_level
+    case total_donated
+    when 0..99
+      "Teacher's Pet"
+    when 100..499
+      'Honor Society'
+    when 1_000..4_999
+      'Deans List'
+    when 5_000..9_999
+      'Cum Laude'
+    when 10_000..19_999
+      'Magna Cum Laude'
+    when 20_000..1_000_000
+      'Summa Cum Laude'
+    else
+      'Greatest of All Time'
+    end
+  end
+
   def self.permitted_params
     %i[email first_name last_name role active street_address city state postal website credit]
   end

@@ -4,6 +4,15 @@
       <%= donor.name %>
     </p>
     <p class="mb-8">
+      Total Donated:
+      <%= number_to_currency(donor.total_donated) %>
+      <br/>
+      Supporter Level:
+      <span class="font-semibold">
+        <%= donor.supporter_level %>
+      </span>
+    </p>
+    <p class="mb-8">
       Visit them on the web at:
       <br/>
       <%= link_to donor.website, class: "text-indigo-500 hover:text-orange-400" do %>
