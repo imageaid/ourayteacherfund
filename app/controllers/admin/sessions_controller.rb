@@ -10,7 +10,7 @@ module Admin
       @user = login(params[:user][:email], params[:user][:password])
 
       if @user&.board_member?
-        redirect_back_or_to(admin_pages_path, notice: 'Login successful')
+        redirect_back_or_to(admin_donors_path, notice: 'Login successful')
       else
         flash.alert = 'Login failed'
         render :new
