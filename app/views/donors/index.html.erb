@@ -1,8 +1,23 @@
 <div class="flex justify-between items-center">
   <h1 class="font-bold text-4xl mb-4">A BIG Thank You to Our Supporters!</h1>
+  <%= link_to 'Donate', external_donation_url, class: 'ml-2 rounded-lg py-3 px-5 bg-orange-600 text-white inline-block font-medium', target: '_blank' %>
 </div>
 <div class="min-w-full" id="donors">
-  <div class="grid grid-cols-1 md:grid-cols-2 space-4">
-    <%= render @donors %>
+  <div>
+    <h1 class="font-semibold text-2xl">Giving Levels:</h1>
+    <dl>
+      <dt class="mt-2 font-semibold text-lg">Summa Cum Laude: $20,000+</dt>
+      <dd><%= @donors_by_level[:summa_cum_laudes].join(", ") %></dd>
+      <dt class="mt-12 font-semibold text-lg">Magna Cum Laude: $10,000+</dt>
+      <dd><%= @donors_by_level[:magna_cum_laudes].join(", ") %></dd>
+      <dt class="mt-12 font-semibold text-lg">Cum Laude: $5000+</dt>
+      <dd><%= @donors_by_level[:cum_laudes].join(", ") %></dd>
+      <dt class="mt-12 font-semibold text-lg">Dean's List: $1000+</dt>
+      <dd><%= @donors_by_level[:deans].join(", ") %></dd>
+      <dt class="mt-12 font-semibold text-lg">Honor Society: $500+</dt>
+      <dd><%= @donors_by_level[:honors].join(", ") %></dd>
+      <dt class="mt-12 font-semibold text-lg">Teacher's Pet: $100+</dt>
+      <dd><%= @donors_by_level[:pets].join(", ") %></dd>
+    </dl>
   </div>
 </div>

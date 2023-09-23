@@ -43,6 +43,8 @@ class GrantRequestsController < ApplicationController
     format_grant_responses
 
     if @grant_request.save
+      # TODO: Send email to board and applicant
+      GrantRequestsMailer.grant_request_email(@grant_request).deliver_now
       redirect_to grant_request_url(@grant_request), notice: 'Grant request received. An email will be sent shortly with more details. Thank you!'
     else
       @grant = Grant.find_by(active: true)
@@ -77,7 +79,7 @@ class GrantRequestsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def grant_request_params
       params.require(:grant_request).permit(
-        :user_id, :school_year, :amount_requested, :grant_id,
+        :user_id, :school_year, :amount_requested, :grant_id, :phone,
         questions: {},
         applicant_attributes: %i[email password password_confirmation first_name last_name role active applied_on status]
       )

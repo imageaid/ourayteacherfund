@@ -37,7 +37,7 @@
 #  index_users_on_slug                  (slug) UNIQUE
 #
 class Applicant < User
-  store_accessor :meta, :applied_on, :status
+  store_accessor :meta, :applied_on, :status, :phone
 
   has_many :grant_requests, dependent: :destroy, foreign_key: :user_id, inverse_of: :applicant
 

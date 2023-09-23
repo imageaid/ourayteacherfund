@@ -35,7 +35,7 @@
 #  index_users_on_slug                  (slug) UNIQUE
 #
 class Donor < User
-  store_accessor :meta, :street_address, :city, :state, :postal, :website, :credit
+  store_accessor :meta, :street_address, :city, :state, :postal, :website, :credit, :level
 
   has_many :donations, dependent: :nullify, foreign_key: :user_id, inverse_of: :donor
   accepts_nested_attributes_for :donations, reject_if: :all_blank, allow_destroy: true
@@ -50,26 +50,18 @@ class Donor < User
     donations.sum(:amount)
   end
 
-  def supporter_level
-    case total_donated
-    when 0..99
-      "Teacher's Pet"
-    when 100..499
-      'Honor Society'
-    when 1_000..4_999
-      'Deans List'
-    when 5_000..9_999
-      'Cum Laude'
-    when 10_000..19_999
-      'Magna Cum Laude'
-    when 20_000..1_000_000
-      'Summa Cum Laude'
-    else
-      'Greatest of All Time'
-    end
+  def self.permitted_params
+    %i[email first_name last_name role active street_address city state postal website credit level]
   end
 
-  def self.permitted_params
-    %i[email first_name last_name role active street_address city state postal website credit]
+  def self.levels
+    [
+      ['Teacher\'s Pet ($0-99)', 'Teacher\'s Pet'],
+      ['Honor Society ($100-1,000)', 'Honor Society'],
+      ['Deans List ($100-4,999)', 'Deans List'],
+      ['Cum Laude ($5,000-9,999)', 'Cum Laude'],
+      ['Magna Cum Laude ($10,000-19,999)', 'Magna Cum Laude'],
+      ['Summa Cum Laude ($20,000+)', 'Summa Cum Laude']
+    ]
   end
 end

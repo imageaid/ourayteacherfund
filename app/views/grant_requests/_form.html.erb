@@ -1,5 +1,6 @@
 <%= form_with(model: grant_request, class: "contents") do |form| %>
   <%= form.hidden_field :grant_id, value: grant.id %>
+  <%= form.hidden_field :school_year, value: current_school_year %>
   <% if grant_request.errors.any? %>
     <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
       <h2>
@@ -18,7 +19,6 @@
   <%= form.fields_for :applicant, grant_request.applicant do |fields| %>
     <%= fields.hidden_field :role, value: "applicant" %>
     <%= fields.hidden_field :status, value: "pending" %>
-    <%= form.hidden_field :school_year, value: current_school_year %>
     <%= fields.hidden_field :applied_on, value: Time.zone.now %>
     <div class="my-5">
       <%= fields.label :first_name %>
@@ -31,6 +31,10 @@
     <div class="my-5">
       <%= fields.label :email %>
       <%= fields.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= fields.label :phone %>
+      <%= fields.telephone_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   <% end %>
   <div class="my-5">

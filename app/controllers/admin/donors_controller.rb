@@ -61,7 +61,7 @@ module Admin
 
       def donor_params
         params.require(:donor).permit(
-          :first_name, :last_name, :email, :street_address, :city, :state, :postal, :website, :credit, :role,
+          :first_name, :last_name, :email, :street_address, :city, :state, :postal, :website, :credit, :role, :level,
           donations_attributes: %i[id amount received_on recurring thanked _destroy]
         )
       end

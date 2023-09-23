@@ -10,6 +10,11 @@
           <br/>
           <%= "#{@donor.city}, #{@donor.state} #{@donor.postal}" %>
         </p>
+        <p class="mb-8">
+          Donor Level:
+          <br/>
+          <%= @donor.level %>
+        </p>
         <%= render partial: 'admin/donations/donation_history', locals: { donor: @donor } %>
       </div>
     </div>

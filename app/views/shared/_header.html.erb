@@ -78,9 +78,9 @@
                       </li>
                     <% end %>
                     <li>
-                      <%= link_to donors_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
-                        Supporters
-                        <% if controller_name.casecmp?('donors') %>
+                      <%= link_to grant_requests_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Apply
+                        <% if controller_name.casecmp?('applications') %>
                           <%= render partial: 'shared/active_page_indicator' %>
                         <% end %>
                       <% end %>
@@ -94,18 +94,18 @@
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to grant_requests_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
-                        Apply
-                        <% if controller_name.casecmp?('applications') %>
+                      <%= link_to donors_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Supporters
+                        <% if controller_name.casecmp?('donors') %>
                           <%= render partial: 'shared/active_page_indicator' %>
                         <% end %>
                       <% end %>
                     </li>
-<!--                    <li>-->
-                      <%#= link_to external_donation_url, class: 'relative block px-3 py-2 transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' do %>
-<!--                        Donate-->
-                      <%# end %>
-<!--                    </li>-->
+                    <li>
+                      <%= link_to external_donation_url, class: 'relative block px-3 py-2 transition hover:text-orange-500 dark:hover:text-orange-400', target: '_blank' do %>
+                        Donate
+                      <% end %>
+                    </li>
                   </ul>
                 </nav>
               </div>
