@@ -1,0 +1,8 @@
+<%= turbo_stream.append "users-table" do %>
+  <%= render partial: "admin/users/user", collection: @users %>
+<% end %>
+
+
+<%= turbo_stream.update "load-more-button" do %>
+  <%= render partial: "shared/load_more", locals: { pagy: @pagy, path: admin_users_path } %>
+<% end %>

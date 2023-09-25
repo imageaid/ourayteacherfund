@@ -6,7 +6,12 @@ module Admin
     before_action :set_donor, only: %i[show edit update destroy]
 
     def index
-      @donors = Donor.order(created_at: :desc)
+      @pagy, @donors = pagy(Donor.order(created_at: :desc), items: 1)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
     end
 
     def show; end

@@ -21,10 +21,13 @@
           </th>
         </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
-        <%= render @donors %>
+        <tbody class="divide-y divide-gray-200" id="donors-table">
+          <%= render @donors %>
         </tbody>
       </table>
+      <div id="load-more-button">
+        <%= render partial: 'shared/load_more', locals: { pagy: @pagy, path: admin_donors_path } %>
+      </div>
     </div>
   </div>
 </div>

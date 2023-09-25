@@ -24,10 +24,13 @@
           </th>
         </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
-        <%= render @grant_requests %>
+        <tbody class="divide-y divide-gray-200" id="requestors-table">
+          <%= render @grant_requests %>
         </tbody>
       </table>
+      <div id="load-more-button">
+        <%= render partial: 'shared/load_more', locals: { pagy: @pagy, path: admin_grant_requests_path } %>
+      </div>
     </div>
   </div>
 </div>

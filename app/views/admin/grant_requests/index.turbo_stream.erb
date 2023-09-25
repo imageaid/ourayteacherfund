@@ -1,0 +1,8 @@
+<%= turbo_stream.append "requestors-table" do %>
+  <%= render partial: "admin/grant_requests/grant_request", collection: @grant_requests %>
+<% end %>
+
+
+<%= turbo_stream.update "load-more-button" do %>
+  <%= render partial: "shared/load_more", locals: { pagy: @pagy, path: admin_grant_requests_path } %>
+<% end %>

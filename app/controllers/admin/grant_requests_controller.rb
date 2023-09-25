@@ -5,7 +5,12 @@ module Admin
     before_action :load_grant_request, only: %i[show destroy]
 
     def index
-      @grant_requests = GrantRequest.where(school_year: current_school_year)
+      @pagy, @grant_requests = pagy(GrantRequest.where(school_year: current_school_year), items: 12)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
     end
 
     def show; end

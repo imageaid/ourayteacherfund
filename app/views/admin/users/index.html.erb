@@ -1,7 +1,7 @@
 <div class="sm:flex sm:items-center">
   <div class="sm:flex-auto">
     <h1 class="text-base font-semibold leading-6 text-gray-800 dark:text-white">Users</h1>
-    <p class="mt-2 text-sm text-gray-700">This page shows all users in the system (donors, applicants, emai subscribers, board members,
+    <p class="mt-2 text-sm text-gray-700 dark:text-white">This page shows all users in the system (donors, applicants, emai subscribers, board members,
       etc.).</p>
   </div>
   <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -22,12 +22,15 @@
           </th>
         </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
-        <% @users.each do |user| %>
-          <%= render partial: 'admin/users/user', locals: { user: user } %>
-        <% end %>
+        <tbody class="divide-y divide-gray-200" id="users-table">
+          <% @users.each do |user| %>
+            <%= render partial: 'admin/users/user', locals: { user: user } %>
+          <% end %>
         </tbody>
       </table>
+      <div id="load-more-button">
+        <%= render partial: 'shared/load_more', locals: { pagy: @pagy, path: admin_users_path } %>
+      </div>
     </div>
   </div>
 </div>

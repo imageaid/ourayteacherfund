@@ -1,0 +1,8 @@
+<div class="flex mt-8">
+  <% if pagy.next.present? %>
+    <%= button_to "Load more", path, class: 'btn-secondary', params: { page: pagy.next }, method: :get, "data-turbo-stream": true, "data-turbo-submits-with": "Loading ..." %>
+  <% end %>
+  <% if pagy.page > 1 %>
+    <%= link_to 'Reset', path, class: 'btn-default ml-2' %>
+  <% end %>
+</div>
