@@ -7,6 +7,7 @@ module Admin
 
     def index
       @pagy, @donors = pagy(Donor.order(created_at: :desc), items: 12)
+      @total_donated = Donation.sum(:amount)
 
       respond_to do |format|
         format.html
