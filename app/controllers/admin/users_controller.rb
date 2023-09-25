@@ -4,7 +4,7 @@ module Admin
     before_action :set_user, only: %i[show edit update destroy]
 
     def index
-      @pagy, @users = pagy(User.order(:last_name), items: 2)
+      @pagy, @users = pagy(User.order(:last_name), items: 12)
 
       respond_to do |format|
         format.html
