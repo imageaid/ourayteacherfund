@@ -57,8 +57,8 @@ class Donor < User
   def self.levels
     [
       ['Teacher\'s Pet ($0-99)', 'Teacher\'s Pet'],
-      ['Honor Society ($100-1,000)', 'Honor Society'],
-      ['Deans List ($100-4,999)', 'Deans List'],
+      ['Honor Society ($100-999)', 'Honor Society'],
+      ['Deans List ($1000-4,999)', 'Deans List'],
       ['Cum Laude ($5,000-9,999)', 'Cum Laude'],
       ['Magna Cum Laude ($10,000-19,999)', 'Magna Cum Laude'],
       ['Summa Cum Laude ($20,000+)', 'Summa Cum Laude']
