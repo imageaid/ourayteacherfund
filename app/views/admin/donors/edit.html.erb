@@ -11,19 +11,19 @@
       <li class="overflow-hidden rounded-xl border border-gray-200">
         <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
           <%= heroicon('banknotes', variant: 'outline', options: { class: "h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10" }) %>
-          <div class="text-sm font-medium leading-6 text-gray-900">Total Donated</div>
+          <div class="text-sm font-medium leading-6 text-gray-800  dark:text-white">Total Donated</div>
         </div>
         <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
           <div class="flex justify-between gap-x-4 py-3">
-            <dt class="text-gray-500">Last Received</dt>
-            <dd class="text-gray-700">
+            <dt class="text-gray-500  dark:text-white">Last Received</dt>
+            <dd class="text-gray-700  dark:text-white">
               <time datetime="2022-12-13"><%= @donor.last_donation.received_on.to_formatted_s(:standard) %></time>
             </dd>
           </div>
           <div class="flex justify-between gap-x-4 py-3">
-            <dt class="text-gray-500">Amount</dt>
+            <dt class="text-gray-500  dark:text-white">Amount</dt>
             <dd class="flex items-start gap-x-2">
-              <div class="font-medium text-gray-900"><%= number_to_currency(@donor.total_donated) %></div>
+              <div class="font-medium text-gray-800  dark:text-white"><%= number_to_currency(@donor.total_donated) %></div>
             </dd>
           </div>
         </dl>

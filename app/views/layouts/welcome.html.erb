@@ -19,7 +19,7 @@
   </div>
   <div class="relative">
     <%= render partial: 'shared/header', locals: { navigation_pages: @navigation_pages } %>
-    <main>
+    <main class="text-gray-800 dark:text-white">
       <%= render partial: 'shared/notices', locals: { flash: flash } %>
       <%= yield %>
     </main>

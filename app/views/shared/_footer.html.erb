@@ -5,12 +5,12 @@
         <div class="relative px-4 sm:px-8 lg:px-12">
           <div class="mx-auto max-w-2xl lg:max-w-5xl">
             <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-              <div class="sm:flex-1 md:flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200 sm:-mt-8 md:-mt-12">
+              <div class="sm:flex-1 md:flex gap-6 text-sm font-medium text-gray-800 dark:text-zinc-200 sm:-mt-8 md:-mt-12">
                 <% navigation_pages.each do |nav_page| %>
                   <% active_page = nav_page.slug == params[:id] %>
                   <%= link_to nav_page.link_label, page_path(nav_page), class: "relative block transition #{active_page ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <% end %>
-                <%= link_to 'Apply', grant_requests_path, class: "relative block transition #{controller_name.casecmp?('applications') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
+                <%= link_to 'Apply', grant_requests_path, class: "relative block transition #{controller_name.casecmp?('grant_requests') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Board', board_members_path, class: "relative block transition #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>
                 <%= link_to 'Admins', admin_sign_in_path, class: "relative block transition hover:text-orange-500 dark:hover:text-orange-400" %>
                 <%= link_to 'Supporters', donors_path, class: "relative block transition #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" %>

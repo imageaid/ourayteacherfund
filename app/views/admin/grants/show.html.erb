@@ -1,27 +1,26 @@
 <div>
   <div class="mb-4">
     <h1 class="text-2xl font-bold">Grant: <%= @grant.name %></h1>
-    <div class="mt-4 text-sm sm:text-lg text-zinc-800"><%= @grant.details %></div>
+    <div class="mt-4 text-sm sm:text-lg text-gray-800 dark:text-white"><%= @grant.details %></div>
     <h2 class="mt-8 text-xl font-bold">
       Questions
     </h2>
     <% @grant.questions.each_with_index do |question, index| %>
-      <p class="text-lg text-gray-800">
+      <p class="text-lg text-gray-800 dark:text-white">
         <span class="font-bold">
           <%= index + 1 %>.
         </span>
         <%= question %>
       </p>
     <% end %>
-    <h2 class="mt-8 text-xl font-bold">
+    <h2 class="mt-8 text-xl font-bold text-gray-800 dark:text-white">
       Requests
     </h2>
-    <p class="mt-4">
+    <p class="mt-4 text-gray-800 dark:text-white">
       There have been
       <%= @grant.grant_requests.size %>
       <%= link_to 'requests', admin_grant_requests_path(grant_id: @grant.id), class: "inline-link" %>
       for this grant.
-
     </p>
   </div>
   <div class="mt-8 flex flex-row">
