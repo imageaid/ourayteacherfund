@@ -29,7 +29,7 @@ class Donation < ApplicationRecord
   scope :recent_donors, (lambda do |limit_total|
     joins(:donor)
       .where("(users.meta ->> 'credit' = '1' OR users.meta ->> 'credit' = 'true')")
-      .order(created_at: :desc)
+      .order(received_on: :desc)
       .limit(limit_total)
   end)
 end
