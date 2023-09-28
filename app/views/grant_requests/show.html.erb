@@ -1,8 +1,7 @@
 <div class="mx-auto">
   <%= render @grant_request %>
-  <%= link_to 'Edit this application', edit_grant_request_path(@grant_request), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <div class="inline-block ml-2">
-    <%= button_to 'Destroy this application', grant_request_path(@grant_request), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+  <div class="flex">
+    <%= link_to 'Edit', edit_grant_request_path(@grant_request), class: "btn-primary mr-2" %>
+    <%= link_to "Back", grant_requests_path, class: "btn-default" %>
   </div>
-  <%= link_to "Back", grant_requests_path, class: "btn-default" %>
 </div>

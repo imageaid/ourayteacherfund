@@ -30,11 +30,14 @@ class GrantRequestsController < ApplicationController
 
   # POST /grant_requests or /grant_requests.json
   def create
-    existing_user = User.find_by(email: grant_request_params[:applicant_attributes][:email].downcase.strip)
     @grant_request = GrantRequest.new(grant_request_params)
+    existing_user = User.find_by(email: grant_request_params[:applicant_attributes][:email].downcase.strip)
+    if existing_user.present? && !existing_user.applyable?
+      redirect_to(new_grant_request_path, alert: 'Email is associatd with another user and cannot be used for an application.') && return
+    end
 
     if existing_user
-      existing_user.update(type: 'Applicant') if existing_user.role == 'subscriber'
+      existing_user.update(type: 'Applicant')
       @grant_request.applicant = existing_user
     else
       @grant_request.applicant.generate_temp_password

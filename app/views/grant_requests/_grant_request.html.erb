@@ -1,26 +1,57 @@
-<div id="<%= dom_id grant_request %>" class="text-zinc-800 dark:text-white">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Applicant Details:</strong>
-    <%= grant_request.applicant_name %>
-    <br />
-    <%= grant_request.applicant_email %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Application for School Year:</strong>
-    <%= grant_request.school_year %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Amount requested ($):</strong>
-    <%= number_to_currency(grant_request.amount_requested) %>
-  </p>
-  <% grant_request.responses.each do |response| %>
-    <p class="my-5">
-      <strong class="block font-medium mb-1"><%= response[0] %></strong>
-      <%= response[1] %>
-    </p>
-  <% end %>
-  <% if action_name != "show" %>
-    <%= link_to 'Edit this grant_request', edit_grant_request_path(grant_request), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6"/>
-  <% end %>
+<div id="<%= dom_id grant_request %>">
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Applicant Information</h3>
+    <p class="mt-1 max-w-2xl text-sm leading-6 dark:text-white text-zinc-500">Personal details and application.</p>
+  </div>
+  <div class="mt-6">
+    <dl class="grid grid-cols-1 sm:grid-cols-2">
+      <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+        <dt class="text-sm font-medium leading-6 dark:text-zinc-400 text-zinc-900">Full name</dt>
+        <dd class="mt-1 text-sm leading-6 dark:text-white text-zinc-700 sm:mt-2"><%= grant_request.applicant_name %></dd>
+      </div>
+      <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+        <dt class="text-sm font-medium leading-6 dark:text-zinc-400 text-zinc-900">Purpose</dt>
+        <dd class="mt-1 text-sm leading-6 dark:text-white text-zinc-700 sm:mt-2"><%= grant_request.purpose %></dd>
+      </div>
+      <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+        <dt class="text-sm font-medium leading-6 dark:text-zinc-400 text-zinc-900">Email address</dt>
+        <dd class="mt-1 text-sm leading-6 dark:text-white text-zinc-700 sm:mt-2"><%= grant_request.applicant_email %></dd>
+      </div>
+      <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+        <dt class="text-sm font-medium leading-6 dark:text-zinc-400 text-zinc-900">Amount Requested</dt>
+        <dd class="mt-1 text-sm leading-6 dark:text-white text-zinc-700 sm:mt-2"><%= number_to_currency(grant_request.amount_requested) %></dd>
+      </div>
+      <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+        <dt class="text-sm font-medium leading-6 dark:text-zinc-400 text-zinc-900">Grant</dt>
+        <dd class="mt-1 text-sm leading-6 dark:text-white text-zinc-700 sm:mt-2"><%= grant_request.grant_name %></dd>
+      </div>
+      <div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+        <dt class="text-sm font-medium leading-6 dark:text-zinc-400 text-zinc-900">Reuqested for</dt>
+        <dd class="mt-1 text-sm leading-6 dark:text-white text-zinc-700 sm:mt-2"><%= grant_request.school_year %></dd>
+      </div>
+      <div class="border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0">
+        <dt class="text-sm font-medium leading-6 dark:text-white text-zinc-900">Responses</dt>
+        <dd class="mt-2 text-sm dark:text-white text-zinc-900">
+          <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+            <% grant_request.responses.each do |response| %>
+              <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                <div class="flex w-0 flex-1 items-center">
+                  <%= heroicon("question-mark-circle", variant: "outline", options: { class: "h-5 w-5 flex-shrink-0 dark:text-white text-zinc-400"}) %>
+                  <div class="ml-4 grid grid-cols-1 min-w-0 flex-1 gap-2">
+                    <div class="truncate font-medium text-zinc-400"><%= response[0] %></div>
+                    <div class="flex-shrink-0 dark:text-white text-zinc-400"><%= response[1] %></div>
+                  </div>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                  <% if action_name.casecmp?("show") %>
+                    <%= link_to 'Edit', edit_grant_request_path(grant_request), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>

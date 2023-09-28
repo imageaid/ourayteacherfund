@@ -21,4 +21,35 @@
   .inline-link {
     @apply text-indigo-600 hover:text-orange-500
   }
+  label.required:after {
+    content:" *";
+    color: red;
+  }
+  .dark {
+    .dark\:required-label:after {
+      content:" *";
+      color: rgba(234, 163, 169, 0.97);
+    }
+  }
+  html.dark {
+    .trix-button-row {
+      .trix-button-group {
+        border-color: #0f172a;
+
+        .trix-button {
+          background-color: #ffffff;
+          border-color: #0f172a;
+
+          &.trix-active {
+            background-color: lighten(#94a3b8, 10%);
+          }
+        }
+      }
+    }
+
+    .trix-content {
+      background-color: #0f172a;
+      border-color: #344155;
+    }
+  }
 }

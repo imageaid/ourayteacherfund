@@ -56,6 +56,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: :password_required?
   validates :password_confirmation, presence: true, if: :password_required?
 
+  normalizes :email, with: -> (email) { email.downcase.strip }
+
   def generate_temp_password
     temp_password ||= SecureRandom.hex(10)
     self.password = temp_password
@@ -64,6 +66,10 @@ class User < ApplicationRecord
 
   def board_member?
     %w[director secretary treasurer vice_president president].include?(role)
+  end
+
+  def applyable?
+    %w[subscriber applicant].include?(role)
   end
 
   private

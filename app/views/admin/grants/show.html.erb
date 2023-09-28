@@ -25,7 +25,7 @@
   </div>
   <div class="mt-8 flex flex-row">
     <%= link_to 'Edit', edit_admin_grant_path(@grant), class: "btn-primary mr-2" %>
-    <%= button_to 'Destroy', admin_grant_path(@grant), method: :delete, class: "btn-danger mr-2" %>
+    <%= button_to 'Destroy', admin_grant_path(@grant), method: :delete, class: "btn-danger mr-2", data: { turbo_confirm: "Are you sure? This will cause bad thins to happen."} %>
     <%= link_to "Back", admin_grants_path, class: "btn-default" %>
   </div>
 </div>

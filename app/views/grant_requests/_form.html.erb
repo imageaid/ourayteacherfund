@@ -1,8 +1,8 @@
-<%= form_with(model: grant_request, class: "contents") do |form| %>
+<%= form_with(model: grant_request, class: "contents text-zinc-800 dark:text-white") do |form| %>
   <%= form.hidden_field :grant_id, value: grant.id %>
   <%= form.hidden_field :school_year, value: current_school_year %>
   <% if grant_request.errors.any? %>
-    <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
+    <div class="bg-red-50 dark:bg-red-600 text-red-500 dark:text-red-100 px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
       <h2>
         <%= pluralize(grant_request.errors.count, "error") %>
         prohibited this grant_request from being saved:
@@ -21,29 +21,29 @@
     <%= fields.hidden_field :status, value: "pending" %>
     <%= fields.hidden_field :applied_on, value: Time.zone.now %>
     <div class="my-5">
-      <%= fields.label :first_name %>
-      <%= fields.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= fields.label :first_name, class: "required dark:required-label" %>
+      <%= fields.text_field :first_name, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
     <div class="my-5">
-      <%= fields.label :last_name %>
-      <%= fields.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= fields.label :last_name, class: "required dark:required-label" %>
+      <%= fields.text_field :last_name, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
     <div class="my-5">
-      <%= fields.label :email %>
-      <%= fields.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= fields.label :email, class: "required dark:required-label" %>
+      <%= fields.text_field :email, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
     <div class="my-5">
       <%= fields.label :phone %>
-      <%= fields.telephone_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= fields.telephone_field :phone, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
   <% end %>
   <div class="my-5">
-    <%= form.label :amount_requested %>
-    <%= form.number_field :amount_requested, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :amount_requested, class: "required dark:required-label" %>
+    <%= form.number_field :amount_requested, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
     <%= form.label "Purpose (if 'other', add details at bottom of app)" %>
-    <%= form.select :purpose, GrantRequest.purposes.keys.to_a, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :purpose, GrantRequest.purposes.keys.to_a, {}, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <% grant.questions.to_a.each do |question| %>
     <%= render partial: "grant_requests/question", locals: { question: question } %>

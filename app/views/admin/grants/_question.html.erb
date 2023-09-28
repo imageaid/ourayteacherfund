@@ -1,6 +1,6 @@
 <div class="my-5">
   <%= fields_for "grant[questions][#{Time.zone.now.to_i}]" do |fields| %>
     <%= fields.label 'Question:', class: "font-bold" %>
-    <%= fields.text_area :question, rows: 2, cols: 60, value: question.to_s, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= fields.text_area :question, rows: 2, cols: 60, value: question.to_s, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   <% end %>
 </div>

@@ -1,17 +1,17 @@
 <fieldset class="mt-4 mb-8 grid gap-x-12 sm:grid-cols-1 md:grid-cols-2 justify-items-end">
   <legend class="text-lg font-bold my-6">Enter New Donation</legend>
   <div class="mb-4">
-    <%= fields.number_field :amount, class: 'shadow rounded-md border border-gray-200 outline-none', placeholder: 'Amount ($)' %>
+    <%= fields.number_field :amount, class: 'text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none', placeholder: 'Amount ($)' %>
   </div>
   <div>
     <%= fields.label :recurring, class: 'mr-4 mt-2' %>
-    <%= fields.check_box :recurring, class: 'shadow rounded-md border border-gray-200 outline-none mt-1' %>
+    <%= fields.check_box :recurring, class: 'text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none mt-1' %>
   </div>
   <div>
-    <%= fields.date_field :received_on, class: "shadow rounded-md border border-gray-200 outline-none" %>
+    <%= fields.date_field :received_on, class: "text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none" %>
   </div>
   <div>
     <%= fields.label :thanked, class: 'mr-4 mt-2' %>
-    <%= fields.check_box :thanked, class: 'shadow rounded-md border border-gray-200 outline-none mt-1' %>
+    <%= fields.check_box :thanked, class: 'text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none mt-1' %>
   </div>
 </fieldset>

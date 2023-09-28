@@ -13,17 +13,17 @@
 
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :details %>
-    <%= form.text_area :details, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_area :details, rows: 4, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :active %>
-    <%= form.check_box :active, class: "block mt-2 h-5 w-5" %>
+    <%= form.check_box :active, class: "text-zinc-600 dark:text-zinc-900 block mt-2 h-5 w-5" %>
   </div>
 
   <% if grant.questions.empty? %>

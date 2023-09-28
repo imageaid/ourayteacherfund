@@ -16,35 +16,35 @@
   <% end %>
   <div class="my-5">
     <%= form.label :title %>
-    <%= form.text_field :title, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+    <%= form.text_field :title, class: 'text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
   </div>
   <div class="my-5 grid grid-cols-1 gap-x-12 gap-y-6 md:gap-y-16 md:grid-cols-2">
     <div class="flex flex-col">
       <%= form.label :keywords %>
-      <%= form.text_field :keywords, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+      <%= form.text_field :keywords, class: 'text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
     </div>
     <div class="flex flex-col">
       <%= form.label :link_label %>
-      <%= form.text_field :link_label, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
+      <%= form.text_field :link_label, class: 'text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full' %>
     </div>
   </div>
   <div class="my-5 grid grid-cols-2 gap-x-12 gap-y-16 md:grid-cols-3">
     <div class="flex flex-col">
       <%= form.label 'Welcome Page?' %>
-      <%= form.check_box :welcome_content, class: 'block mt-2 h-5 w-5' %>
+      <%= form.check_box :welcome_content, class: 'text-zinc-600 dark:text-zinc-900 block mt-2 h-5 w-5' %>
     </div>
     <div class="flex flex-col">
       <%= form.label 'Show in Navigation?' %>
-      <%= form.check_box :navigation, class: 'block mt-2 h-5 w-5' %>
+      <%= form.check_box :navigation, class: 'text-zinc-600 dark:text-zinc-900 block mt-2 h-5 w-5' %>
     </div>
     <div class="flex flex-col">
       <%= form.label 'Navigation Position (left to right)', class: 'w-96 md:w-auto' %>
-      <%= form.number_field :position, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full lg:w-24' %>
+      <%= form.number_field :position, class: 'text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full lg:w-24' %>
     </div>
   </div>
   <div class="my-5">
     <%= form.label :body %>
-    <%= form.rich_text_area :body, class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 h-full w-full' %>
+    <%= form.rich_text_area :body, class: 'text-zinc-600 dark:text-zinc-900 dark:bg-white block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 h-full w-full' %>
   </div>
   <div class="inline">
     <div class="flex flex-row">

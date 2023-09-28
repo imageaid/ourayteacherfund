@@ -42,8 +42,6 @@ class Applicant < User
   has_many :grant_requests, dependent: :destroy, foreign_key: :user_id, inverse_of: :applicant
 
   validates :applied_on, presence: true
-  validates :first_name, length: { minimum: 1, maximum: 120 }, allow_blank: false
-  validates :last_name, length: { minimum: 1, maximum: 120 }, allow_blank: false
 
   scope :current_requests, (lambda do
     where("users.meta ->> 'requested_for' = '#{SchoolYears.new.current_school_year}'")

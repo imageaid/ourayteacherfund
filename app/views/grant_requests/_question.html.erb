@@ -2,6 +2,6 @@
   <%= fields_for "grant_request[questions][#{SecureRandom.urlsafe_base64(20)}]" do |fields| %>
     <%= fields.hidden_field :question, value: question.to_s %>
     <%= fields.label question.to_s.titleize, class: "font-bold" %>
-    <%= fields.text_area :response, rows: 4, cols: 60, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= fields.text_area :response, rows: 4, cols: 60, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   <% end %>
 </div>
