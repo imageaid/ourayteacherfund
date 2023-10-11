@@ -23,7 +23,7 @@ module Admin
     private
 
       def load_grant_request
-        @grant_request = GrantRequest.find(params[:id])
+        @grant_request = GrantRequest.friendly.find(params[:id])
       end
   end
 end

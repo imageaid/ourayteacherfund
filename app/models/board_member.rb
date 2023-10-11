@@ -37,6 +37,8 @@
 #  index_users_on_slug                  (slug) UNIQUE
 #
 class BoardMember < User
+  has_many :grant_reviews, dependent: :nullify, foreign_key: :user_id, inverse_of: :board_member
+
   has_rich_text :bio
   store_accessor :meta, :term_starts_on, :term_ends_on
 

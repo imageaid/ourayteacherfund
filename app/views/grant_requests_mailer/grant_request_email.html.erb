@@ -1,4 +1,47 @@
 <div>
   <h1 style="font-size: large; font-weight: bold">Grant Request Application Received</h1>
-  <p style="font-size: medium;">More details to come ... </p>
+  <p style="font-size: medium; margin-top: 8px;">
+    Thank you, <%= @grant_request.applicant_name %>,
+  </p>
+  <p style="font-size: medium; margin-top: 8px;">
+    We have received your grant request application. We will review your application and get back to you as soon as possible.
+    In the meantime, if you have any questions, please reply to this email or contact us at:
+    <%= mail_to 'ourayteacherfund@gmail.com', subject: "Grant Application Question for #{@grant_request.applicant_name}" %>
+  </p>
+  <p style="font-size: medium; margin-top: 8px;">
+    Application Details follow:
+    <br/>
+    <strong>Name:</strong> <%= @grant_request.applicant_name %>
+    <br/>
+    <strong>Email:</strong> <%= @grant_request.applicant_email %>
+    <br/>
+    <strong>Phone:</strong> <%= @grant_request.applicant.phone %>
+    <br/>
+    <strong>Purpose:</strong> <%= @grant_request.purpose %>
+    <br/>
+    <strong>Amount Requested:</strong> <%= number_to_currency(@grant_request.amount_requested) %>
+  </p>
+  <p style="font-size: medium; margin-top: 8px;">
+    <strong>Responses:</strong>
+    <br/>
+    <% @grant_request.responses.each do |question, response| %>
+      <strong><%= question %></strong>
+      <br/>
+      <%= response %>
+      <br/>
+    <% end %>
+  </p>
+  <p style="font-size: medium; margin-top: 8px;">
+    <strong>Edits:</strong>
+    <br/>
+    If you need to make edits to your application, please use the link below - do not share this link as it is unique to your application - to access your application and make edits.
+    Note that we will not send another email like this one after you submit your edits.
+    <br/>
+    <%= link_to 'Edit Application', edit_grant_request_url(@grant_request, host: 'ourayteacherfund.org') %>
+  </p>
+  <p style="font-size: medium; margin-top: 8px;">
+    Thank you,
+    <br/>
+    The Ouray Teacher Fund
+  </p>
 </div>

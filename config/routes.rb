@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       end
     end
     resources :grant_requests, only: %i[index show destroy]
+    resources :grant_reviews, only: %i[create destroy]
     resources :sessions, only: %i[new create destroy]
 
     get 'sign_in', to: 'sessions#new', as: 'sign_in'
@@ -26,4 +27,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'welcome#index'
+
+  # Direct paths
+  direct(:external_donation) { 'https://www.google.com/url?q=https%3A%2F%2Fdonate.stripe.com%2F7sI170gAdg6E60o9AA&sa=D&sntz=1&usg=AOvVaw3g8RGc6gGTXpKtUnwor9Tx' }
 end

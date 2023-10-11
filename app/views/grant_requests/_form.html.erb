@@ -42,12 +42,22 @@
     <%= form.number_field :amount_requested, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= form.label "Purpose (if 'other', add details at bottom of app)" %>
+    <%= form.label "Purpose (if 'other', add more in 'Additional Details')" %>
     <%= form.select :purpose, GrantRequest.purposes.keys.to_a, {}, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-  <% grant.questions.to_a.each do |question| %>
-    <%= render partial: "grant_requests/question", locals: { question: question } %>
+  <% if action_name == 'edit' %>
+    <% grant_request.responses.each do |question, response| %>
+      <%= render partial: "grant_requests/question", locals: { question: question, response: response } %>
+    <% end %>
+  <% else %>
+    <% grant.questions.to_a.each do |question| %>
+      <%= render partial: "grant_requests/question", locals: { question: question, response: '' } %>
+    <% end %>
   <% end %>
+  <div class="my-5">
+    <%= form.label "Additional Data" %>
+    <%= form.text_area :other_data, rows: 4, cols: 60, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
   <div class="inline">
     <div class="flex flex-row">
       <%= form.submit 'Apply', class: "btn-primary mr-2" %>

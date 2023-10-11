@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
-
-# gem 'rails', '~> 7.1.0'
+# gem 'rails', github: 'rails/rails', branch: 'main'
 
 gem 'acts_as_list'
 gem 'aws-sdk-s3'
@@ -19,7 +18,7 @@ gem 'pagy'
 gem 'pg', '~> 1.4.5'
 gem 'propshaft', '~> 0.7.0'
 gem 'puma', '~> 6.0'
-gem 'rails', github: 'rails/rails', branch: 'main'
+gem 'rails', '~> 7.1.0'
 gem 'redis', '~> 5.0'
 gem 'sorcery'
 gem 'stimulus-rails'

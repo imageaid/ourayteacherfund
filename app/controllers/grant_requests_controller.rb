@@ -46,7 +46,6 @@ class GrantRequestsController < ApplicationController
     format_grant_responses
 
     if @grant_request.save
-      # TODO: Send email to board and applicant
       GrantRequestsMailer.grant_request_email(@grant_request).deliver_now
       redirect_to grant_request_url(@grant_request), notice: 'Grant request received. An email will be sent shortly with more details. Thank you!'
     else
@@ -76,15 +75,15 @@ class GrantRequestsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def load_grant_request
-      @grant_request = GrantRequest.find(params[:id])
+      @grant_request = GrantRequest.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def grant_request_params
       params.require(:grant_request).permit(
-        :user_id, :school_year, :amount_requested, :grant_id, :phone,
+        :user_id, :school_year, :amount_requested, :grant_id, :other_data, :purpose,
         questions: {},
-        applicant_attributes: %i[email password password_confirmation first_name last_name role active applied_on status]
+        applicant_attributes: %i[email password password_confirmation first_name last_name role active applied_on status phone]
       )
     end
 end

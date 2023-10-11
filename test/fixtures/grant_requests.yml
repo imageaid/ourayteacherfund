@@ -4,9 +4,11 @@
 #
 #  id               :bigint           not null, primary key
 #  amount_requested :decimal(, )
+#  other_data       :text
 #  purpose          :integer          default("tuition")
 #  responses        :jsonb
 #  school_year      :string
+#  slug             :string           not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  grant_id         :bigint           not null

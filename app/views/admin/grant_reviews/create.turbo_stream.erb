@@ -1,0 +1,2 @@
+<%= turbo_stream.append('grant-reviews', partial: 'admin/grant_reviews/grant_review', locals: { review: @grant_review }) %>
+<%= turbo_stream.remove('empty-reviews') %>

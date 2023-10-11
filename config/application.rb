@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Ourayteacherfund
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -18,6 +18,5 @@ module Ourayteacherfund
     #
     config.time_zone = 'Mountain Time (US & Canada)'
     # config.eager_load_paths << Rails.root.join("extras")
-    config.external_donation_url = 'https://www.google.com/url?q=https%3A%2F%2Fdonate.stripe.com%2F7sI170gAdg6E60o9AA&sa=D&sntz=1&usg=AOvVaw3g8RGc6gGTXpKtUnwor9Tx'
   end
 end

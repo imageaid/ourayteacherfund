@@ -1,7 +1,32 @@
 <div class="mx-auto">
-  <%= render partial: "grant_requests/grant_request", locals: { grant_request: @grant_request } %>
-  <div class="flex">
-    <%= button_to 'Destroy', admin_grant_request_path(@grant_request), method: :delete, class: "btn-danger mr-2", data: { turbo_confirm: "Are you sure? There is no going back."} %>
-    <%= link_to "Back", admin_grant_requests_path, class: "btn-default" %>
+  <div class="flex flex-col">
+    <div>
+      <%= render partial: "grant_requests/grant_request", locals: { grant_request: @grant_request } %>
+      <div class="flex">
+        <%= button_to 'Destroy', admin_grant_request_path(@grant_request), method: :delete, class: "btn-danger mr-2", data: { turbo_confirm: "Are you sure? There is no going back."} %>
+        <%= link_to "Back", admin_grant_requests_path, class: "btn-default" %>
+      </div>
+    </div>
+    <div>
+      <div class="py-2 md:py-8">
+        <div class="flex flex-col">
+          <div>
+            Add your thoughts here
+            <%= render partial: 'admin/grant_reviews/form', locals: { grant_review: GrantReview.new(grant_request_id: @grant_request.id, user_id: current_user.id)} %>
+          </div>
+          <div id="grant-reviews" class="mt-8">
+            <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Directors' Comments</h3>
+            <% @grant_request.grant_reviews.each do |review| %>
+              <%= render partial: 'admin/grant_reviews/grant_review', locals: { review: review } %>
+            <% end %>
+            <% if @grant_request.grant_reviews.empty? %>
+              <div id="empty-reviews">
+                <%= render partial: 'admin/grant_reviews/no_reviews' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
