@@ -47,9 +47,19 @@
     <%= form.label 'Web Address' %>
     <%= form.text_field :website, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-  <div class="my-5 flex">
-    <%= form.label 'Show Donor on Website', class: 'mr-4 mt-1' %>
-    <%= form.check_box :credit, class: "text-zinc-600 dark:text-zinc-900 block mt-2 h-5 w-5 shadow rounded-md border border-gray-200" %>
+  <div class="my-5 flex justify-center">
+    <div class="col-span-1">
+      <%= form.label 'Show Donor on Website', class: 'mr-4 mt-1' %>
+      <%= form.check_box :credit, class: "text-zinc-600 dark:text-zinc-900 block mt-2 h-5 w-5 shadow rounded-md border border-gray-200" %>
+    </div>
+    <div>
+      <%= form.label 'Alumni?', class: 'mr-4 mt-1' %>
+      <%= form.check_box :alumni, class: "text-zinc-600 dark:text-zinc-900 block mt-2 h-5 w-5 shadow rounded-md border border-gray-200" %>
+    </div>
+  </div>
+  <div class="my-5">
+    <%= form.label 'How did they hear about us?' %>
+    <%= form.text_field :how_heard, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
     <label for="donor_level">

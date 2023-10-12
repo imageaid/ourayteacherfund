@@ -35,7 +35,7 @@
 #  index_users_on_slug                  (slug) UNIQUE
 #
 class Donor < User
-  store_accessor :meta, :street_address, :city, :state, :postal, :website, :credit, :level
+  store_accessor :meta, :street_address, :city, :state, :postal, :website, :credit, :level, :alumni, :how_heard
 
   has_many :donations, dependent: :nullify, foreign_key: :user_id, inverse_of: :donor
   accepts_nested_attributes_for :donations, reject_if: :all_blank, allow_destroy: true

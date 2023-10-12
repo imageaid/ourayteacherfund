@@ -17,7 +17,9 @@ Rails.application.routes.draw do
         get :question_field
       end
     end
-    resources :grant_requests, only: %i[index show destroy]
+    resources :grant_requests, only: %i[index show destroy] do
+      resources :grant_decisions, only: %i[create update]
+    end
     resources :grant_reviews, only: %i[create destroy]
     resources :sessions, only: %i[new create destroy]
 

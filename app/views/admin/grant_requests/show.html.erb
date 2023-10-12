@@ -28,5 +28,9 @@
         </div>
       </div>
     </div>
+    <div>
+      <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Award?</h3>
+      <%= render partial: 'admin/grant_decisions/form', locals: { grant_request: @grant_request, grant_decision: GrantDecision.new(grant_request: @grant_request), current_user: current_user } %>
+    </div>
   </div>
 </div>

@@ -15,6 +15,20 @@
           <br/>
           <%= @donor.level %>
         </p>
+        <% if @donor.alumni %>
+          <p class="mb-8">
+            Alumnni:
+            <br/>
+            <%= @donor.alumni.to_i.positive? ? 'Yes' : 'No' %>
+          </p>
+        <% end %>
+        <% if @donor.how_heard %>
+          <p class="mb-8">
+            How Did They Hear About Us?:
+            <br/>
+            <%= @donor.how_heard %>
+          </p>
+        <% end %>
         <%= render partial: 'admin/donations/donation_history', locals: { donor: @donor } %>
       </div>
     </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_11_162308) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_12_231925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_162308) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "grant_decisions", force: :cascade do |t|
+    t.bigint "grant_request_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "approved"
+    t.decimal "amount_awarded"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grant_request_id"], name: "index_grant_decisions_on_grant_request_id"
+    t.index ["user_id"], name: "index_grant_decisions_on_user_id"
+  end
+
   create_table "grant_requests", force: :cascade do |t|
     t.bigint "grant_id", null: false
     t.bigint "user_id", null: false
@@ -85,6 +96,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_162308) do
     t.integer "purpose", default: 0
     t.string "slug", null: false
     t.text "other_data"
+    t.bigint "grant_decision_id"
+    t.index ["grant_decision_id"], name: "index_grant_requests_on_grant_decision_id"
     t.index ["grant_id"], name: "index_grant_requests_on_grant_id"
     t.index ["user_id"], name: "index_grant_requests_on_user_id"
   end
@@ -157,6 +170,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_162308) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "donations", "users"
+  add_foreign_key "grant_decisions", "grant_requests"
+  add_foreign_key "grant_decisions", "users"
+  add_foreign_key "grant_requests", "grant_decisions"
   add_foreign_key "grant_requests", "grants"
   add_foreign_key "grant_requests", "users"
   add_foreign_key "grant_reviews", "grant_requests"

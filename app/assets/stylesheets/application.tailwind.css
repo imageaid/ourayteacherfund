@@ -46,10 +46,9 @@
         }
       }
     }
-
     .trix-content {
-      background-color: #0f172a;
-      border-color: #344155;
+      background-color: rgb(24 24 27/var(--tw-bg-opacity));
+      border-color: rgb(24 24 27/var(--tw-bg-opacity));
     }
   }
 }

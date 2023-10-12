@@ -1,0 +1,31 @@
+<%= form_with(model: [:admin, grant_request, grant_decision], class: "contents") do |form| %>
+  <%= form.hidden_field :grant_request_id, value: grant_request.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <% if grant_decision.errors.any? %>
+    <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
+      <h2>
+        <%= pluralize(grant_decision.errors.count, "error") %>
+        prohibited this decision from being saved:
+      </h2>
+      <ul>
+        <% grant_decision.errors.each do |error| %>
+          <li>
+            <%= error.full_message %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="flex flex-col justify-items-start mb-8">
+    <div class="mb-4 flex">
+      <%= form.number_field :amount_awarded, class: 'text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none', placeholder: 'Amount ($)' %>
+    </div>
+    <div class="flex mr-4">
+      <%= form.label :approved, class: 'mr-4 mt-2' %>
+      <%= form.check_box :approved, class: 'text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none mt-3' %>
+    </div>
+  </div>
+  <div class="inline">
+    <%= form.submit 'Save', class: "btn-primary mr-2" %>
+  </div>
+<% end %>

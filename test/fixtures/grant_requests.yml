@@ -2,25 +2,28 @@
 #
 # Table name: grant_requests
 #
-#  id               :bigint           not null, primary key
-#  amount_requested :decimal(, )
-#  other_data       :text
-#  purpose          :integer          default("tuition")
-#  responses        :jsonb
-#  school_year      :string
-#  slug             :string           not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  grant_id         :bigint           not null
-#  user_id          :bigint           not null
+#  id                :bigint           not null, primary key
+#  amount_requested  :decimal(, )
+#  other_data        :text
+#  purpose           :integer          default("tuition")
+#  responses         :jsonb
+#  school_year       :string
+#  slug              :string           not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  grant_decision_id :bigint
+#  grant_id          :bigint           not null
+#  user_id           :bigint           not null
 #
 # Indexes
 #
-#  index_grant_requests_on_grant_id  (grant_id)
-#  index_grant_requests_on_user_id   (user_id)
+#  index_grant_requests_on_grant_decision_id  (grant_decision_id)
+#  index_grant_requests_on_grant_id           (grant_id)
+#  index_grant_requests_on_user_id            (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (grant_decision_id => grant_decisions.id)
 #  fk_rails_...  (grant_id => grants.id)
 #  fk_rails_...  (user_id => users.id)
 #
