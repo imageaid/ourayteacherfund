@@ -49,7 +49,7 @@ class GrantRequestsController < ApplicationController
       begin
         GrantRequestsMailer.grant_request_email(@grant_request).deliver_now
       rescue StandardError => e
-        logger.error "Unable to send grant request email: #{e.message}"
+        Rails.logger.error "Unable to send grant request email: #{e.message}"
       end
       redirect_to grant_request_url(@grant_request), notice: 'Grant request received. An email will be sent shortly with more details. Thank you!'
     else
