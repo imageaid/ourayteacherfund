@@ -17,7 +17,8 @@
     </div>
   <% end %>
   <div class="flex flex-col justify-items-start mb-8">
-    <div class="mb-4 flex">
+    <div class="my-5">
+      <%= form.label 'Award ($)', class: 'mr-6' %>
       <%= form.number_field :amount_awarded, class: 'text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none', placeholder: 'Amount ($)' %>
     </div>
     <div class="flex mr-4">

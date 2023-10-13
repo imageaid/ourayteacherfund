@@ -28,9 +28,28 @@
         </div>
       </div>
     </div>
-    <div>
-      <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Award?</h3>
-      <%= render partial: 'admin/grant_decisions/form', locals: { grant_request: @grant_request, grant_decision: GrantDecision.new(grant_request: @grant_request), current_user: current_user } %>
-    </div>
+    <% if @grant_request.grant_decision.present? && @grant_request.grant_decision.approved %>
+      <div>
+        <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Approved</h3>
+        <p>This grant request has been approved for <%= number_to_currency(@grant_request.grant_decision.amount_awarded) %></p>
+        <p class="mt-4 mb-12">You can edit that decision with the form below</p>
+        <h3 class="mb-8 text-base font-semibold leading-7 dark:text-white text-zinc-900">Re-Decide?</h3>
+        <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Amount Previously Awarded: <%= number_to_currency(@grant_request.grant_decision.amount_awarded) %></h3>
+        <%= render partial: 'admin/grant_decisions/form', locals: { grant_request: @grant_request, grant_decision: @grant_request.grant_decision, current_user: current_user } %>
+      </div>
+    <% elsif @grant_request.grant_decision.present? && @grant_request.grant_decision.approved.nil? %>
+      <div>
+        <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Denied</h3>
+        <p>This grant request has been denied.</p>
+        <p class="mt-4">You can edit that decision with the form below</p>
+        <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Re-Decide?</h3>
+        <%= render partial: 'admin/grant_decisions/form', locals: { grant_request: @grant_request, grant_decision: @grant_request.grant_decision, current_user: current_user } %>
+      </div>
+    <% else %>
+      <div>
+        <h3 class="text-base font-semibold leading-7 dark:text-white text-zinc-900">Award?</h3>
+        <%= render partial: 'admin/grant_decisions/form', locals: { grant_request: @grant_request, grant_decision: @grant_request.build_grant_decision, current_user: current_user } %>
+      </div>
+    <% end %>
   </div>
 </div>
