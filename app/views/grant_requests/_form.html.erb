@@ -18,7 +18,7 @@
   <% end %>
   <%= form.fields_for :applicant, grant_request.applicant do |fields| %>
     <%= fields.hidden_field :role, value: "applicant" %>
-    <%= fields.hidden_field :status, value: "pending" %>
+    <%= fields.hidden_field :status, value: grant_request.applicant.status.presence || "pending" %>
     <%= fields.hidden_field :applied_on, value: Time.zone.now %>
     <div class="my-5">
       <%= fields.label :first_name, class: "required dark:required-label" %>

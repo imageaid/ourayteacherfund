@@ -1,7 +1,9 @@
 class GrantRequestsController < ApplicationController
   include Admin::Questionable
 
+  before_action :require_login, only: %i[show edit update destroy]
   before_action :load_grant_request, only: %i[show edit update destroy]
+  before_action :authorize_grant_request, only: %i[show edit update destroy]
 
   # GET /grant_requests or /grant_requests.json
   def index
@@ -87,7 +89,16 @@ class GrantRequestsController < ApplicationController
       params.require(:grant_request).permit(
         :user_id, :school_year, :amount_requested, :grant_id, :other_data, :purpose,
         questions: {},
-        applicant_attributes: %i[email password password_confirmation first_name last_name role active applied_on status phone]
+        applicant_attributes: %i[id email password password_confirmation first_name last_name role active applied_on status phone]
       )
+    end
+
+    def authorize_grant_request
+      return true if current_user.board_member?
+
+      if current_user.id != @grant_request.user_id
+        flash[:error] = 'You may not access a request other than your own.'
+        redirect_to(root_path)
+      end
     end
 end

@@ -1,0 +1,12 @@
+<%= form_with url: magic_links_path, method: :post, class: "contents" do |form| %>
+  <div class="my-5">
+    <%= form.label :email, 'Email address' %>
+    <%= form.email_field :email, autocomplete: :email, required: true, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+  <div class="inline">
+    <div class="flex flex-row">
+      <%= form.submit 'Send Login Link', class: "btn-primary mr-2" %>
+      <%= link_to 'Back', root_path, class: "btn-default" %>
+    </div>
+  </div>
+<% end %>

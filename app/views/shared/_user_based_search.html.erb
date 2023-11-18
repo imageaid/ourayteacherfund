@@ -1,0 +1,21 @@
+<%= form_with(model: [:admin, model_name.constantize], class: "contents", method: :get, data: { turbo_frame: "#{turbo_frame_target}" }) do |form| %>
+  <div class="flex flex-row">
+    <div class="my-5 mr-5">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  </div>
+  <div class="flex flex-row">
+    <div class="my-5">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="mt-14 ml-8">
+      <%= form.submit "Filter #{model_name.pluralize}", class: "btn-danger mr-2" %>
+    </div>
+  </div>
+<% end %>

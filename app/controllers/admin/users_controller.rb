@@ -1,10 +1,13 @@
 module Admin
   # managing users
   class UsersController < AdminController
+    include UserSearchable
+
     before_action :set_user, only: %i[show edit update destroy]
 
     def index
-      @pagy, @users = pagy(User.order(:last_name), items: 12)
+      filters = params[:user].present? ? params[:user].slice(:first_name, :last_name, :email) : {}
+      @pagy, @users = pagy(search_scope(filters: filters, model_name: 'User', order: 'last_name'), items: 12)
 
       respond_to do |format|
         format.html

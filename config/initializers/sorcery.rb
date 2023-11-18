@@ -468,7 +468,7 @@ Rails.application.config.sorcery.configure do |config|
     # How many seconds before the request expires. nil for never expires.
     # Default: `nil`
     #
-    # user.magic_login_expiration_period =
+    user.magic_login_expiration_period = 1_800
 
     # Hammering protection: how long in seconds to wait before allowing another email to be sent.
     # Default: `5 * 60`

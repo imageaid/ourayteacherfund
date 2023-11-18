@@ -1,0 +1,8 @@
+<h1>Hello, <%= @user.email %>,</h1>
+<p>We received your logon request. To access your Grant Requst in order to view or edit it, please use the link below.</p>
+<p>
+  Login link (copy and paste into your browser if you cannot click it):
+  <br/>
+  <a href="<%= @url %>"><%= @url %></a>
+</p>
+<p>This link expires in 30 minutes. You should not share it as the link provides direct access to your grant request and does not require a password.</p>

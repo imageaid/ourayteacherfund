@@ -3,10 +3,13 @@
 module Admin
   # manage donors
   class DonorsController < AdminController
+    include UserSearchable
+
     before_action :set_donor, only: %i[show edit update destroy]
 
     def index
-      @pagy, @donors = pagy(Donor.order(created_at: :desc), items: 12)
+      filters = params[:donor].present? ? params[:donor].slice(:first_name, :last_name, :email) : {}
+      @pagy, @donors = pagy(search_scope(filters: filters, model_name: 'Donor'), items: 12)
       @total_donated = Donation.sum(:amount)
 
       respond_to do |format|

@@ -1,6 +1,6 @@
 <div class="p-4 first:mt-8 removeAlertable" data-controller="alertable">
   <div class="container">
-    <div class="bg-<%= css_class_for_flash(message_type) %>-600 text-white dark:bg-<%= css_class_for_flash(message_type) %>-200 dark:text-zinc-900 container flex items-center text-sm font-bold px-4 py-3 relative"
+    <div class="bg-red-600 text-white dark:bg-red-200 dark:text-zinc-900 container flex items-center text-sm font-bold px-4 py-3 relative"
          role="alert">
       <%= message %>
       <span class="absolute top-0 bottom-0 right-0 p-4" data-alertable-target="link" data-action="click->alertable#close">

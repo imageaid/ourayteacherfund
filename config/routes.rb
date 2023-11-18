@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :board_members, only: %i[index]
   resources :grant_requests
   resources :subscribers, only: %i[create]
+  resources :magic_links, only: %i[new create]
+  resources :magic_sessions, only: %i[new]
 
   namespace :admin do
     resources :pages

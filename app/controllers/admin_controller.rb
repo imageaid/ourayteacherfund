@@ -8,6 +8,6 @@ class AdminController < ApplicationController
   private
 
     def login_required
-      redirect_to admin_sign_in_path unless current_user
+      redirect_to admin_sign_in_path, alert: 'You must be logged in to use the administration area' unless current_user
     end
 end

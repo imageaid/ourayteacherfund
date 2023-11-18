@@ -2,10 +2,13 @@
 
 module Admin
   class BoardMembersController < AdminController
+    include UserSearchable
+
     before_action :load_board_member, only: %i[show edit update destroy]
 
     def index
-      @board_members = BoardMember.order(:active, :last_name)
+      filters = params[:board_member].present? ? params[:board_member].slice(:first_name, :last_name, :email) : {}
+      @pagy, @board_members = pagy(search_scope(filters: filters, model_name: 'BoardMember', order: 'active, last_name'), items: 12)
     end
 
     def show; end

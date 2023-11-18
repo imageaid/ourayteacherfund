@@ -1,33 +1,40 @@
-<div class="sm:flex sm:items-center">
+<div class="sm:flex sm:items-center" x-data="{ open: false }">
   <div class="sm:flex-auto">
     <h1 class="text-base font-semibold leading-6 text-gray-800 dark:text-white">Users</h1>
-    <p class="mt-2 text-sm text-gray-700 dark:text-white">This page shows all users in the system (donors, applicants, emai subscribers, board members,
+    <p class="mt-2 text-sm text-gray-700 dark:text-white">This page shows all users in the system (donors, applicants, emai subscribers,
+      board members,
       etc.).</p>
+    <div class="mt-8" x-show="open" x-transition>
+      <%= render partial: 'shared/user_based_search', locals: { turbo_frame_target: 'users_wrapper', model_name: 'User' } %>
+    </div>
   </div>
   <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
     <%= link_to 'New user', new_admin_user_path, class: "btn-primary" %>
+    <a href="javascript:void(0);" class="btn-secondary mt-2" x-on:click="open = ! open">Search</a>
   </div>
 </div>
 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
   <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
     <div class="min-w-full" id="pages">
-      <table class="min-w-full divide-y divide-gray-300">
-        <thead>
-        <tr>
-          <th class="pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-white sm:pl-0 py-3.5" scope="col">Name</th>
-          <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">Email</th>
-          <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">Role</th>
-          <th class="relative pl-3 pr-4 sm:pr-0 py-3.5" scope="col">
-            <span class="sr-only">Edit</span>
-          </th>
-        </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200" id="users-table">
+      <%= turbo_frame_tag :users_wrapper do %>
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+          <tr>
+            <th class="pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-white sm:pl-0 py-3.5" scope="col">Name</th>
+            <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">Email</th>
+            <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">Role</th>
+            <th class="relative pl-3 pr-4 sm:pr-0 py-3.5" scope="col">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200" id="users-table">
           <% @users.each do |user| %>
             <%= render partial: 'admin/users/user', locals: { user: user } %>
           <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% end %>
       <div id="load-more-button">
         <%= render partial: 'shared/load_more', locals: { pagy: @pagy, path: admin_users_path } %>
       </div>

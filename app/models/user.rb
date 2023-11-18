@@ -58,6 +58,17 @@ class User < ApplicationRecord
 
   normalizes :email, with: -> (email) { email.downcase.strip }
 
+  scope :filter_by, lambda { |params|
+    query = self
+    params.each do |key, value|
+      query = query.send("with_#{key}", value)
+    end
+    query
+  }
+  scope :with_first_name, -> (name) { where('lower(first_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
+  scope :with_last_name, -> (name) { where('lower(last_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
+  scope :with_email, -> (email) { where('lower(email) LIKE ?', "%#{email.downcase.strip}%") if email.present? }
+
   def generate_temp_password
     temp_password ||= SecureRandom.hex(10)
     self.password = temp_password

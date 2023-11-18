@@ -27,6 +27,14 @@ module.exports = {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
+    safeList: [
+      'bg-red-600',
+      'bg-red-200',
+      'bg-green-600',
+      'bg-green-200',
+      'bg-indigo-600',
+      'bg-indigo-200',
+    ],
     typography: (theme) => ({
       invert: {
         css: {

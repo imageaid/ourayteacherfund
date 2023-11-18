@@ -46,6 +46,9 @@
               <% if @donations.any? %>
                 <%= render partial: 'shared/recent_donations', locals: { donations: @donations } %>
               <% end %>
+              <% if @awardees.any? %>
+                <%= render partial: 'shared/recent_awardees', locals: { awardees: @awardees } %>
+              <% end %>
             </div>
           </div>
         </div>

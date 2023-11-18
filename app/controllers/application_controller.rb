@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    redirect_to login_path unless logged_in?
+    redirect_to new_magic_link_path, alert: 'You must be logged in to use this page' unless logged_in?
   end
 end

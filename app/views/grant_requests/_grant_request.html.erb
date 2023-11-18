@@ -49,6 +49,20 @@
                 </div>
               </li>
             <% end %>
+            <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div class="flex w-0 flex-1 items-center">
+                <%= heroicon("question-mark-circle", variant: "outline", options: { class: "h-5 w-5 flex-shrink-0 dark:text-white text-zinc-400"}) %>
+                <div class="ml-4 grid grid-cols-1 min-w-0 flex-1 gap-2">
+                  <div class="truncate font-medium text-zinc-400">Additional Data</div>
+                  <div class="flex-shrink-0 dark:text-white text-zinc-400"><%= grant_request.other_data %></div>
+                </div>
+              </div>
+              <div class="ml-4 flex-shrink-0">
+                <% if action_name.casecmp?("show") %>
+                  <%= link_to 'Edit', edit_grant_request_path(grant_request), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+                <% end %>
+              </div>
+            </li>
           </ul>
         </dd>
       </div>
