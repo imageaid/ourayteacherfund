@@ -47,14 +47,29 @@ class GrantRequest < ApplicationRecord
 
   enum purpose: { tuition: 0, travel: 1, other: 2 }
 
-  delegate :name, :first_name, :last_name, :email, to: :applicant, prefix: true
+  delegate :first_name, :last_name, :email, to: :applicant
   delegate :name, to: :grant, prefix: true
+
+  scope :filter_by, lambda { |params|
+    query = self
+    params.each do |key, value|
+      query = query.send("with_#{key}", value)
+    end
+    query
+  }
+  scope :with_first_name, -> (name) { joins(:applicant).where('lower(users.first_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
+  scope :with_last_name, -> (name) { joins(:applicant).where('lower(users.last_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
+  scope :with_email, -> (email) { joins(:applicant).where('lower(users.email) LIKE ?', "%#{email.downcase.strip}%") if email.present? }
+
+  def applicant_name
+    "#{first_name} #{last_name}"
+  end
 
   private
 
     def slug_name
-      if applicant_last_name.present?
-        "#{applicant_last_name} #{paramaterized_email(applicant_email)} #{id}"
+      if last_name.present?
+        "#{last_name} #{paramaterized_email(email)} #{id}"
       else
         id.to_s
       end

@@ -1,33 +1,39 @@
-<div class="sm:flex sm:items-center">
+<div class="sm:flex sm:items-center" x-data="{ open: false }">
   <div class="sm:flex-auto">
     <h1 class="text-base font-semibold leading-6 text-gray-800 dark:text-white">Grant Request Applications</h1>
     <p class="mt-2 text-sm text-gray-700 dark:text-white">
       Following are the pending applications in our system. To see past year's applicants [insert
       review details later 😁].
     </p>
+    <div class="mt-8" x-show="open" x-transition>
+      <%= render partial: 'shared/user_based_search', locals: { turbo_frame_target: 'requests_wrapper', model_name: 'GrantRequest' } %>
+    </div>
   </div>
   <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
     <%= link_to 'New grant', new_admin_grant_path, class: "btn-primary" %>
+    <a href="javascript:void(0);" class="btn-secondary mt-2" x-on:click="open = ! open">Search</a>
   </div>
 </div>
 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
   <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
     <div class="min-w-full" id="pages">
-      <table class="min-w-full divide-y divide-gray-300">
-        <thead>
-        <tr>
-          <th class="pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-white sm:pl-0 py-3.5" scope="col">Name</th>
-          <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">School Year</th>
-          <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">Amount</th>
-          <th class="relative pl-3 pr-4 sm:pr-0 py-3.5" scope="col">
-            <span class="sr-only">Show</span>
-          </th>
-        </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200" id="requestors-table">
+      <%= turbo_frame_tag :requests_wrapper do %>
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+          <tr>
+            <th class="pl-4 pr-3 text-left text-sm font-semibold text-gray-800 dark:text-white sm:pl-0 py-3.5" scope="col">Name</th>
+            <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">School Year</th>
+            <th class="py-3.5 px-3 text-left text-sm font-semibold text-gray-800 dark:text-white" scope="col">Amount</th>
+            <th class="relative pl-3 pr-4 sm:pr-0 py-3.5" scope="col">
+              <span class="sr-only">Show</span>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200" id="requestors-table">
           <%= render @grant_requests %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% end %>
       <div id="load-more-button">
         <%= render partial: 'shared/load_more', locals: { pagy: @pagy, path: admin_grant_requests_path } %>
       </div>

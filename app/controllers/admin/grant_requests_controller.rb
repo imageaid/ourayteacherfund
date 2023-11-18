@@ -2,10 +2,13 @@
 
 module Admin
   class GrantRequestsController < AdminController
+    include UserSearchable
+
     before_action :load_grant_request, only: %i[show destroy]
 
     def index
-      @pagy, @grant_requests = pagy(GrantRequest.where(school_year: current_school_year), items: 12)
+      filters = params[:grant_request].present? ? params[:grant_request].slice(:first_name, :last_name, :email) : {}
+      @pagy, @grant_requests = pagy(search_scope(filters: filters, model_name: 'GrantRequest').where(school_year: current_school_year), items: 12)
 
       respond_to do |format|
         format.html
