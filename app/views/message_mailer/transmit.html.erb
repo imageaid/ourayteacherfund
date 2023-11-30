@@ -1,0 +1,46 @@
+<table style="width: 100%;">
+  <tbody>
+    <tr>
+      <td>
+        <div>
+          <h3>Hello <%= @recipient.name %>,</h3>
+        </div>
+        <div style="margin-top: 32px; margin-bottom: 8px;">
+          <%= @message.body.body.html_safe %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style="border-top: 1px solid #f0f0f0; margin-top: 20px; padding-top: 12px;">
+          <table>
+            <tbody>
+              <tr>
+                <td colspan="2">
+                  <p>
+                    <b>Best regards,</b>
+                    <br>
+                    <br>
+                    Ouray Teacher Fund Team
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 148px;">
+                  <%= image_tag attachments["logo.png"].url %>
+                </td>
+                <td>
+                  <p>
+                    Contact Information:<br>
+                    Ouray Teacher Fund<br>
+                    Email: ourayteacherfund@gmail.com<br>
+                    Web: <a href="https://www.ourayteacherfund.org">www.ourayteacherfund.org</a>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </td>
+  </tbody>
+</table>

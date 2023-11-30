@@ -52,6 +52,26 @@ Rails.application.configure do
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 
+  config.good_job = {
+    preserve_job_records: true,
+    retry_on_unhandled_error: false,
+    on_thread_error: -> (exception) { Rails.error.report(exception) },
+    execution_mode: :inline,
+    queues: 'default, critical',
+    max_threads: 5,
+    poll_interval: 30,
+    shutdown_timeout: 25,
+    enable_cron: true,
+    cron: {
+      example: {
+        cron: '0 * * * *',
+        class: 'ExampleJob'
+      }
+    },
+    dashboard_default_locale: :en
+  }
+
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

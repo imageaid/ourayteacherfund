@@ -88,6 +88,26 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # GoodJob
+  config.good_job = {
+    preserve_job_records: true,
+    retry_on_unhandled_error: false,
+    on_thread_error: -> (exception) { Rails.error.report(exception) },
+    execution_mode: :async,
+    queues: 'default, critical',
+    max_threads: 5,
+    poll_interval: 30,
+    shutdown_timeout: 25,
+    enable_cron: true,
+    cron: {
+      example: {
+        cron: '0 * * * *',
+        class: 'ExampleJob'
+      }
+    },
+    dashboard_default_locale: :en
+  }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 

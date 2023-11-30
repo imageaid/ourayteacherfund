@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id              :bigint           not null, primary key
+#  deliver_to      :text             default([]), is an Array
+#  message_type    :integer          default("email")
+#  sends_at        :datetime
+#  status          :integer          default("draft")
+#  subject         :string
+#  total_delivered :integer          default(0)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+one:
+  subject: MyString
+  body: MyText
+  sends_at: 2023-11-29 15:44:05
+  message_type: 1
+  deliver_to: 1
+  total_delivered: 1
+
+two:
+  subject: MyString
+  body: MyText
+  sends_at: 2023-11-29 15:44:05
+  message_type: 1
+  deliver_to: 1
+  total_delivered: 1

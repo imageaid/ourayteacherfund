@@ -9,6 +9,7 @@ gem 'aws-sdk-s3'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'friendly_id'
+gem 'good_job'
 gem 'heroicon'
 gem 'image_processing', '~> 1.2'
 gem 'importmap-rails'

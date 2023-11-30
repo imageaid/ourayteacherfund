@@ -1,0 +1,14 @@
+<tr id="<%= dom_id(message) %>">
+  <td class="whitespace-nowrap py-4 pl-3 pr-2 text-sm font-medium text-zinc-900 dark:text-white sm:pl-0">
+    <%= link_to admin_message_path(message) do %>
+      <%= message.subject.titleize %>
+    <% end %>
+  </td>
+  <td class="whitespace-nowrap px-2 py-4 text-sm text-zinc-500"><%= message.sends_at.to_fs(:long_datetime) %></td>
+  <td class="whitespace-nowrap px-2 py-4 text-sm text-zinc-500"><%= message.message_type.humanize.titleize %></td>
+  <td class="whitespace-nowrap px-2 py-4 text-sm text-zinc-500"><%= message.deliver_to.join(", ") %></td>
+  <td class="whitespace-nowrap px-2 py-4 text-sm text-zinc-500"><%= message.status %></td>
+  <td class="relative whitespace-nowrap py-3 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+    <%= button_to 'Schedule', schedule_admin_message_path(message), method: :post, data: { turbo_confirm: "Are you sure you are ready to schedule this?" } %>
+  </td>
+</tr>

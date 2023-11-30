@@ -1,0 +1,28 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-2 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Messages</h1>
+    <%= link_to 'New message', new_admin_message_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <table id="messages" class="min-w-full divide-y divide-zinc-300">
+    <thead>
+      <tr>
+        <th class="py-3 pl-4 pr-3 text-left text-sm font-semibold text-zinc-900 dark:text-white sm:pl-0">Subject</th>
+        <th class="px-2 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-white">Sends</th>
+        <th class="px-2 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-white">Type</th>
+        <th class="px-2 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-white">Audience</th>
+        <th class="px-2 py-3 text-left text-sm font-semibold text-zinc-900 dark:text-white">Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @messages.each do |message| %>
+        <%= render partial: 'admin/messages/message_row', locals: { message: message } %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

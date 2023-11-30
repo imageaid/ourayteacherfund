@@ -8,12 +8,19 @@ Rails.application.routes.draw do
   resources :magic_sessions, only: %i[new]
 
   namespace :admin do
+    mount GoodJob::Engine => 'good_job'
+
     resources :pages
     resources :users
     resources :donors
     resources :donations, only: %i[create edit update]
     resources :board_members
     resources :applicants
+    resources :messages do
+      member do
+        post :schedule
+      end
+    end
     resources :grants do
       collection do
         get :question_field

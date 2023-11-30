@@ -1,0 +1,58 @@
+<%= form_with(model: [:admin, message], class: "contents") do |form| %>
+  <%= form.hidden_field :total_delivered %>
+  <% if message.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+        <% message.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :subject %>
+    <%= form.text_field :subject, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :body %>
+    <%= form.rich_text_area :body, rows: 4, class: "text-zinc-600 bg-white block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :sends_at %>
+    <%= form.datetime_field :sends_at, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :message_type %>
+    <%= form.select :message_type, Message.message_types.keys.to_a, {}, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :deliver_to %>
+    <div>
+      <% %w[subscribers applicants donors board].each do |option| %>
+        <div class="my-2">
+          <%= check_box_tag 'message[deliver_to][]', option, message.deliver_to.include?(option), class: "text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none" %>
+          <label for="message_deliver_to" class="ml-1 mt-2">
+            <%= option.humanize.titleize %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="inline">
+    <div class="flex flex-row">
+      <%= form.submit "Save", class: "btn-primary mr-2" %>
+      <% if action_name == "edit" %>
+        <%= link_to "Show", admin_message_path(@message), class: "btn-secondary mr-2" %>
+      <% end %>
+      <%= link_to 'Back', admin_messages_path, class: "btn-default" %>
+    </div>
+  </div>
+<% end %>
