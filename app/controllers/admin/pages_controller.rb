@@ -9,19 +9,21 @@ module Admin
       @pages = Page.all
     end
 
-    def show; end
+    def show
+    end
 
     def new
       @page = Page.new
     end
 
-    def edit; end
+    def edit
+    end
 
     def create
       @page = Page.new(page_params)
 
       if @page.save
-        redirect_to admin_page_url(@page), notice: 'Page was successfully created.'
+        redirect_to admin_page_url(@page), notice: "Page was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -29,7 +31,7 @@ module Admin
 
     def update
       if @page.update(page_params)
-        redirect_to admin_page_url(@page), notice: 'Page was successfully updated.'
+        redirect_to admin_page_url(@page), notice: "Page was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -38,17 +40,17 @@ module Admin
     def destroy
       @page.destroy
 
-      redirect_to admin_pages_url, notice: 'Page was successfully destroyed.'
+      redirect_to admin_pages_url, notice: "Page was successfully destroyed."
     end
 
     private
 
-      def set_page
-        @page = Page.friendly.find(params[:id])
-      end
+    def set_page
+      @page = Page.friendly.find(params[:id])
+    end
 
-      def page_params
-        params.require(:page).permit(:title, :keywords, :body, :navigation, :welcome_content, :link_label, :position)
-      end
+    def page_params
+      params.require(:page).permit(:title, :keywords, :body, :navigation, :welcome_content, :link_label, :position)
+    end
   end
 end

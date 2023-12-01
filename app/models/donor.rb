@@ -43,7 +43,7 @@ class Donor < User
   validates :credit, presence: true
 
   def last_donation
-    donations.order('donations.created_at desc').first
+    donations.order("donations.created_at desc").first
   end
 
   def total_donated
@@ -56,12 +56,12 @@ class Donor < User
 
   def self.levels
     [
-      ['Teacher\'s Pet ($0-499)', 'Teacher\'s Pet'],
-      ['Honor Society ($500-999)', 'Honor Society'],
-      ['Dean\'s List ($1000-4,999)', 'Deans List'],
-      ['Cum Laude ($5,000-9,999)', 'Cum Laude'],
-      ['Magna Cum Laude ($10,000-19,999)', 'Magna Cum Laude'],
-      ['Summa Cum Laude ($20,000+)', 'Summa Cum Laude']
+      ["Teacher's Pet ($0-499)", "Teacher's Pet"],
+      ["Honor Society ($500-999)", "Honor Society"],
+      ["Dean's List ($1000-4,999)", "Deans List"],
+      ["Cum Laude ($5,000-9,999)", "Cum Laude"],
+      ["Magna Cum Laude ($10,000-19,999)", "Magna Cum Laude"],
+      ["Summa Cum Laude ($20,000+)", "Summa Cum Laude"]
     ]
   end
 end

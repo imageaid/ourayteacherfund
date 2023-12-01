@@ -47,16 +47,16 @@ class User < ApplicationRecord
 
   store_accessor :meta, :theme_preference
 
-  enum role: { subscriber: 0, applicant: 1, donor: 2, director: 3, secretary: 4, treasurer: 5, vice_president: 6, president: 7 }
+  enum role: {subscriber: 0, applicant: 1, donor: 2, director: 3, secretary: 4, treasurer: 5, vice_president: 6, president: 7}
 
-  validates :first_name, length: { minimum: 1, maximum: 120 }, allow_blank: true
-  validates :last_name, length: { minimum: 1, maximum: 120 }, allow_blank: true
-  validates :email, uniqueness: true, presence: { message: 'cannot be blank' }
-  validates :password, length: { within: 6..30, message: 'cannot be blank' }, if: :password_required?
+  validates :first_name, length: {minimum: 1, maximum: 120}, allow_blank: true
+  validates :last_name, length: {minimum: 1, maximum: 120}, allow_blank: true
+  validates :email, uniqueness: true, presence: {message: "cannot be blank"}
+  validates :password, length: {within: 6..30, message: "cannot be blank"}, if: :password_required?
   validates :password, confirmation: true, if: :password_required?
   validates :password_confirmation, presence: true, if: :password_required?
 
-  normalizes :email, with: -> (email) { email.downcase.strip }
+  normalizes :email, with: ->(email) { email.downcase.strip }
 
   scope :filter_by, lambda { |params|
     query = self
@@ -65,9 +65,9 @@ class User < ApplicationRecord
     end
     query
   }
-  scope :with_first_name, -> (name) { where('lower(first_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
-  scope :with_last_name, -> (name) { where('lower(last_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
-  scope :with_email, -> (email) { where('lower(email) LIKE ?', "%#{email.downcase.strip}%") if email.present? }
+  scope :with_first_name, ->(name) { where("lower(first_name) LIKE ?", "%#{name.downcase.strip}%") if name.present? }
+  scope :with_last_name, ->(name) { where("lower(last_name) LIKE ?", "%#{name.downcase.strip}%") if name.present? }
+  scope :with_email, ->(email) { where("lower(email) LIKE ?", "%#{email.downcase.strip}%") if email.present? }
 
   def generate_temp_password
     temp_password ||= SecureRandom.hex(10)
@@ -85,23 +85,23 @@ class User < ApplicationRecord
 
   private
 
-    def slug_name
-      if first_name.present? && last_name.present?
-        "#{first_name} #{last_name}"
-      else
-        id.to_s
-      end
+  def slug_name
+    if first_name.present? && last_name.present?
+      "#{first_name} #{last_name}"
+    else
+      id.to_s
     end
+  end
 
-    def password_required?
-      new_record? || password.present? || password_confirmation.present?
-    end
+  def password_required?
+    new_record? || password.present? || password_confirmation.present?
+  end
 
-    # def encrypt_password
-    #   return if password.blank?
-    #
-    #   self.salt = Sorcery::Model::TemporaryToken.generate_random_token
-    #   p "SALT: #{salt}"
-    #   self.crypted_password = Sorcery::CryptoProviders::BCrypt.encrypt(password, salt)
-    # end
+  # def encrypt_password
+  #   return if password.blank?
+  #
+  #   self.salt = Sorcery::Model::TemporaryToken.generate_random_token
+  #   p "SALT: #{salt}"
+  #   self.crypted_password = Sorcery::CryptoProviders::BCrypt.encrypt(password, salt)
+  # end
 end

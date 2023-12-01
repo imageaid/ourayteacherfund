@@ -8,9 +8,9 @@ module Admin
       @donation = Donation.new(donation_params)
       @donation.save
       @donor = @donation.donor
-      flash[:notice] = 'Donation updated. Thank you!' unless @donation.persisted?
+      flash[:notice] = "Donation updated. Thank you!" unless @donation.persisted?
       @donation = Donation.new(donor: @donor) unless @donation.persisted?
-      flash[:alert] = @donation.errors.full_messages.join(', ') if @donation.errors.any?
+      flash[:alert] = @donation.errors.full_messages.join(", ") if @donation.errors.any?
     end
 
     def edit
@@ -20,20 +20,20 @@ module Admin
     def update
       @donor = @donation.donor
       @donation.update(donation_params)
-      flash[:notice] = 'Donation updated. Thank you!' if @donor.errors.empty?
+      flash[:notice] = "Donation updated. Thank you!" if @donor.errors.empty?
       @donation = Donation.new(donor: @donor) if @donor.errors.empty?
-      flash[:alert] = @donation.errors.full_messages.join(', ') if @donation.errors.any?
+      flash[:alert] = @donation.errors.full_messages.join(", ") if @donation.errors.any?
       render :create
     end
 
     private
 
-      def load_donation
-        @donation = Donation.find(params[:id])
-      end
+    def load_donation
+      @donation = Donation.find(params[:id])
+    end
 
-      def donation_params
-        params.require(:donation).permit(:amount, :donor_id, :user_id, :recurring, :received_on, :thanked)
-      end
+    def donation_params
+      params.require(:donation).permit(:amount, :donor_id, :user_id, :recurring, :received_on, :thanked)
+    end
   end
 end

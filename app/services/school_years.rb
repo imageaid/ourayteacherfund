@@ -6,8 +6,8 @@ class SchoolYears
   def initialize
     @year = Time.zone.now.year
     @month = Time.zone.now.month
-    @start_year = month < 9 ? year - 1 : year
-    @end_year = month < 9 ? year : year + 1
+    @start_year = (month < 9) ? year - 1 : year
+    @end_year = (month < 9) ? year : year + 1
   end
 
   def current_school_year

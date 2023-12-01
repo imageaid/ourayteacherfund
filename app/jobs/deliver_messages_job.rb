@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class DeliverMessagesJob < ApplicationJob
   queue_as :default
 
   def perform(message)
     failures = 0
-    recipients = User.where("role IN (#{recipient_groups(deliver_to: message.deliver_to).join(',')})")
+    recipients = User.where("role IN (#{recipient_groups(deliver_to: message.deliver_to).join(",")})")
     recipients.each do |recipient|
-      MessageMailer.transmit(message: message, recipient: recipient).deliver_later
-    rescue StandardError => e
+      MessageMailer.transmit(message:, recipient:).deliver_later
+    rescue => e
       Rails.logger.error "MESSAGE SEND ERROR: #{recipient.email}:#{message.subject} -- #{e.message}"
       failures += 1
     end
@@ -15,19 +17,20 @@ class DeliverMessagesJob < ApplicationJob
 
   private
 
-    def recipient_groups(deliver_to:)
-      group = []
-      deliver_to.each do |role_group|
-        if role_group == 'board'
-          group << 'director'
-          group << 'secretary'
-          group << 'treasurer'
-          group << 'vice_president'
-          group << 'president'
-        else
-          group << role_group
-        end
+  def recipient_groups(deliver_to:)
+    group = []
+    deliver_to.each do |role_group|
+      group << case role_group
+      when "board"
+        [3, 4, 5, 6, 7]
+      when "applicants"
+        1
+      when "donors"
+        2
+      else
+        0
       end
-      group
     end
+    group.flatten
+  end
 end

@@ -1,4 +1,4 @@
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -19,13 +19,13 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -59,22 +59,21 @@ Rails.application.configure do
   config.good_job = {
     preserve_job_records: true,
     retry_on_unhandled_error: false,
-    on_thread_error: -> (exception) { Rails.error.report(exception) },
+    on_thread_error: ->(exception) { Rails.error.report(exception) },
     execution_mode: :async,
-    queues: 'default, critical',
+    queues: "default, critical",
     max_threads: 5,
     poll_interval: 30,
     shutdown_timeout: 25,
     enable_cron: true,
     cron: {
       example: {
-        cron: '0 * * * *',
-        class: 'ExampleJob'
+        cron: "0 * * * *",
+        class: "ExampleJob"
       }
     },
     dashboard_default_locale: :en
   }
-
 
   # Suppress logger output for asset requests.
   # config.assets.quiet = true

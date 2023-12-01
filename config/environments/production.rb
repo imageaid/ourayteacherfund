@@ -13,7 +13,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
@@ -53,7 +53,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -83,26 +83,26 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # GoodJob
   config.good_job = {
     preserve_job_records: true,
     retry_on_unhandled_error: false,
-    on_thread_error: -> (exception) { Rails.error.report(exception) },
+    on_thread_error: ->(exception) { Rails.error.report(exception) },
     execution_mode: :async,
-    queues: 'default, critical',
+    queues: "default, critical",
     max_threads: 5,
     poll_interval: 30,
     shutdown_timeout: 25,
     enable_cron: true,
     cron: {
       example: {
-        cron: '0 * * * *',
-        class: 'ExampleJob'
+        cron: "0 * * * *",
+        class: "ExampleJob"
       }
     },
     dashboard_default_locale: :en
@@ -113,11 +113,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.net',
+    address: "smtp.gmail.net",
     port: 587,
-    domain: ENV['MAIL_DOMAIN'],
-    user_name: ENV['GMAIL_ACCOUNT'],
-    password: ENV['GMAIL_PASSWORD'],
-    authentication: 'plain'
+    domain: ENV["MAIL_DOMAIN"],
+    user_name: ENV["GMAIL_ACCOUNT"],
+    password: ENV["GMAIL_PASSWORD"],
+    authentication: "plain"
   }
 end

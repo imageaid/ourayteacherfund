@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :magic_sessions, only: %i[new]
 
   namespace :admin do
-    mount GoodJob::Engine => 'good_job'
+    mount GoodJob::Engine => "good_job"
 
     resources :pages
     resources :users
@@ -32,13 +32,13 @@ Rails.application.routes.draw do
     resources :grant_reviews, only: %i[create destroy]
     resources :sessions, only: %i[new create destroy]
 
-    get 'sign_in', to: 'sessions#new', as: 'sign_in'
-    delete 'sign_out', to: 'sessions#destroy', as: 'sign_out'
+    get "sign_in", to: "sessions#new", as: "sign_in"
+    delete "sign_out", to: "sessions#destroy", as: "sign_out"
   end
 
   # Defines the root path route ("/")
-  root 'welcome#index'
+  root "welcome#index"
 
   # Direct paths
-  direct(:external_donation) { 'https://www.google.com/url?q=https%3A%2F%2Fdonate.stripe.com%2F7sI170gAdg6E60o9AA&sa=D&sntz=1&usg=AOvVaw3g8RGc6gGTXpKtUnwor9Tx' }
+  direct(:external_donation) { "https://www.google.com/url?q=https%3A%2F%2Fdonate.stripe.com%2F7sI170gAdg6E60o9AA&sa=D&sntz=1&usg=AOvVaw3g8RGc6gGTXpKtUnwor9Tx" }
 end

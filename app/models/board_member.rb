@@ -50,11 +50,11 @@ class BoardMember < User
 
   private
 
-    def set_term_ends_on
-      term_start_as_date = Date.parse(term_starts_on)
-      return nil unless saved_change_to_term_starts_on?
+  def set_term_ends_on
+    term_start_as_date = Date.parse(term_starts_on)
+    return nil unless saved_change_to_term_starts_on?
 
-      self.term_ends_on = term_start_as_date + 3.years
-      save
-    end
+    self.term_ends_on = term_start_as_date + 3.years
+    save
+  end
 end

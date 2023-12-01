@@ -3,10 +3,10 @@ module ApplicationHelper
 
   def css_class_for_flash(flash_type)
     {
-      success: 'green',
-      error: 'red',
-      alert: 'red',
-      notice: 'indigo'
+      success: "green",
+      error: "red",
+      alert: "red",
+      notice: "indigo"
     }.stringify_keys[flash_type.to_s] || flash_type.to_s
   end
 
@@ -20,7 +20,7 @@ module ApplicationHelper
       %w[Colorado CO],
       %w[Connecticut CT],
       %w[Delaware DE],
-      ['District of Columbia', 'DC'],
+      ["District of Columbia", "DC"],
       %w[Florida FL],
       %w[Georgia GA],
       %w[Hawaii HI],
@@ -41,27 +41,27 @@ module ApplicationHelper
       %w[Montana MT],
       %w[Nebraska NE],
       %w[Nevada NV],
-      ['New Hampshire', 'NH'],
-      ['New Jersey', 'NJ'],
-      ['New Mexico', 'NM'],
-      ['New York', 'NY'],
-      ['North Carolina', 'NC'],
-      ['North Dakota', 'ND'],
+      ["New Hampshire", "NH"],
+      ["New Jersey", "NJ"],
+      ["New Mexico", "NM"],
+      ["New York", "NY"],
+      ["North Carolina", "NC"],
+      ["North Dakota", "ND"],
       %w[Ohio OH],
       %w[Oklahoma OK],
       %w[Oregon OR],
       %w[Pennsylvania PA],
-      ['Puerto Rico', 'PR'],
-      ['Rhode Island', 'RI'],
-      ['South Carolina', 'SC'],
-      ['South Dakota', 'SD'],
+      ["Puerto Rico", "PR"],
+      ["Rhode Island", "RI"],
+      ["South Carolina", "SC"],
+      ["South Dakota", "SD"],
       %w[Tennessee TN],
       %w[Texas TX],
       %w[Utah UT],
       %w[Vermont VT],
       %w[Virginia VA],
       %w[Washington WA],
-      ['West Virginia', 'WV'],
+      ["West Virginia", "WV"],
       %w[Wisconsin WI],
       %w[Wyoming WY]
     ]

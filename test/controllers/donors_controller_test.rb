@@ -17,7 +17,7 @@ class DonorsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create donor" do
     assert_difference("Donor.count") do
-      post donors_url, params: { donor: { city: @donor.city, credit: @donor.credit, email: @donor.email, first_name: @donor.first_name, last_name: @donor.last_name, postal: @donor.postal, state: @donor.state, street_address: @donor.street_address, website: @donor.website } }
+      post donors_url, params: {donor: {city: @donor.city, credit: @donor.credit, email: @donor.email, first_name: @donor.first_name, last_name: @donor.last_name, postal: @donor.postal, state: @donor.state, street_address: @donor.street_address, website: @donor.website}}
     end
 
     assert_redirected_to donor_url(Donor.last)
@@ -34,7 +34,7 @@ class DonorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update donor" do
-    patch donor_url(@donor), params: { donor: { city: @donor.city, credit: @donor.credit, email: @donor.email, first_name: @donor.first_name, last_name: @donor.last_name, postal: @donor.postal, state: @donor.state, street_address: @donor.street_address, website: @donor.website } }
+    patch donor_url(@donor), params: {donor: {city: @donor.city, credit: @donor.credit, email: @donor.email, first_name: @donor.first_name, last_name: @donor.last_name, postal: @donor.postal, state: @donor.state, street_address: @donor.street_address, website: @donor.website}}
     assert_redirected_to donor_url(@donor)
   end
 

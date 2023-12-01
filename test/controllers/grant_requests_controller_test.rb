@@ -17,7 +17,7 @@ class GrantRequestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create grant_request" do
     assert_difference("GrantRequest.count") do
-      post grant_requests_url, params: { grant_request: { amount_requested: @grant_request.amount_requested, other_purpose: @grant_request.other_purpose, purpose: @grant_request.purpose, school_year: @grant_request.school_year, user_id: @grant_request.user_id } }
+      post grant_requests_url, params: {grant_request: {amount_requested: @grant_request.amount_requested, other_purpose: @grant_request.other_purpose, purpose: @grant_request.purpose, school_year: @grant_request.school_year, user_id: @grant_request.user_id}}
     end
 
     assert_redirected_to grant_request_url(GrantRequest.last)
@@ -34,7 +34,7 @@ class GrantRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update grant_request" do
-    patch grant_request_url(@grant_request), params: { grant_request: { amount_requested: @grant_request.amount_requested, other_purpose: @grant_request.other_purpose, purpose: @grant_request.purpose, school_year: @grant_request.school_year, user_id: @grant_request.user_id } }
+    patch grant_request_url(@grant_request), params: {grant_request: {amount_requested: @grant_request.amount_requested, other_purpose: @grant_request.other_purpose, purpose: @grant_request.purpose, school_year: @grant_request.school_year, user_id: @grant_request.user_id}}
     assert_redirected_to grant_request_url(@grant_request)
   end
 

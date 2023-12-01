@@ -8,7 +8,7 @@ module Admin
 
     def index
       filters = params[:grant_request].present? ? params[:grant_request].slice(:first_name, :last_name, :email) : {}
-      @pagy, @grant_requests = pagy(search_scope(filters: filters, model_name: 'GrantRequest').where(school_year: current_school_year), items: 12)
+      @pagy, @grant_requests = pagy(search_scope(filters: filters, model_name: "GrantRequest").where(school_year: current_school_year), items: 12)
 
       respond_to do |format|
         format.html
@@ -16,17 +16,18 @@ module Admin
       end
     end
 
-    def show; end
+    def show
+    end
 
     def destroy
       @grant_request.destroy
-      redirect_to admin_grant_requests_path, notice: 'Grant Request was successfully destroyed.'
+      redirect_to admin_grant_requests_path, notice: "Grant Request was successfully destroyed."
     end
 
     private
 
-      def load_grant_request
-        @grant_request = GrantRequest.friendly.find(params[:id])
-      end
+    def load_grant_request
+      @grant_request = GrantRequest.friendly.find(params[:id])
+    end
   end
 end

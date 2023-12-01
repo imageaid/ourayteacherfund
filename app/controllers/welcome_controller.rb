@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class WelcomeController < ApplicationController
-
-  layout 'welcome'
+  layout "welcome"
 
   def index
     @donations = Donation.recent_donors(4)

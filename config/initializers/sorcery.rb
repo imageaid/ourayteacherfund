@@ -24,7 +24,7 @@ Rails.application.config.sorcery.configure do |config|
   # Set domain option for cookies; Useful for remember_me submodule.
   # Default: `nil`
   #
-  config.cookie_domain = -> (request) { request.domain }
+  config.cookie_domain = ->(request) { request.domain }
 
   # Allow the remember_me cookie to be set through AJAX
   # Default: `true`
@@ -226,7 +226,6 @@ Rails.application.config.sorcery.configure do |config|
   # config.line.bot_prompt = "normal"
   # config.line.user_info_mapping = {name: 'displayName'}
 
-  
   # For information about Discord API
   # https://discordapp.com/developers/docs/topics/oauth2
   # config.discord.key = "xxxxxx"
@@ -451,7 +450,7 @@ Rails.application.config.sorcery.configure do |config|
     # Magic login mailer class.
     # Default: `nil`
     #
-    user.magic_login_mailer_class = 'MagicLoginMailer'
+    user.magic_login_mailer_class = "MagicLoginMailer"
 
     # Magic login email method on your mailer class.
     # Default: `:magic_login_email`
@@ -563,5 +562,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = 'User'
+  config.user_class = "User"
 end

@@ -18,6 +18,6 @@
 class Grant < ApplicationRecord
   has_many :grant_requests, dependent: :destroy
 
-  validates :active, inclusion: { in: [true, false] }, uniqueness: true
+  validates :active, inclusion: {in: [true, false]}, uniqueness: true
   validates :name, presence: true, uniqueness: true
 end

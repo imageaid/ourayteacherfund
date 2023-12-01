@@ -4,28 +4,29 @@ module Admin
   class SessionsController < AdminController
     skip_before_action :login_required
 
-    def new; end
+    def new
+    end
 
     def create
       @user = login(params[:user][:email], params[:user][:password])
 
       if @user&.board_member?
-        redirect_back_or_to(admin_donors_path, notice: 'Login successful')
+        redirect_back_or_to(admin_donors_path, notice: "Login successful")
       else
-        flash.alert = 'Login failed'
+        flash.alert = "Login failed"
         render :new
       end
     end
 
     def destroy
       logout
-      redirect_to(admin_sign_in_path, notice: 'Logged out!')
+      redirect_to(admin_sign_in_path, notice: "Logged out!")
     end
 
     private
 
-      def login_params
-        params.require(:user).permit(:email, :password)
-      end
+    def login_params
+      params.require(:user).permit(:email, :password)
+    end
   end
 end

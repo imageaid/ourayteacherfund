@@ -45,11 +45,11 @@ module TailwindHelper
 
   private
 
-    # Calculate the total number of rows based on the number of cells and the size of the grid
-    # @param size [Integer] the number of cells in a row
-    # @param total_cells [Integer] the total number of cells
-    # @return [Integer] the number of rows
-    def calculate_rows(size, total_cells)
-      (total_cells.to_f / size).ceil
-    end
+  # Calculate the total number of rows based on the number of cells and the size of the grid
+  # @param size [Integer] the number of cells in a row
+  # @param total_cells [Integer] the total number of cells
+  # @return [Integer] the number of rows
+  def calculate_rows(size, total_cells)
+    (total_cells.to_f / size).ceil
+  end
 end

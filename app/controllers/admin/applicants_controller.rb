@@ -8,25 +8,28 @@ module Admin
       @applicants = Applicant.current_requests
     end
 
-    def show; end
+    def show
+    end
 
-    def edit; end
+    def edit
+    end
 
-    def update; end
+    def update
+    end
 
     def destroy
       @applicant.destroy
-      redirect_to admin_applicants_path, notice: 'Applicant was successfully destroyed.'
+      redirect_to admin_applicants_path, notice: "Applicant was successfully destroyed."
     end
 
     private
 
-      def load_applicant
-        @applicant = Applicant.friendly.find(params[:id])
-      end
+    def load_applicant
+      @applicant = Applicant.friendly.find(params[:id])
+    end
 
-      def applicant_params
-        params.require(:applicant).permit(Applicant.permitted_params)
-      end
+    def applicant_params
+      params.require(:applicant).permit(Applicant.permitted_params)
+    end
   end
 end

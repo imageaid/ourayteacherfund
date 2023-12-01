@@ -4,7 +4,7 @@ module Admin
   class GrantReviewsController < AdminController
     def create
       @grant_review = GrantReview.create(grant_review_params)
-      Rails.logger.info @grant_review.errors.full_messages.join(', ')
+      Rails.logger.info @grant_review.errors.full_messages.join(", ")
 
       respond_to do |format|
         format.turbo_stream
@@ -21,8 +21,8 @@ module Admin
 
     private
 
-      def grant_review_params
-        params.require(:grant_review).permit(:grant_request_id, :user_id, :thoughts)
-      end
+    def grant_review_params
+      params.require(:grant_review).permit(:grant_request_id, :user_id, :thoughts)
+    end
   end
 end

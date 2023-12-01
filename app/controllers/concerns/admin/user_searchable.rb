@@ -4,10 +4,10 @@ module Admin
   module UserSearchable
     extend ActiveSupport::Concern
 
-    def search_scope(filters:, model_name: 'User', order: 'created_at DESC')
+    def search_scope(filters:, model_name: "User", order: "created_at DESC")
       klass = model_name.constantize
       klass.filter_by(filters).order(order)
-    rescue StandardError
+    rescue
       model_name.constantize.none
     end
   end

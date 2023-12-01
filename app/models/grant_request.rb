@@ -45,7 +45,7 @@ class GrantRequest < ApplicationRecord
 
   accepts_nested_attributes_for :applicant, allow_destroy: false
 
-  enum purpose: { tuition: 0, travel: 1, other: 2 }
+  enum purpose: {tuition: 0, travel: 1, other: 2}
 
   delegate :first_name, :last_name, :email, to: :applicant
   delegate :name, to: :grant, prefix: true
@@ -57,9 +57,9 @@ class GrantRequest < ApplicationRecord
     end
     query
   }
-  scope :with_first_name, -> (name) { joins(:applicant).where('lower(users.first_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
-  scope :with_last_name, -> (name) { joins(:applicant).where('lower(users.last_name) LIKE ?', "%#{name.downcase.strip}%") if name.present? }
-  scope :with_email, -> (email) { joins(:applicant).where('lower(users.email) LIKE ?', "%#{email.downcase.strip}%") if email.present? }
+  scope :with_first_name, ->(name) { joins(:applicant).where("lower(users.first_name) LIKE ?", "%#{name.downcase.strip}%") if name.present? }
+  scope :with_last_name, ->(name) { joins(:applicant).where("lower(users.last_name) LIKE ?", "%#{name.downcase.strip}%") if name.present? }
+  scope :with_email, ->(email) { joins(:applicant).where("lower(users.email) LIKE ?", "%#{email.downcase.strip}%") if email.present? }
 
   def applicant_name
     "#{first_name} #{last_name}"
@@ -67,16 +67,16 @@ class GrantRequest < ApplicationRecord
 
   private
 
-    def slug_name
-      if last_name.present?
-        "#{last_name} #{paramaterized_email(email)} #{id}"
-      else
-        id.to_s
-      end
+  def slug_name
+    if last_name.present?
+      "#{last_name} #{paramaterized_email(email)} #{id}"
+    else
+      id.to_s
     end
+  end
 
-    def paramaterized_email(email)
-      raw_email_name = email.present? ? email[/[^@]+/] : '-'
-      raw_email_name.gsub(/\p{Punct}/, '')
-    end
+  def paramaterized_email(email)
+    raw_email_name = email.present? ? email[/[^@]+/] : "-"
+    raw_email_name.gsub(/\p{Punct}/, "")
+  end
 end

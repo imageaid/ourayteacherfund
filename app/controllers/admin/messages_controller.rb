@@ -10,7 +10,8 @@ module Admin
     end
 
     # GET /messages/1 or /messages/1.json
-    def show; end
+    def show
+    end
 
     # GET /messages/new
     def new
@@ -18,14 +19,15 @@ module Admin
     end
 
     # GET /messages/1/edit
-    def edit; end
+    def edit
+    end
 
     # POST /messages or /messages.json
     def create
       @message = Message.new(message_params)
 
       if @message.save
-        redirect_to admin_message_path(@message), notice: 'Message was successfully created.'
+        redirect_to admin_message_path(@message), notice: "Message was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -35,7 +37,7 @@ module Admin
     def update
       updated = @message.update(message_params)
       if updated
-        redirect_to admin_message_path(@message), notice: 'Message was successfully updated.'
+        redirect_to admin_message_path(@message), notice: "Message was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -44,25 +46,25 @@ module Admin
     # DELETE /messages/1 or /messages/1.json
     def destroy
       @message.destroy
-      redirect_to admin_messages_url, notice: 'Message was successfully destroyed.'
+      redirect_to admin_messages_url, notice: "Message was successfully destroyed."
     end
 
     def schedule
       DeliverMessagesJob.set(wait_until: @message.sends_at).perform_later(@message)
       @message.update(status: :scheduled)
-      redirect_to admin_messages_path, notice: 'Message was successfully scheduled.'
+      redirect_to admin_messages_path, notice: "Message was successfully scheduled."
     end
 
     private
 
-      # Use callbacks to share common setup or constraints between actions.
-      def set_message
-        @message = Message.find(params[:id])
-      end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_message
+      @message = Message.find(params[:id])
+    end
 
-      # Only allow a list of trusted parameters through.
-      def message_params
-        params.require(:message).permit(:subject, :body, :sends_at, :message_type, :total_delivered, deliver_to: [])
-      end
+    # Only allow a list of trusted parameters through.
+    def message_params
+      params.require(:message).permit(:subject, :body, :sends_at, :message_type, :total_delivered, deliver_to: [])
+    end
   end
 end

@@ -23,7 +23,7 @@ Rails.application.configure do
   }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
 
@@ -55,22 +55,21 @@ Rails.application.configure do
   config.good_job = {
     preserve_job_records: true,
     retry_on_unhandled_error: false,
-    on_thread_error: -> (exception) { Rails.error.report(exception) },
+    on_thread_error: ->(exception) { Rails.error.report(exception) },
     execution_mode: :inline,
-    queues: 'default, critical',
+    queues: "default, critical",
     max_threads: 5,
     poll_interval: 30,
     shutdown_timeout: 25,
     enable_cron: true,
     cron: {
       example: {
-        cron: '0 * * * *',
-        class: 'ExampleJob'
+        cron: "0 * * * *",
+        class: "ExampleJob"
       }
     },
     dashboard_default_locale: :en
   }
-
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
