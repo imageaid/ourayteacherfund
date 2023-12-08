@@ -113,11 +113,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV["MAIL_SERVER"],
+    address: ENV["AWS_SES_MAIL_SERVER"],
     port: 587,
     domain: ENV["MAIL_DOMAIN"],
-    user_name: ENV["GMAIL_ACCOUNT"],
-    password: ENV["GMAIL_PASSWORD"],
+    user_name: ENV["AWS_SES_ACCOUNT"],
+    password: ENV["AWS_SES_KEY"],
     authentication: "plain"
   }
 end
