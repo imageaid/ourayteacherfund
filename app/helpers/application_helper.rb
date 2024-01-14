@@ -73,8 +73,14 @@ module ApplicationHelper
 
   def applications_open?
     right_now = Time.zone.now
-    apps_starts = Date.new(right_now.year, 10, 1)
-    apps_ends = Date.new(right_now.year + 1, 5, 1)
-    right_now.between?(apps_starts, apps_ends)
+    year = right_now.year
+    apps_starts = Date.new(year, 10, 1)
+    apps_ends = Date.new(year.next, 5, 1)
+
+    if right_now < apps_starts
+      apps_starts = Date.new(year.pred, 10, 1)
+      apps_ends = Date.new(year, 5, 1)
+    end
+    (apps_starts..apps_ends).cover?(right_now)
   end
 end
