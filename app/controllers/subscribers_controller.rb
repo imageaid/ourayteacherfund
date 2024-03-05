@@ -2,9 +2,12 @@
 
 class SubscribersController < ApplicationController
   def create
+    quiz_answer = params[:user][:quiz].strip
     existing_user = User.find_by(email: user_params[:email].downcase.strip)
     if existing_user
       @message = "You are already on our email list. Thank you!"
+    elsif !quiz_answer.casecmp?("white")
+      @message = "You are not a human and cannot join!"
     else
       @user = User.new(user_params)
       @user.generate_temp_password
@@ -21,6 +24,6 @@ class SubscribersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :role)
+    params.require(:user).permit(:email, :role, :quiz)
   end
 end

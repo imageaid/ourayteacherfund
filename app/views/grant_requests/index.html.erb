@@ -1,7 +1,7 @@
 <div class="flex flex-wrap space-y-4 sm:space-y-0 justify-between items-center">
   <h1 class="flex font-bold text-4xl">Obtaining a Grant</h1>
   <% if applications_open? %>
-    <%= link_to 'Apply for a Grant', new_grant_request_path, class: "flex btn-primary" %>
+    <%= link_to 'Apply for a Grant', pre_new_grant_requests_path, class: "flex btn-primary" %>
   <% end %>
 </div>
 <div class="min-w-full" id="applications">
@@ -18,12 +18,25 @@
     Applications are currently being considered for the <%= current_school_year %> academic year.
     Grants in any given year will be conditioned by the volume of applications and available funds.
   </p>
-  <p>
+  <p class="my-4">
     <span class="font-bold">NOTE:</span>
     Our grants are exclusively for Ouray School teachers and staff. For more details, please see the
     <%= link_to page_path(@teachers_page), class: "text-indigo-500 hover:text-orange-600" do %>
       Teachers
     <% end %>
     page.
+  </p>
+  <p class="my-4">
+    <span class="font-bold block">LOOKING FOR YOUR GRANT?</span>
+    If you already applied for a grant and need to either edit or review it, you must first get a link to access the content:
+    <br>
+    <%= link_to new_magic_link_path, class: "btn-secondary mt-2" do %>
+      <span class="hidden md:block">
+        Login to Review/Edit Your Appication
+      </span>
+      <span class="block md:hidden">
+        Login
+      </span>
+    <% end %>
   </p>
 </div>

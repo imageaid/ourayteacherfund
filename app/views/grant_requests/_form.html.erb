@@ -30,7 +30,7 @@
     </div>
     <div class="my-5">
       <%= fields.label :email, class: "required dark:required-label" %>
-      <%= fields.text_field :email, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= fields.text_field :email, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", value: "#{params[:applicant_email].presence || ''}" %>
     </div>
     <div class="my-5">
       <%= fields.label :phone %>

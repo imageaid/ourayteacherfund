@@ -1,0 +1,7 @@
+<h1 class="font-bold text-4xl mb-4">
+  Grant Request Application for the <%= current_school_year %> School Year
+</h1>
+<p class="text-md font-semibold">
+  Enter your email to get started
+</p>
+<%= render partial: "grant_requests/preflight_form", locals: { grant: @grant, preflight_errors: @preflight_errors } %>

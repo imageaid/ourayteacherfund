@@ -15,5 +15,7 @@ class MagicLinksController < ApplicationController
     else
       redirect_to root_path, alert: "Email not found"
     end
+  rescue
+    redirect_to root_path, alert: "We appear to be having an issue with our email provider. Please email ourayteacherfund@gmail.com for assistance."
   end
 end

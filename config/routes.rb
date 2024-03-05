@@ -2,10 +2,15 @@ Rails.application.routes.draw do
   resources :donors, only: %i[index]
   resources :pages, only: %i[show]
   resources :board_members, only: %i[index]
-  resources :grant_requests
   resources :subscribers, only: %i[create]
   resources :magic_links, only: %i[new create]
   resources :magic_sessions, only: %i[new]
+  resources :grant_requests do
+    collection do
+      get :pre_new
+      post :preflight
+    end
+  end
 
   namespace :admin do
     mount GoodJob::Engine => "good_job"

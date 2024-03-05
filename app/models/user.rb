@@ -45,6 +45,7 @@ class User < ApplicationRecord
 
   # before_save :encrypt_password
 
+  attr_accessor :quiz
   store_accessor :meta, :theme_preference
 
   enum role: {subscriber: 0, applicant: 1, donor: 2, director: 3, secretary: 4, treasurer: 5, vice_president: 6, president: 7}

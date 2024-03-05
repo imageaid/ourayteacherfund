@@ -1,0 +1,15 @@
+<h1 class="font-bold text-4xl mb-4">
+  Grant Request Application for the <%= current_school_year %> School Year
+</h1>
+<% if @preflight_errors %>
+  <div class="px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
+    <h2 class="text-red-700 dark:text-red-200 text-lg font-semibold mb-4">Uh-oh!</h2>
+    <p>
+      It appears you have an existing, open application for the current school year. You may not submit additional requests while this open application is pending.
+    </p>
+    <p>
+      If you are unsure of how to access your app or want to check the status, please email our team at
+      <%= mail_to "ourayteacherfund@gmail.com" %>
+    </p>
+  </div>
+<% end %>

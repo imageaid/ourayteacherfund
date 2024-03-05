@@ -56,7 +56,7 @@ module Admin
 
     def user_params
       params.require(:user).permit(
-        %i[email password password_confirmation first_name last_name role active theme_preference]
+        %i[email quiz password password_confirmation first_name last_name role active theme_preference]
       )
     end
   end

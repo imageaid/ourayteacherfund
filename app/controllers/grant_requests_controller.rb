@@ -19,6 +19,22 @@ class GrantRequestsController < ApplicationController
   def show
   end
 
+  # GET
+  def pre_new
+    @grant = Grant.find_by(active: true)
+    @preflight_errors = false
+  end
+
+  def preflight
+    @preflight_errors = false
+    existing_app = GrantRequest.includes(:applicant, :grant, :grant_decision).where(users: {email: params[:email]}, grants: {active: true}).first
+    if existing_app&.grant_decision
+      @preflight_errors = true
+    else
+      redirect_to new_grant_request_path(applicant_email: params[:email])
+    end
+  end
+
   # GET /grant_requests/new
   def new
     @grant = Grant.find_by(active: true)
