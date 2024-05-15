@@ -118,6 +118,7 @@ Rails.application.configure do
     domain: ENV["MAIL_DOMAIN"],
     user_name: ENV["AWS_SES_ACCOUNT"],
     password: ENV["AWS_SES_KEY"],
-    authentication: "plain"
+    enable_starttls: true,
+    authentication: :login
   }
 end
