@@ -113,12 +113,14 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV["AWS_SES_MAIL_SERVER"],
+    address: "smtp.gmail.com",
     port: 587,
-    domain: ENV["MAIL_DOMAIN"],
-    user_name: ENV["AWS_SES_ACCOUNT"],
-    password: ENV["AWS_SES_KEY"],
-    enable_starttls: true,
-    authentication: :login
+    domain: "ourayteacherfund.org",
+    user_name: Rails.application.credentials.gmail.username,
+    password: Rails.application.credentials.gmail.application_pass,
+    authentication: "plain",
+    enable_starttls_auto: true,
+    open_timeout: 5,
+    read_timeout: 5
   }
 end

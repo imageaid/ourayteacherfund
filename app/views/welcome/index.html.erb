@@ -19,6 +19,16 @@
                   <%= @page.body %>
                 </div>
               </div>
+              <div>
+                <h2 class="text-2xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-4xl mb-8">News &amp; Updates</h2>
+                <div class="-mt-4 text-zinc-600 dark:text-zinc-400">
+                  <%= link_to "https://www.msn.com/en-us/news/us/nonprofit-helping-rural-teachers-further-their-education/ar-BB1mkBc1", class: "text-orange-800 dark:text-orange-300 hover:text-orange-300 dark:hover:text-orange-800", target: "_blank" do %>
+                    <p class="mb-4">
+                      <strong>Ouray Teacher Fund</strong> featured in MSN News. Click here to read more.
+                    </p>
+                  <% end %>
+                </div>
+              </div>
             </div>
             <div class="space-y-10 lg:pl-16 xl:pl-24">
               <%= render partial: 'shared/donate_form' %>
