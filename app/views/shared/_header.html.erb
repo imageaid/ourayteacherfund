@@ -39,6 +39,11 @@
                               <% end %>
                             </li>
                             <li>
+                              <%= link_to awardees_path, class: "block py-2 #{controller_name.casecmp?('donors') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                                Awardees
+                              <% end %>
+                            </li>
+                            <li>
                               <%= link_to board_members_path, class: "block py-2 #{controller_name.casecmp?('board_members') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
                                 Board
                               <% end %>
@@ -81,6 +86,14 @@
                       <%= link_to grant_requests_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('grant_requests') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
                         Apply
                         <% if controller_name.casecmp?('grant_requests') %>
+                          <%= render partial: 'shared/active_page_indicator' %>
+                        <% end %>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to awardees_path, class: "relative block px-3 py-2 transition #{controller_name.casecmp?('grant_requests') ? 'text-orange-500 dark:text-orange-400' : 'hover:text-orange-500 dark:hover:text-orange-400'}" do %>
+                        Awardees
+                        <% if controller_name.casecmp?('awardees') %>
                           <%= render partial: 'shared/active_page_indicator' %>
                         <% end %>
                       <% end %>

@@ -22,4 +22,6 @@
 #
 class GrantDecision < ApplicationRecord
   belongs_to :grant_request
+
+  has_rich_text :awardee_feedback
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :subscribers, only: %i[create]
   resources :magic_links, only: %i[new create]
   resources :magic_sessions, only: %i[new]
+  resources :awardees, only: %i[index]
   resources :grant_requests do
     collection do
       get :pre_new

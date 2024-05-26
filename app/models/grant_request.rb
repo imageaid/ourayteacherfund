@@ -35,7 +35,6 @@ class GrantRequest < ApplicationRecord
   belongs_to :grant
 
   has_one :grant_decision, dependent: :destroy
-
   has_many :grant_reviews, dependent: :destroy
 
   validates :amount_requested, presence: true

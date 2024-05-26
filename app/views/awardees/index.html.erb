@@ -1,0 +1,29 @@
+<div class="flex flex-wrap space-y-4 sm:space-y-0 justify-between items-center">
+  <h1 class="flex font-bold text-4xl">
+    <%= heroicon 'banknotes', variant: 'outline', options: { class: 'flex-none h-6 w-6 mt-2 mr-4' } %>
+    Grant Recipients
+  </h1>
+</div>
+<div class="min-w-full" id="applications">
+  <p class="my-4">
+    The following faculty and staff from the Ouray School District have received grants from the Ouray Education Foundation.
+  </p>
+  <% if @awardees.any? %>
+    <% @awardees.each do |award| %>
+      <div class="p-6 mt-2">
+        <p class="text-base font-medium">
+          <%= "#{award.created_at.to_formatted_s(:date_only_nice)} - #{award.grant_request.applicant_name} #{number_to_currency(award.amount_awarded)}" %>
+        </p>
+        <p class="text-sm font-medium">
+          <strong>Purpose:</strong>
+          <%= award.grant_request.purpose %>
+        </p>
+        <div class="mt-2 text-sm font-medium">
+          <%= award.awardee_feedback %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="mt-8">No awardees found.</p>
+  <% end %>
+</div>
