@@ -31,7 +31,7 @@ module Admin
     end
 
     def grant_decision_params
-      params.require(:grant_decision).permit(:amount_awarded, :approved, :grant_request_id, :user_id)
+      params.require(:grant_decision).permit(:amount_awarded, :approved, :grant_request_id, :user_id, :awardee_feedback)
     end
   end
 end

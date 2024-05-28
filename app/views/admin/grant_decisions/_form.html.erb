@@ -25,6 +25,10 @@
       <%= form.label :approved, class: 'mr-4 mt-2' %>
       <%= form.check_box :approved, class: 'text-zinc-600 dark:text-zinc-900 shadow rounded-md border border-gray-200 outline-none mt-3' %>
     </div>
+    <div class="flex mr-4">
+      <%= form.label :awardee_feedback, class: 'mr-4 mt-2' %>
+      <%= form.rich_text_area :awardee_feedback, class: "text-zinc-600 dark:text-zinc-900 block appearance-none w-full px-3 py-2 mt-2 bg-white border border-gray-200 hover:border-gray-500 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
   </div>
   <div class="inline">
     <%= form.submit 'Save', class: "btn-primary mr-2" %>
