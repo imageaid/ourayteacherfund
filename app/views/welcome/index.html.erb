@@ -32,6 +32,9 @@
             </div>
             <div class="space-y-10 lg:pl-16 xl:pl-24">
               <%= render partial: 'shared/donate_form' %>
+              <div id="joinForm">
+                <%= render partial: 'shared/join_form', locals: { message: @message } %>
+              </div>
             </div>
           </div>
         </div>
@@ -50,9 +53,6 @@
               <%= render partial: 'shared/youtube_video' %>
             </div>
             <div class="space-y-10 lg:pl-16 xl:pl-24">
-              <div id="joinForm">
-                <%= render partial: 'shared/join_form', locals: { message: @message } %>
-              </div>
               <% if @donations.any? %>
                 <%= render partial: 'shared/recent_donations', locals: { donations: @donations } %>
               <% end %>
