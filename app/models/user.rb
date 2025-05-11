@@ -48,7 +48,7 @@ class User < ApplicationRecord
   attr_accessor :quiz
   store_accessor :meta, :theme_preference
 
-  enum role: {subscriber: 0, applicant: 1, donor: 2, director: 3, secretary: 4, treasurer: 5, vice_president: 6, president: 7}
+  enum :role, { subscriber: 0, applicant: 1, donor: 2, director: 3, secretary: 4, treasurer: 5, vice_president: 6, president: 7 }
 
   validates :first_name, length: {minimum: 1, maximum: 120}, allow_blank: true
   validates :last_name, length: {minimum: 1, maximum: 120}, allow_blank: true

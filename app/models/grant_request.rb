@@ -44,7 +44,7 @@ class GrantRequest < ApplicationRecord
 
   accepts_nested_attributes_for :applicant, allow_destroy: false
 
-  enum purpose: {tuition: 0, travel: 1, other: 2}
+  enum :purpose, { tuition: 0, travel: 1, other: 2 }
 
   delegate :first_name, :last_name, :email, to: :applicant
   delegate :name, to: :grant, prefix: true

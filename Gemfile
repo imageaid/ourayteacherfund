@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.3.1"
+ruby "3.4.2"
 # gem 'rails', github: 'rails/rails', branch: 'main'
 
 gem "acts_as_list"
@@ -19,22 +19,18 @@ gem "pagy"
 gem "pg", "~> 1.4.5"
 gem "propshaft", "~> 0.7.0"
 gem "puma", "~> 6.0"
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 8.0.2"
 gem "redis", "~> 5.0"
 gem "sorcery"
 gem "stimulus-rails"
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 3.3.0"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
-  gem "hotwire-livereload"
-  gem "rubocop"
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "standard"
-  gem "standard-rails"
+  gem "hotwire-spark"
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do

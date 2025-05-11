@@ -15,6 +15,6 @@
 class Message < ApplicationRecord
   has_rich_text :body
 
-  enum message_type: {email: 0, sms: 1}
-  enum status: {draft: 0, scheduled: 1, sent: 2}
+  enum :message_type, { email: 0, sms: 1 }
+  enum :status, { draft: 0, scheduled: 1, sent: 2 }
 end
