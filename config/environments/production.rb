@@ -123,4 +123,6 @@ Rails.application.configure do
     open_timeout: 5,
     read_timeout: 5
   }
+
+  config.require_master_key = false
 end
