@@ -1,8 +1,6 @@
 <div class="flex flex-wrap space-y-4 sm:space-y-0 justify-between items-center">
   <h1 class="flex font-bold text-4xl">Obtaining a Grant</h1>
-  <% if applications_open? %>
-    <%= link_to 'Apply for a Grant', pre_new_grant_requests_path, class: "flex btn-primary" %>
-  <% end %>
+  <%= link_to 'Apply for a Grant', pre_new_grant_requests_path, class: "flex btn-primary" %>
 </div>
 <div class="min-w-full" id="applications">
   <p class="my-4">

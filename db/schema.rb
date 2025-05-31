@@ -57,9 +57,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_11_181161) do
     t.decimal "amount", default: "0.0"
     t.boolean "recurring", default: false
     t.boolean "thanked", default: false
+    t.date "received_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "received_on"
     t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
@@ -203,11 +203,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_11_181161) do
     t.string "name"
     t.text "details"
     t.boolean "active", default: true
-    t.jsonb "questions", default: []
+    t.text "questions", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["active"], name: "index_grants_on_active", unique: true
     t.index ["name"], name: "index_grants_on_name", unique: true
+    t.index ["questions"], name: "index_grants_on_questions", using: :gin
   end
 
   create_table "messages", force: :cascade do |t|
