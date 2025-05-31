@@ -61,5 +61,5 @@ public/assets
 /config/credentials/development.key
 /config/credentials/staging.key
 /config/credentials/production.key
-/config/master.key
+# /config/master.key
 
