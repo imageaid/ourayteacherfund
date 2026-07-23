@@ -49,7 +49,15 @@ class GrantRequestsController < ApplicationController
 
   # POST /grant_requests or /grant_requests.json
   def create
+    @grant = Grant.find_by(active: true)
     @grant_request = GrantRequest.new(grant_request_params)
+
+    unless human_applicant?
+      @grant_request.build_applicant if @grant_request.applicant.nil?
+      @grant_request.errors.add(:base, "Please answer the verification question so we know you're a real person.")
+      return render :new, status: :unprocessable_entity
+    end
+
     existing_user = User.find_by(email: grant_request_params[:applicant_attributes][:email].downcase.strip)
     if existing_user.present? && !existing_user.applyable?
       redirect_to(new_grant_request_path, alert: "Email is associatd with another user and cannot be used for an application.") && return
@@ -72,7 +80,6 @@ class GrantRequestsController < ApplicationController
       end
       redirect_to grant_request_url(@grant_request), notice: "Grant request received. An email will be sent shortly with more details. Thank you!"
     else
-      @grant = Grant.find_by(active: true)
       render :new, status: :unprocessable_entity
     end
   end
@@ -106,8 +113,19 @@ class GrantRequestsController < ApplicationController
     params.require(:grant_request).permit(
       :user_id, :school_year, :amount_requested, :grant_id, :other_data, :purpose,
       questions: {},
-      applicant_attributes: %i[id email password password_confirmation first_name last_name role active applied_on status phone]
+      applicant_attributes: %i[id email password password_confirmation first_name last_name role active applied_on status phone quiz]
     )
+  end
+
+  # Lightweight, human-verification for the public application form. Mirrors the
+  # quiz used on the mailing-list signup (see SubscribersController). Two checks:
+  #   1. Honeypot: the off-screen `website_url` field should always be empty for a
+  #      real person; if a bot fills it, reject.
+  #   2. Quiz: the applicant must answer the "A Zebra is black and ??" question.
+  def human_applicant?
+    return false if params[:website_url].present?
+
+    grant_request_params.dig(:applicant_attributes, :quiz).to_s.strip.casecmp?("white")
   end
 
   def authorize_grant_request

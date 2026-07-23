@@ -1,6 +1,13 @@
 <%= form_with(model: grant_request, class: "contents text-zinc-800 dark:text-white") do |form| %>
   <%= form.hidden_field :grant_id, value: grant.id %>
   <%= form.hidden_field :school_year, value: current_school_year %>
+  <%# Honeypot: positioned off-screen so real people never see or fill it. Bots that blindly complete every field trip it and get rejected. Only rendered when applying (not editing). %>
+  <% if grant_request.new_record? %>
+    <div aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; height: 0; width: 0; overflow: hidden;">
+      <label for="website_url">Leave this field blank</label>
+      <%= text_field_tag :website_url, nil, tabindex: -1, autocomplete: "off" %>
+    </div>
+  <% end %>
   <% if grant_request.errors.any? %>
     <div class="bg-red-50 dark:bg-red-600 text-red-500 dark:text-red-100 px-3 py-2 font-medium rounded-lg mt-3" id="error_explanation">
       <h2>
@@ -36,6 +43,13 @@
       <%= fields.label :phone %>
       <%= fields.telephone_field :phone, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
+    <% if grant_request.new_record? %>
+      <div class="my-5">
+        <%= fields.label :quiz, "A Zebra is black and ??", class: "required dark:required-label" %>
+        <%= fields.text_field :quiz, class: "text-zinc-600 dark:text-zinc-900 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", placeholder: "A Zebra is black and ??", autocomplete: "off" %>
+        <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Answer this quick question so we know you're a real person.</p>
+      </div>
+    <% end %>
   <% end %>
   <div class="my-5">
     <%= form.label :amount_requested, class: "required dark:required-label" %>
