@@ -20,4 +20,12 @@ class GrantDecision < ApplicationRecord
   belongs_to :grant_request
 
   has_rich_text :awardee_feedback
+
+  # Decisions whose awardee feedback has visible text. An empty Trix editor can
+  # still save markup like "<div><br></div>", so strip tags and &nbsp; before
+  # checking for any non-whitespace character.
+  scope :with_awardee_feedback, lambda {
+    joins(:rich_text_awardee_feedback)
+      .where("regexp_replace(action_text_rich_texts.body, '<[^>]*>|&nbsp;', '', 'g') ~ '\\S'")
+  }
 end
