@@ -7,7 +7,7 @@ module Admin
 
     def index
       filters = params[:user].present? ? params[:user].slice(:first_name, :last_name, :email) : {}
-      @pagy, @users = pagy(search_scope(filters: filters, model_name: "User", order: "last_name"), items: 12)
+      @pagy, @users = pagy(search_scope(filters: filters, model_name: "User", order: "last_name"), limit: 12)
 
       respond_to do |format|
         format.html

@@ -2,9 +2,22 @@
   <div class="sm:flex-auto">
     <h1 class="text-base font-semibold leading-6 text-gray-800 dark:text-white">Grant Request Applications</h1>
     <p class="mt-2 text-sm text-gray-700 dark:text-white">
-      Following are the pending applications in our system. To see past year's applicants [insert
-      review details later 😁].
+      <% if @school_year == Admin::GrantRequestsController::ALL_YEARS %>
+        Showing applications from all school years.
+      <% else %>
+        Showing applications for the <%= @school_year %> school year.
+      <% end %>
+      Choose a year below to see past applicants and update their decisions or feedback.
     </p>
+    <nav class="mt-4 flex flex-wrap gap-2" aria-label="School year">
+      <% (@school_years + [ Admin::GrantRequestsController::ALL_YEARS ]).each do |year| %>
+        <% selected = year == @school_year %>
+        <%= link_to (year == Admin::GrantRequestsController::ALL_YEARS ? "All years" : year),
+                    admin_grant_requests_path(school_year: year),
+                    "aria-current": (selected ? "page" : nil),
+                    class: "rounded-full px-3 py-1 text-sm font-medium border #{selected ? 'bg-orange-500 border-orange-500 text-white' : 'border-gray-300 text-gray-700 dark:text-white hover:border-orange-500 hover:text-orange-500'}" %>
+      <% end %>
+    </nav>
     <div class="mt-8" x-show="open" x-transition>
       <%= render partial: 'shared/user_based_search', locals: { turbo_frame_target: 'requests_wrapper', model_name: 'GrantRequest' } %>
     </div>
@@ -35,7 +48,7 @@
         </table>
       <% end %>
       <div id="load-more-button">
-        <%= render partial: 'shared/load_more', locals: { pagy: @pagy, path: admin_grant_requests_path } %>
+        <%= render partial: 'shared/load_more', locals: { pagy: @pagy, path: admin_grant_requests_path(school_year: @school_year), extra_params: { school_year: @school_year } } %>
       </div>
     </div>
   </div>

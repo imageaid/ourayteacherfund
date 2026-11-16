@@ -4,5 +4,5 @@
 
 
 <%= turbo_stream.update "load-more-button" do %>
-  <%= render partial: "shared/load_more", locals: { pagy: @pagy, path: admin_grant_requests_path } %>
+  <%= render partial: "shared/load_more", locals: { pagy: @pagy, path: admin_grant_requests_path(school_year: @school_year), extra_params: { school_year: @school_year } } %>
 <% end %>

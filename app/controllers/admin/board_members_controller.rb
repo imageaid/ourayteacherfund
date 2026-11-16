@@ -8,7 +8,7 @@ module Admin
 
     def index
       filters = params[:board_member].present? ? params[:board_member].slice(:first_name, :last_name, :email) : {}
-      @pagy, @board_members = pagy(search_scope(filters: filters, model_name: "BoardMember", order: "active, last_name"), items: 12)
+      @pagy, @board_members = pagy(search_scope(filters: filters, model_name: "BoardMember", order: "active, last_name"), limit: 12)
     end
 
     def show

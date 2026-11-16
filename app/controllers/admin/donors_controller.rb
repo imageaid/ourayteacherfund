@@ -9,7 +9,7 @@ module Admin
 
     def index
       filters = params[:donor].present? ? params[:donor].slice(:first_name, :last_name, :email) : {}
-      @pagy, @donors = pagy(search_scope(filters: filters, model_name: "Donor"), items: 12)
+      @pagy, @donors = pagy(search_scope(filters: filters, model_name: "Donor"), limit: 12)
       @total_donated = Donation.sum(:amount)
 
       respond_to do |format|
