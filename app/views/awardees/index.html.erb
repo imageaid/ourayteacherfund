@@ -26,6 +26,7 @@
         </div>
       </div>
     <% end %>
+    <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
   <% else %>
     <p class="mt-8">No awardees found.</p>
   <% end %>

@@ -1,0 +1,30 @@
+<%# Numbered page navigation for public pages. Renders nothing when there is only one page. %>
+<% if pagy.pages > 1 %>
+  <% base = "inline-flex items-center justify-center min-w-10 h-10 px-3 rounded-md text-sm font-medium" %>
+  <% link = "#{base} border border-zinc-200 dark:border-zinc-700 hover:text-orange-500 hover:border-orange-500 dark:hover:text-orange-400 dark:hover:border-orange-400" %>
+  <% disabled = "#{base} border border-zinc-200 dark:border-zinc-700 text-zinc-400 dark:text-zinc-600 cursor-not-allowed" %>
+  <nav class="flex flex-wrap items-center justify-center gap-2 mt-8" aria-label="Pagination">
+    <% if pagy.prev %>
+      <%= link_to "Previous", pagy_url_for(pagy, pagy.prev), class: link, rel: "prev" %>
+    <% else %>
+      <span class="<%= disabled %>" aria-disabled="true">Previous</span>
+    <% end %>
+
+    <% pagy.series.each do |item| %>
+      <% case item %>
+      <% when Integer %>
+        <%= link_to item, pagy_url_for(pagy, item), class: link, "aria-label": "Page #{item}" %>
+      <% when String %>
+        <span class="<%= base %> bg-orange-500 text-white dark:bg-orange-400 dark:text-zinc-900" aria-current="page"><%= item %></span>
+      <% when :gap %>
+        <span class="<%= base %> text-zinc-400">&hellip;</span>
+      <% end %>
+    <% end %>
+
+    <% if pagy.next %>
+      <%= link_to "Next", pagy_url_for(pagy, pagy.next), class: link, rel: "next" %>
+    <% else %>
+      <span class="<%= disabled %>" aria-disabled="true">Next</span>
+    <% end %>
+  </nav>
+<% end %>
